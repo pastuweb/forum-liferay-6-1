@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.0" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_1_0.xsd">
+	<persistence-unit-metadata>
+		<xml-mapping-metadata-complete/>
+		<persistence-unit-defaults>
+			<access>PROPERTY</access>
+		</persistence-unit-defaults>
+	</persistence-unit-metadata>
+	<mapped-superclass class="net.appuntivari.forum.model.impl.ForumModelImpl">
+		<attributes>
+			<id name="id_forum" />
+			<basic name="description" />
+			<basic name="timestamp">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="company_id" />
+			<basic name="create_user_id" />
+			<basic name="status" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="net.appuntivari.forum.model.impl.ForumCategoryModelImpl">
+		<attributes>
+			<id name="id_category" />
+			<basic name="title" />
+			<basic name="description" />
+			<basic name="id_forum" />
+			<basic name="id_category_parent" />
+			<basic name="timestamp">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="create_user_id" />
+			<basic name="status" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="net.appuntivari.forum.model.impl.ForumPostModelImpl">
+		<attributes>
+			<id name="id_post" />
+			<basic name="post" />
+			<basic name="timestamp">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="user_id" />
+			<basic name="id_category" />
+			<basic name="id_post_parent" />
+			<basic name="user_id_post_parent" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="net.appuntivari.forum.model.impl.ForumUserModelImpl">
+		<attributes>
+			<id name="id_forum_user" />
+			<basic name="id_forum" />
+			<basic name="user_id" />
+			<basic name="status" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<entity class="net.appuntivari.forum.model.impl.ForumImpl" name="Forum">
+		<table name="PW_Forum" />
+		<attributes />
+	</entity>
+	<entity class="net.appuntivari.forum.model.impl.ForumCategoryImpl" name="ForumCategory">
+		<table name="PW_ForumCategory" />
+		<attributes />
+	</entity>
+	<entity class="net.appuntivari.forum.model.impl.ForumPostImpl" name="ForumPost">
+		<table name="PW_ForumPost" />
+		<attributes />
+	</entity>
+	<entity class="net.appuntivari.forum.model.impl.ForumUserImpl" name="ForumUser">
+		<table name="PW_ForumUser" />
+		<attributes />
+	</entity>
+</entity-mappings>

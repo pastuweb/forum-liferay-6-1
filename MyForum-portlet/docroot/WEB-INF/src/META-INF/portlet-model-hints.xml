@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+
+<model-hints>
+	<model name="net.appuntivari.forum.model.Forum">
+		<field name="id_forum" type="long" />
+		<field name="description" type="String" />
+		<field name="timestamp" type="Date" />
+		<field name="company_id" type="long" />
+		<field name="create_user_id" type="long" />
+		<field name="status" type="String" />
+	</model>
+	<model name="net.appuntivari.forum.model.ForumCategory">
+		<field name="id_category" type="long" />
+		<field name="title" type="String" />
+		<field name="description" type="String" />
+		<field name="id_forum" type="long" />
+		<field name="id_category_parent" type="long" />
+		<field name="timestamp" type="Date" />
+		<field name="create_user_id" type="long" />
+		<field name="status" type="String" />
+	</model>
+	<model name="net.appuntivari.forum.model.ForumPost">
+		<field name="id_post" type="long" />
+		<field name="post" type="String" />
+		<field name="timestamp" type="Date" />
+		<field name="user_id" type="long" />
+		<field name="id_category" type="long" />
+		<field name="id_post_parent" type="long" />
+		<field name="user_id_post_parent" type="long" />
+	</model>
+	<model name="net.appuntivari.forum.model.ForumUser">
+		<field name="id_forum_user" type="long" />
+		<field name="id_forum" type="long" />
+		<field name="user_id" type="long" />
+		<field name="status" type="String" />
+	</model>
+</model-hints>
