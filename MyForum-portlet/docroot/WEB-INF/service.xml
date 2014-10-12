@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 6.0.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_6_0_0.dtd">
+<service-builder package-path="net.appuntivari.forum">
+
+  <author>Pasturenzi Francesco</author>
+  <namespace>PW</namespace><!-- AppuntiVari -->
+
+ <!-- Tables will be created in Custom db: DTLM_API -->
+ <entity  name="Forum"   local-service="true" remote-service="true" >
+
+    <!-- PK Fields -->
+    <column name="id_forum" type="long"  primary="true"   />
+
+    <!-- Other Fields -->
+    <column name="description" type="String" />
+	<column name="timestamp" type="Date" />
+	<column name="company_id" type="long" />
+	<column name="create_user_id" type="long" />
+	<column name="status" type="String"  />    
+    
+	<order by="desc">
+      <order-column name="id_forum" />
+    </order>
+	
+	 <!-- Finder Methods -->
+	<finder name="Timestamp" return-type="Collection">
+      <finder-column name="timestamp" />
+    </finder>
+    <finder name="CompanyId" return-type="Collection">
+      <finder-column name="company_id" />
+    </finder>
+    <finder name="CreateUserId" return-type="Collection">
+      <finder-column name="create_user_id" />
+    </finder>
+    <finder name="CreateUserIdStatus" return-type="Collection">
+      <finder-column name="create_user_id" />
+      <finder-column name="status" />
+    </finder>
+    
+</entity>
+ <entity  name="ForumCategory"   local-service="true" remote-service="true"  >
+
+    <!-- PK Fields -->
+    <column name="id_category" type="long"  primary="true"   />
+
+    <!-- Other Fields -->
+    <column name="title" type="String" />
+    <column name="description" type="String" />
+    <column name="id_forum" type="long" />
+    <column name="id_category_parent" type="long" />
+	<column name="timestamp" type="Date" />
+	<column name="create_user_id" type="long" />
+	<column name="status" type="String"  />    
+    
+	<order by="desc">
+      <order-column name="id_category" />
+    </order>
+	
+	 <!-- Finder Methods -->
+	<finder name="Timestamp" return-type="Collection">
+      <finder-column name="timestamp" />
+    </finder>
+    <finder name="Title" return-type="Collection">
+      <finder-column name="title" />
+    </finder>
+    <finder name="IdForum" return-type="Collection">
+      <finder-column name="id_forum" />
+    </finder>
+    <finder name="CreateUserId" return-type="Collection">
+      <finder-column name="create_user_id" />
+    </finder>
+    <finder name="IdForumStatus" return-type="Collection">
+      <finder-column name="id_forum" />
+      <finder-column name="status" />
+    </finder>
+    
+</entity>
+ <entity  name="ForumPost"   local-service="true" remote-service="true"  >
+
+    <!-- PK Fields -->
+    <column name="id_post" type="long"  primary="true"   />
+
+    <!-- Other Fields -->
+    <column name="post" type="String" />
+	<column name="timestamp" type="Date" />
+	<column name="user_id" type="long" />
+	<column name="id_category" type="long" />
+	<column name="id_post_parent" type="long"  /> 
+	<column name="user_id_post_parent" type="long"  />   
+    
+	<order by="desc">
+      <order-column name="id_post" />
+    </order>
+	
+	 <!-- Finder Methods -->
+	<finder name="Timestamp" return-type="Collection">
+      <finder-column name="timestamp" />
+    </finder>
+    <finder name="UserId" return-type="Collection">
+      <finder-column name="user_id" />
+    </finder>
+    <finder name="UserIdPostParent" return-type="Collection">
+      <finder-column name="user_id_post_parent" />
+    </finder>
+    <finder name="IdCategory" return-type="Collection">
+      <finder-column name="id_category" />
+    </finder>
+    
+</entity>
+<entity  name="ForumUser"   local-service="true" remote-service="true"  >
+
+    <!-- PK Fields -->
+    <column name="id_forum_user" type="long"  primary="true"   />
+
+    <!-- Other Fields -->
+	<column name="id_forum" type="long" />
+	<column name="user_id" type="long" />
+	<column name="status" type="String"  />    
+    
+	<order by="desc">
+      <order-column name="id_forum_user" />
+    </order>
+	
+	 <!-- Finder Methods -->
+	<finder name="IdForum" return-type="Collection">
+      <finder-column name="id_forum" />
+    </finder>
+    <finder name="UserId" return-type="Collection">
+      <finder-column name="user_id" />
+    </finder>
+    <finder name="Status" return-type="Collection">
+      <finder-column name="status" />
+    </finder>
+    <finder name="IdForumStatus" return-type="Collection">
+      <finder-column name="id_forum" />
+      <finder-column name="status" />
+    </finder>
+    
+</entity>
+
+</service-builder>
+
+
+

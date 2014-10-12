@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" default-destroy-method="destroy" default-init-method="afterPropertiesSet" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	<bean id="net.appuntivari.forum.service.ForumLocalService" class="net.appuntivari.forum.service.impl.ForumLocalServiceImpl" />
+	<bean id="net.appuntivari.forum.service.ForumService" class="net.appuntivari.forum.service.impl.ForumServiceImpl" />
+	<bean id="net.appuntivari.forum.service.persistence.ForumPersistence" class="net.appuntivari.forum.service.persistence.ForumPersistenceImpl" parent="basePersistence" />
+	<bean id="net.appuntivari.forum.service.ForumCategoryLocalService" class="net.appuntivari.forum.service.impl.ForumCategoryLocalServiceImpl" />
+	<bean id="net.appuntivari.forum.service.ForumCategoryService" class="net.appuntivari.forum.service.impl.ForumCategoryServiceImpl" />
+	<bean id="net.appuntivari.forum.service.persistence.ForumCategoryPersistence" class="net.appuntivari.forum.service.persistence.ForumCategoryPersistenceImpl" parent="basePersistence" />
+	<bean id="net.appuntivari.forum.service.ForumPostLocalService" class="net.appuntivari.forum.service.impl.ForumPostLocalServiceImpl" />
+	<bean id="net.appuntivari.forum.service.ForumPostService" class="net.appuntivari.forum.service.impl.ForumPostServiceImpl" />
+	<bean id="net.appuntivari.forum.service.persistence.ForumPostPersistence" class="net.appuntivari.forum.service.persistence.ForumPostPersistenceImpl" parent="basePersistence" />
+	<bean id="net.appuntivari.forum.service.ForumUserLocalService" class="net.appuntivari.forum.service.impl.ForumUserLocalServiceImpl" />
+	<bean id="net.appuntivari.forum.service.ForumUserService" class="net.appuntivari.forum.service.impl.ForumUserServiceImpl" />
+	<bean id="net.appuntivari.forum.service.persistence.ForumUserPersistence" class="net.appuntivari.forum.service.persistence.ForumUserPersistenceImpl" parent="basePersistence" />
+</beans>

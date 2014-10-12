@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping default-lazy="false" auto-import="false">
+	<import class="net.appuntivari.forum.model.Forum" />
+	<import class="net.appuntivari.forum.model.ForumCategory" />
+	<import class="net.appuntivari.forum.model.ForumPost" />
+	<import class="net.appuntivari.forum.model.ForumUser" />
+	<class name="net.appuntivari.forum.model.impl.ForumImpl" table="PW_Forum">
+		<cache usage="read-write" />
+		<id name="id_forum" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="timestamp" type="org.hibernate.type.TimestampType" />
+		<property name="company_id" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="create_user_id" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="status" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+	<class name="net.appuntivari.forum.model.impl.ForumCategoryImpl" table="PW_ForumCategory">
+		<cache usage="read-write" />
+		<id name="id_category" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="title" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="id_forum" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="id_category_parent" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="timestamp" type="org.hibernate.type.TimestampType" />
+		<property name="create_user_id" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="status" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+	<class name="net.appuntivari.forum.model.impl.ForumPostImpl" table="PW_ForumPost">
+		<cache usage="read-write" />
+		<id name="id_post" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="post" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="timestamp" type="org.hibernate.type.TimestampType" />
+		<property name="user_id" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="id_category" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="id_post_parent" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="user_id_post_parent" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+	</class>
+	<class name="net.appuntivari.forum.model.impl.ForumUserImpl" table="PW_ForumUser">
+		<cache usage="read-write" />
+		<id name="id_forum_user" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="id_forum" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="user_id" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="status" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+</hibernate-mapping>
