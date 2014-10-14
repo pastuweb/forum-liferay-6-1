@@ -18,7 +18,7 @@ public class ActionUtil {
 
 		forum.setDescription(ParamUtil.getString(request, "description")); 
 		forum.setCompany_id(ParamUtil.getLong(request, "company_id"));
-		forum.setCreate_user_id(ParamUtil.getLong(request, "create_user_id")); 
+		forum.setUser_id_creator(ParamUtil.getLong(request, "user_id_creator")); 
 		forum.setStatus(ParamUtil.getString(request, "status"));
 		
 		return forum;
@@ -38,8 +38,8 @@ public class ActionUtil {
 			valid = false;
 		}
 		
-		if (Validator.isNull(forum.getCreate_user_id())) {
-			errors.add("mandatory-create-user-id");
+		if (Validator.isNull(forum.getUser_id_creator())) {
+			errors.add("mandatory-user-id-creator");
 			valid = false;
 		}
 		

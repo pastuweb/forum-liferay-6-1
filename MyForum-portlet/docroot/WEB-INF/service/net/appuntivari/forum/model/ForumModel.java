@@ -117,18 +117,18 @@ public interface ForumModel extends BaseModel<Forum> {
 	public void setCompany_id(long company_id);
 
 	/**
-	 * Returns the create_user_id of this forum.
+	 * Returns the user_id_creator of this forum.
 	 *
-	 * @return the create_user_id of this forum
+	 * @return the user_id_creator of this forum
 	 */
-	public long getCreate_user_id();
+	public long getUser_id_creator();
 
 	/**
-	 * Sets the create_user_id of this forum.
+	 * Sets the user_id_creator of this forum.
 	 *
-	 * @param create_user_id the create_user_id of this forum
+	 * @param user_id_creator the user_id_creator of this forum
 	 */
-	public void setCreate_user_id(long create_user_id);
+	public void setUser_id_creator(long user_id_creator);
 
 	/**
 	 * Returns the status of this forum.

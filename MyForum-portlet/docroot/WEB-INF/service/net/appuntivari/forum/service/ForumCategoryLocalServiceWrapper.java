@@ -299,9 +299,9 @@ public class ForumCategoryLocalServiceWrapper
 	}
 
 	public java.util.List<net.appuntivari.forum.model.ForumCategory> getForumCategoriesByCreateUserId(
-		long create_user_id)
+		long user_id_creator)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return _forumCategoryLocalService.getForumCategoriesByCreateUserId(create_user_id);
+		return _forumCategoryLocalService.getForumCategoriesByCreateUserId(user_id_creator);
 	}
 
 	/**

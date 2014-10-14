@@ -140,26 +140,26 @@ public class ForumCategoryPersistenceImpl extends BasePersistenceImpl<ForumCateg
 			ForumCategoryModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByIdForum",
 			new String[] { Long.class.getName() });
-	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_CREATEUSERID =
+	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_USERIDCREATOR =
 		new FinderPath(ForumCategoryModelImpl.ENTITY_CACHE_ENABLED,
 			ForumCategoryModelImpl.FINDER_CACHE_ENABLED,
 			ForumCategoryImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
-			"findByCreateUserId",
+			"findByUserIdCreator",
 			new String[] {
 				Long.class.getName(),
 				
 			"java.lang.Integer", "java.lang.Integer",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
-	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_CREATEUSERID =
+	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_USERIDCREATOR =
 		new FinderPath(ForumCategoryModelImpl.ENTITY_CACHE_ENABLED,
 			ForumCategoryModelImpl.FINDER_CACHE_ENABLED,
 			ForumCategoryImpl.class, FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
-			"findByCreateUserId", new String[] { Long.class.getName() },
-			ForumCategoryModelImpl.CREATE_USER_ID_COLUMN_BITMASK);
-	public static final FinderPath FINDER_PATH_COUNT_BY_CREATEUSERID = new FinderPath(ForumCategoryModelImpl.ENTITY_CACHE_ENABLED,
+			"findByUserIdCreator", new String[] { Long.class.getName() },
+			ForumCategoryModelImpl.USER_ID_CREATOR_COLUMN_BITMASK);
+	public static final FinderPath FINDER_PATH_COUNT_BY_USERIDCREATOR = new FinderPath(ForumCategoryModelImpl.ENTITY_CACHE_ENABLED,
 			ForumCategoryModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByCreateUserId",
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByUserIdCreator",
 			new String[] { Long.class.getName() });
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_IDFORUMSTATUS =
 		new FinderPath(ForumCategoryModelImpl.ENTITY_CACHE_ENABLED,
@@ -456,23 +456,23 @@ public class ForumCategoryPersistenceImpl extends BasePersistenceImpl<ForumCateg
 			}
 
 			if ((forumCategoryModelImpl.getColumnBitmask() &
-					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_CREATEUSERID.getColumnBitmask()) != 0) {
+					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_USERIDCREATOR.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						Long.valueOf(forumCategoryModelImpl.getOriginalCreate_user_id())
+						Long.valueOf(forumCategoryModelImpl.getOriginalUser_id_creator())
 					};
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_CREATEUSERID,
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_USERIDCREATOR,
 					args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_CREATEUSERID,
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_USERIDCREATOR,
 					args);
 
 				args = new Object[] {
-						Long.valueOf(forumCategoryModelImpl.getCreate_user_id())
+						Long.valueOf(forumCategoryModelImpl.getUser_id_creator())
 					};
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_CREATEUSERID,
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_USERIDCREATOR,
 					args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_CREATEUSERID,
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_USERIDCREATOR,
 					args);
 			}
 
@@ -525,7 +525,7 @@ public class ForumCategoryPersistenceImpl extends BasePersistenceImpl<ForumCateg
 		forumCategoryImpl.setId_forum(forumCategory.getId_forum());
 		forumCategoryImpl.setId_category_parent(forumCategory.getId_category_parent());
 		forumCategoryImpl.setTimestamp(forumCategory.getTimestamp());
-		forumCategoryImpl.setCreate_user_id(forumCategory.getCreate_user_id());
+		forumCategoryImpl.setUser_id_creator(forumCategory.getUser_id_creator());
 		forumCategoryImpl.setStatus(forumCategory.getStatus());
 
 		return forumCategoryImpl;
@@ -1815,51 +1815,51 @@ public class ForumCategoryPersistenceImpl extends BasePersistenceImpl<ForumCateg
 	}
 
 	/**
-	 * Returns all the forum categories where create_user_id = &#63;.
+	 * Returns all the forum categories where user_id_creator = &#63;.
 	 *
-	 * @param create_user_id the create_user_id
+	 * @param user_id_creator the user_id_creator
 	 * @return the matching forum categories
 	 * @throws SystemException if a system exception occurred
 	 */
-	public List<ForumCategory> findByCreateUserId(long create_user_id)
+	public List<ForumCategory> findByUserIdCreator(long user_id_creator)
 		throws SystemException {
-		return findByCreateUserId(create_user_id, QueryUtil.ALL_POS,
+		return findByUserIdCreator(user_id_creator, QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS, null);
 	}
 
 	/**
-	 * Returns a range of all the forum categories where create_user_id = &#63;.
+	 * Returns a range of all the forum categories where user_id_creator = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param create_user_id the create_user_id
+	 * @param user_id_creator the user_id_creator
 	 * @param start the lower bound of the range of forum categories
 	 * @param end the upper bound of the range of forum categories (not inclusive)
 	 * @return the range of matching forum categories
 	 * @throws SystemException if a system exception occurred
 	 */
-	public List<ForumCategory> findByCreateUserId(long create_user_id,
+	public List<ForumCategory> findByUserIdCreator(long user_id_creator,
 		int start, int end) throws SystemException {
-		return findByCreateUserId(create_user_id, start, end, null);
+		return findByUserIdCreator(user_id_creator, start, end, null);
 	}
 
 	/**
-	 * Returns an ordered range of all the forum categories where create_user_id = &#63;.
+	 * Returns an ordered range of all the forum categories where user_id_creator = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param create_user_id the create_user_id
+	 * @param user_id_creator the user_id_creator
 	 * @param start the lower bound of the range of forum categories
 	 * @param end the upper bound of the range of forum categories (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching forum categories
 	 * @throws SystemException if a system exception occurred
 	 */
-	public List<ForumCategory> findByCreateUserId(long create_user_id,
+	public List<ForumCategory> findByUserIdCreator(long user_id_creator,
 		int start, int end, OrderByComparator orderByComparator)
 		throws SystemException {
 		FinderPath finderPath = null;
@@ -1867,13 +1867,13 @@ public class ForumCategoryPersistenceImpl extends BasePersistenceImpl<ForumCateg
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 				(orderByComparator == null)) {
-			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_CREATEUSERID;
-			finderArgs = new Object[] { create_user_id };
+			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_USERIDCREATOR;
+			finderArgs = new Object[] { user_id_creator };
 		}
 		else {
-			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_CREATEUSERID;
+			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_USERIDCREATOR;
 			finderArgs = new Object[] {
-					create_user_id,
+					user_id_creator,
 					
 					start, end, orderByComparator
 				};
@@ -1884,7 +1884,7 @@ public class ForumCategoryPersistenceImpl extends BasePersistenceImpl<ForumCateg
 
 		if ((list != null) && !list.isEmpty()) {
 			for (ForumCategory forumCategory : list) {
-				if ((create_user_id != forumCategory.getCreate_user_id())) {
+				if ((user_id_creator != forumCategory.getUser_id_creator())) {
 					list = null;
 
 					break;
@@ -1905,7 +1905,7 @@ public class ForumCategoryPersistenceImpl extends BasePersistenceImpl<ForumCateg
 
 			query.append(_SQL_SELECT_FORUMCATEGORY_WHERE);
 
-			query.append(_FINDER_COLUMN_CREATEUSERID_CREATE_USER_ID_2);
+			query.append(_FINDER_COLUMN_USERIDCREATOR_USER_ID_CREATOR_2);
 
 			if (orderByComparator != null) {
 				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
@@ -1927,7 +1927,7 @@ public class ForumCategoryPersistenceImpl extends BasePersistenceImpl<ForumCateg
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				qPos.add(create_user_id);
+				qPos.add(user_id_creator);
 
 				list = (List<ForumCategory>)QueryUtil.list(q, getDialect(),
 						start, end);
@@ -1953,18 +1953,18 @@ public class ForumCategoryPersistenceImpl extends BasePersistenceImpl<ForumCateg
 	}
 
 	/**
-	 * Returns the first forum category in the ordered set where create_user_id = &#63;.
+	 * Returns the first forum category in the ordered set where user_id_creator = &#63;.
 	 *
-	 * @param create_user_id the create_user_id
+	 * @param user_id_creator the user_id_creator
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching forum category
 	 * @throws net.appuntivari.forum.NoSuchForumCategoryException if a matching forum category could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public ForumCategory findByCreateUserId_First(long create_user_id,
+	public ForumCategory findByUserIdCreator_First(long user_id_creator,
 		OrderByComparator orderByComparator)
 		throws NoSuchForumCategoryException, SystemException {
-		ForumCategory forumCategory = fetchByCreateUserId_First(create_user_id,
+		ForumCategory forumCategory = fetchByUserIdCreator_First(user_id_creator,
 				orderByComparator);
 
 		if (forumCategory != null) {
@@ -1975,8 +1975,8 @@ public class ForumCategoryPersistenceImpl extends BasePersistenceImpl<ForumCateg
 
 		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-		msg.append("create_user_id=");
-		msg.append(create_user_id);
+		msg.append("user_id_creator=");
+		msg.append(user_id_creator);
 
 		msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -1984,16 +1984,16 @@ public class ForumCategoryPersistenceImpl extends BasePersistenceImpl<ForumCateg
 	}
 
 	/**
-	 * Returns the first forum category in the ordered set where create_user_id = &#63;.
+	 * Returns the first forum category in the ordered set where user_id_creator = &#63;.
 	 *
-	 * @param create_user_id the create_user_id
+	 * @param user_id_creator the user_id_creator
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching forum category, or <code>null</code> if a matching forum category could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public ForumCategory fetchByCreateUserId_First(long create_user_id,
+	public ForumCategory fetchByUserIdCreator_First(long user_id_creator,
 		OrderByComparator orderByComparator) throws SystemException {
-		List<ForumCategory> list = findByCreateUserId(create_user_id, 0, 1,
+		List<ForumCategory> list = findByUserIdCreator(user_id_creator, 0, 1,
 				orderByComparator);
 
 		if (!list.isEmpty()) {
@@ -2004,18 +2004,18 @@ public class ForumCategoryPersistenceImpl extends BasePersistenceImpl<ForumCateg
 	}
 
 	/**
-	 * Returns the last forum category in the ordered set where create_user_id = &#63;.
+	 * Returns the last forum category in the ordered set where user_id_creator = &#63;.
 	 *
-	 * @param create_user_id the create_user_id
+	 * @param user_id_creator the user_id_creator
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching forum category
 	 * @throws net.appuntivari.forum.NoSuchForumCategoryException if a matching forum category could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public ForumCategory findByCreateUserId_Last(long create_user_id,
+	public ForumCategory findByUserIdCreator_Last(long user_id_creator,
 		OrderByComparator orderByComparator)
 		throws NoSuchForumCategoryException, SystemException {
-		ForumCategory forumCategory = fetchByCreateUserId_Last(create_user_id,
+		ForumCategory forumCategory = fetchByUserIdCreator_Last(user_id_creator,
 				orderByComparator);
 
 		if (forumCategory != null) {
@@ -2026,8 +2026,8 @@ public class ForumCategoryPersistenceImpl extends BasePersistenceImpl<ForumCateg
 
 		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-		msg.append("create_user_id=");
-		msg.append(create_user_id);
+		msg.append("user_id_creator=");
+		msg.append(user_id_creator);
 
 		msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -2035,18 +2035,18 @@ public class ForumCategoryPersistenceImpl extends BasePersistenceImpl<ForumCateg
 	}
 
 	/**
-	 * Returns the last forum category in the ordered set where create_user_id = &#63;.
+	 * Returns the last forum category in the ordered set where user_id_creator = &#63;.
 	 *
-	 * @param create_user_id the create_user_id
+	 * @param user_id_creator the user_id_creator
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching forum category, or <code>null</code> if a matching forum category could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public ForumCategory fetchByCreateUserId_Last(long create_user_id,
+	public ForumCategory fetchByUserIdCreator_Last(long user_id_creator,
 		OrderByComparator orderByComparator) throws SystemException {
-		int count = countByCreateUserId(create_user_id);
+		int count = countByUserIdCreator(user_id_creator);
 
-		List<ForumCategory> list = findByCreateUserId(create_user_id,
+		List<ForumCategory> list = findByUserIdCreator(user_id_creator,
 				count - 1, count, orderByComparator);
 
 		if (!list.isEmpty()) {
@@ -2057,17 +2057,17 @@ public class ForumCategoryPersistenceImpl extends BasePersistenceImpl<ForumCateg
 	}
 
 	/**
-	 * Returns the forum categories before and after the current forum category in the ordered set where create_user_id = &#63;.
+	 * Returns the forum categories before and after the current forum category in the ordered set where user_id_creator = &#63;.
 	 *
 	 * @param id_category the primary key of the current forum category
-	 * @param create_user_id the create_user_id
+	 * @param user_id_creator the user_id_creator
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next forum category
 	 * @throws net.appuntivari.forum.NoSuchForumCategoryException if a forum category with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public ForumCategory[] findByCreateUserId_PrevAndNext(long id_category,
-		long create_user_id, OrderByComparator orderByComparator)
+	public ForumCategory[] findByUserIdCreator_PrevAndNext(long id_category,
+		long user_id_creator, OrderByComparator orderByComparator)
 		throws NoSuchForumCategoryException, SystemException {
 		ForumCategory forumCategory = findByPrimaryKey(id_category);
 
@@ -2078,13 +2078,13 @@ public class ForumCategoryPersistenceImpl extends BasePersistenceImpl<ForumCateg
 
 			ForumCategory[] array = new ForumCategoryImpl[3];
 
-			array[0] = getByCreateUserId_PrevAndNext(session, forumCategory,
-					create_user_id, orderByComparator, true);
+			array[0] = getByUserIdCreator_PrevAndNext(session, forumCategory,
+					user_id_creator, orderByComparator, true);
 
 			array[1] = forumCategory;
 
-			array[2] = getByCreateUserId_PrevAndNext(session, forumCategory,
-					create_user_id, orderByComparator, false);
+			array[2] = getByUserIdCreator_PrevAndNext(session, forumCategory,
+					user_id_creator, orderByComparator, false);
 
 			return array;
 		}
@@ -2096,8 +2096,8 @@ public class ForumCategoryPersistenceImpl extends BasePersistenceImpl<ForumCateg
 		}
 	}
 
-	protected ForumCategory getByCreateUserId_PrevAndNext(Session session,
-		ForumCategory forumCategory, long create_user_id,
+	protected ForumCategory getByUserIdCreator_PrevAndNext(Session session,
+		ForumCategory forumCategory, long user_id_creator,
 		OrderByComparator orderByComparator, boolean previous) {
 		StringBundler query = null;
 
@@ -2111,7 +2111,7 @@ public class ForumCategoryPersistenceImpl extends BasePersistenceImpl<ForumCateg
 
 		query.append(_SQL_SELECT_FORUMCATEGORY_WHERE);
 
-		query.append(_FINDER_COLUMN_CREATEUSERID_CREATE_USER_ID_2);
+		query.append(_FINDER_COLUMN_USERIDCREATOR_USER_ID_CREATOR_2);
 
 		if (orderByComparator != null) {
 			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
@@ -2182,7 +2182,7 @@ public class ForumCategoryPersistenceImpl extends BasePersistenceImpl<ForumCateg
 
 		QueryPos qPos = QueryPos.getInstance(q);
 
-		qPos.add(create_user_id);
+		qPos.add(user_id_creator);
 
 		if (orderByComparator != null) {
 			Object[] values = orderByComparator.getOrderByConditionValues(forumCategory);
@@ -2791,14 +2791,14 @@ public class ForumCategoryPersistenceImpl extends BasePersistenceImpl<ForumCateg
 	}
 
 	/**
-	 * Removes all the forum categories where create_user_id = &#63; from the database.
+	 * Removes all the forum categories where user_id_creator = &#63; from the database.
 	 *
-	 * @param create_user_id the create_user_id
+	 * @param user_id_creator the user_id_creator
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void removeByCreateUserId(long create_user_id)
+	public void removeByUserIdCreator(long user_id_creator)
 		throws SystemException {
-		for (ForumCategory forumCategory : findByCreateUserId(create_user_id)) {
+		for (ForumCategory forumCategory : findByUserIdCreator(user_id_creator)) {
 			remove(forumCategory);
 		}
 	}
@@ -3007,17 +3007,17 @@ public class ForumCategoryPersistenceImpl extends BasePersistenceImpl<ForumCateg
 	}
 
 	/**
-	 * Returns the number of forum categories where create_user_id = &#63;.
+	 * Returns the number of forum categories where user_id_creator = &#63;.
 	 *
-	 * @param create_user_id the create_user_id
+	 * @param user_id_creator the user_id_creator
 	 * @return the number of matching forum categories
 	 * @throws SystemException if a system exception occurred
 	 */
-	public int countByCreateUserId(long create_user_id)
+	public int countByUserIdCreator(long user_id_creator)
 		throws SystemException {
-		Object[] finderArgs = new Object[] { create_user_id };
+		Object[] finderArgs = new Object[] { user_id_creator };
 
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_CREATEUSERID,
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_USERIDCREATOR,
 				finderArgs, this);
 
 		if (count == null) {
@@ -3025,7 +3025,7 @@ public class ForumCategoryPersistenceImpl extends BasePersistenceImpl<ForumCateg
 
 			query.append(_SQL_COUNT_FORUMCATEGORY_WHERE);
 
-			query.append(_FINDER_COLUMN_CREATEUSERID_CREATE_USER_ID_2);
+			query.append(_FINDER_COLUMN_USERIDCREATOR_USER_ID_CREATOR_2);
 
 			String sql = query.toString();
 
@@ -3038,7 +3038,7 @@ public class ForumCategoryPersistenceImpl extends BasePersistenceImpl<ForumCateg
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				qPos.add(create_user_id);
+				qPos.add(user_id_creator);
 
 				count = (Long)q.uniqueResult();
 			}
@@ -3050,7 +3050,7 @@ public class ForumCategoryPersistenceImpl extends BasePersistenceImpl<ForumCateg
 					count = Long.valueOf(0);
 				}
 
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_CREATEUSERID,
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_USERIDCREATOR,
 					finderArgs, count);
 
 				closeSession(session);
@@ -3224,7 +3224,7 @@ public class ForumCategoryPersistenceImpl extends BasePersistenceImpl<ForumCateg
 	private static final String _FINDER_COLUMN_TITLE_TITLE_2 = "forumCategory.title = ?";
 	private static final String _FINDER_COLUMN_TITLE_TITLE_3 = "(forumCategory.title IS NULL OR forumCategory.title = ?)";
 	private static final String _FINDER_COLUMN_IDFORUM_ID_FORUM_2 = "forumCategory.id_forum = ?";
-	private static final String _FINDER_COLUMN_CREATEUSERID_CREATE_USER_ID_2 = "forumCategory.create_user_id = ?";
+	private static final String _FINDER_COLUMN_USERIDCREATOR_USER_ID_CREATOR_2 = "forumCategory.user_id_creator = ?";
 	private static final String _FINDER_COLUMN_IDFORUMSTATUS_ID_FORUM_2 = "forumCategory.id_forum = ? AND ";
 	private static final String _FINDER_COLUMN_IDFORUMSTATUS_STATUS_1 = "forumCategory.status IS NULL";
 	private static final String _FINDER_COLUMN_IDFORUMSTATUS_STATUS_2 = "forumCategory.status = ?";

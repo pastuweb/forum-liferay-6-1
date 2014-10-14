@@ -271,6 +271,6 @@ public interface ForumCategoryLocalService extends BaseLocalService,
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<net.appuntivari.forum.model.ForumCategory> getForumCategoriesByCreateUserId(
-		long create_user_id)
+		long user_id_creator)
 		throws com.liferay.portal.kernel.exception.SystemException;
 }

@@ -286,15 +286,15 @@ public class ForumLocalServiceUtil {
 	}
 
 	public static java.util.List<net.appuntivari.forum.model.Forum> getForumsByCreateUserId(
-		long create_user_id)
+		long user_id_creator)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService().getForumsByCreateUserId(create_user_id);
+		return getService().getForumsByCreateUserId(user_id_creator);
 	}
 
 	public static java.util.List<net.appuntivari.forum.model.Forum> getForumsByStatus(
-		long create_user_id, boolean status)
+		long user_id_creator, boolean status)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService().getForumsByStatus(create_user_id, status);
+		return getService().getForumsByStatus(user_id_creator, status);
 	}
 
 	public static java.util.List<net.appuntivari.forum.model.Forum> getForumsByTimestamp(

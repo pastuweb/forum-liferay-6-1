@@ -44,8 +44,8 @@ public class ForumCacheModel implements CacheModel<Forum>, Serializable {
 		sb.append(timestamp);
 		sb.append(", company_id=");
 		sb.append(company_id);
-		sb.append(", create_user_id=");
-		sb.append(create_user_id);
+		sb.append(", user_id_creator=");
+		sb.append(user_id_creator);
 		sb.append(", status=");
 		sb.append(status);
 		sb.append("}");
@@ -73,7 +73,7 @@ public class ForumCacheModel implements CacheModel<Forum>, Serializable {
 		}
 
 		forumImpl.setCompany_id(company_id);
-		forumImpl.setCreate_user_id(create_user_id);
+		forumImpl.setUser_id_creator(user_id_creator);
 
 		if (status == null) {
 			forumImpl.setStatus(StringPool.BLANK);
@@ -91,6 +91,6 @@ public class ForumCacheModel implements CacheModel<Forum>, Serializable {
 	public String description;
 	public long timestamp;
 	public long company_id;
-	public long create_user_id;
+	public long user_id_creator;
 	public String status;
 }

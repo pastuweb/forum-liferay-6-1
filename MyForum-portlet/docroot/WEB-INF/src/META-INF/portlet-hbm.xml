@@ -14,7 +14,7 @@
 		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="timestamp" type="org.hibernate.type.TimestampType" />
 		<property name="company_id" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="create_user_id" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="user_id_creator" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="status" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>
 	<class name="net.appuntivari.forum.model.impl.ForumCategoryImpl" table="PW_ForumCategory">
@@ -27,7 +27,7 @@
 		<property name="id_forum" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="id_category_parent" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="timestamp" type="org.hibernate.type.TimestampType" />
-		<property name="create_user_id" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="user_id_creator" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="status" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>
 	<class name="net.appuntivari.forum.model.impl.ForumPostImpl" table="PW_ForumPost">

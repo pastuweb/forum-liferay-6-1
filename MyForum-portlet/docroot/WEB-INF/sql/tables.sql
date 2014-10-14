@@ -3,7 +3,7 @@ create table PW_Forum (
 	description VARCHAR(75) null,
 	timestamp DATE null,
 	company_id LONG,
-	create_user_id LONG,
+	user_id_creator LONG,
 	status VARCHAR(75) null
 );
 
@@ -14,7 +14,7 @@ create table PW_ForumCategory (
 	id_forum LONG,
 	id_category_parent LONG,
 	timestamp DATE null,
-	create_user_id LONG,
+	user_id_creator LONG,
 	status VARCHAR(75) null
 );
 

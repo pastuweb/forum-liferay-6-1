@@ -459,120 +459,120 @@ public interface ForumCategoryPersistence extends BasePersistence<ForumCategory>
 			net.appuntivari.forum.NoSuchForumCategoryException;
 
 	/**
-	* Returns all the forum categories where create_user_id = &#63;.
+	* Returns all the forum categories where user_id_creator = &#63;.
 	*
-	* @param create_user_id the create_user_id
+	* @param user_id_creator the user_id_creator
 	* @return the matching forum categories
 	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<net.appuntivari.forum.model.ForumCategory> findByCreateUserId(
-		long create_user_id)
+	public java.util.List<net.appuntivari.forum.model.ForumCategory> findByUserIdCreator(
+		long user_id_creator)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns a range of all the forum categories where create_user_id = &#63;.
+	* Returns a range of all the forum categories where user_id_creator = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param create_user_id the create_user_id
+	* @param user_id_creator the user_id_creator
 	* @param start the lower bound of the range of forum categories
 	* @param end the upper bound of the range of forum categories (not inclusive)
 	* @return the range of matching forum categories
 	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<net.appuntivari.forum.model.ForumCategory> findByCreateUserId(
-		long create_user_id, int start, int end)
+	public java.util.List<net.appuntivari.forum.model.ForumCategory> findByUserIdCreator(
+		long user_id_creator, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns an ordered range of all the forum categories where create_user_id = &#63;.
+	* Returns an ordered range of all the forum categories where user_id_creator = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param create_user_id the create_user_id
+	* @param user_id_creator the user_id_creator
 	* @param start the lower bound of the range of forum categories
 	* @param end the upper bound of the range of forum categories (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching forum categories
 	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<net.appuntivari.forum.model.ForumCategory> findByCreateUserId(
-		long create_user_id, int start, int end,
+	public java.util.List<net.appuntivari.forum.model.ForumCategory> findByUserIdCreator(
+		long user_id_creator, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the first forum category in the ordered set where create_user_id = &#63;.
+	* Returns the first forum category in the ordered set where user_id_creator = &#63;.
 	*
-	* @param create_user_id the create_user_id
+	* @param user_id_creator the user_id_creator
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching forum category
 	* @throws net.appuntivari.forum.NoSuchForumCategoryException if a matching forum category could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public net.appuntivari.forum.model.ForumCategory findByCreateUserId_First(
-		long create_user_id,
+	public net.appuntivari.forum.model.ForumCategory findByUserIdCreator_First(
+		long user_id_creator,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			net.appuntivari.forum.NoSuchForumCategoryException;
 
 	/**
-	* Returns the first forum category in the ordered set where create_user_id = &#63;.
+	* Returns the first forum category in the ordered set where user_id_creator = &#63;.
 	*
-	* @param create_user_id the create_user_id
+	* @param user_id_creator the user_id_creator
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching forum category, or <code>null</code> if a matching forum category could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public net.appuntivari.forum.model.ForumCategory fetchByCreateUserId_First(
-		long create_user_id,
+	public net.appuntivari.forum.model.ForumCategory fetchByUserIdCreator_First(
+		long user_id_creator,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the last forum category in the ordered set where create_user_id = &#63;.
+	* Returns the last forum category in the ordered set where user_id_creator = &#63;.
 	*
-	* @param create_user_id the create_user_id
+	* @param user_id_creator the user_id_creator
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching forum category
 	* @throws net.appuntivari.forum.NoSuchForumCategoryException if a matching forum category could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public net.appuntivari.forum.model.ForumCategory findByCreateUserId_Last(
-		long create_user_id,
+	public net.appuntivari.forum.model.ForumCategory findByUserIdCreator_Last(
+		long user_id_creator,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			net.appuntivari.forum.NoSuchForumCategoryException;
 
 	/**
-	* Returns the last forum category in the ordered set where create_user_id = &#63;.
+	* Returns the last forum category in the ordered set where user_id_creator = &#63;.
 	*
-	* @param create_user_id the create_user_id
+	* @param user_id_creator the user_id_creator
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching forum category, or <code>null</code> if a matching forum category could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public net.appuntivari.forum.model.ForumCategory fetchByCreateUserId_Last(
-		long create_user_id,
+	public net.appuntivari.forum.model.ForumCategory fetchByUserIdCreator_Last(
+		long user_id_creator,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the forum categories before and after the current forum category in the ordered set where create_user_id = &#63;.
+	* Returns the forum categories before and after the current forum category in the ordered set where user_id_creator = &#63;.
 	*
 	* @param id_category the primary key of the current forum category
-	* @param create_user_id the create_user_id
+	* @param user_id_creator the user_id_creator
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next forum category
 	* @throws net.appuntivari.forum.NoSuchForumCategoryException if a forum category with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public net.appuntivari.forum.model.ForumCategory[] findByCreateUserId_PrevAndNext(
-		long id_category, long create_user_id,
+	public net.appuntivari.forum.model.ForumCategory[] findByUserIdCreator_PrevAndNext(
+		long id_category, long user_id_creator,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			net.appuntivari.forum.NoSuchForumCategoryException;
@@ -775,12 +775,12 @@ public interface ForumCategoryPersistence extends BasePersistence<ForumCategory>
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Removes all the forum categories where create_user_id = &#63; from the database.
+	* Removes all the forum categories where user_id_creator = &#63; from the database.
 	*
-	* @param create_user_id the create_user_id
+	* @param user_id_creator the user_id_creator
 	* @throws SystemException if a system exception occurred
 	*/
-	public void removeByCreateUserId(long create_user_id)
+	public void removeByUserIdCreator(long user_id_creator)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
@@ -832,13 +832,13 @@ public interface ForumCategoryPersistence extends BasePersistence<ForumCategory>
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the number of forum categories where create_user_id = &#63;.
+	* Returns the number of forum categories where user_id_creator = &#63;.
 	*
-	* @param create_user_id the create_user_id
+	* @param user_id_creator the user_id_creator
 	* @return the number of matching forum categories
 	* @throws SystemException if a system exception occurred
 	*/
-	public int countByCreateUserId(long create_user_id)
+	public int countByUserIdCreator(long user_id_creator)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

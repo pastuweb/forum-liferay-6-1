@@ -35,7 +35,7 @@ public class ForumSoap implements Serializable {
 		soapModel.setDescription(model.getDescription());
 		soapModel.setTimestamp(model.getTimestamp());
 		soapModel.setCompany_id(model.getCompany_id());
-		soapModel.setCreate_user_id(model.getCreate_user_id());
+		soapModel.setUser_id_creator(model.getUser_id_creator());
 		soapModel.setStatus(model.getStatus());
 
 		return soapModel;
@@ -121,12 +121,12 @@ public class ForumSoap implements Serializable {
 		_company_id = company_id;
 	}
 
-	public long getCreate_user_id() {
-		return _create_user_id;
+	public long getUser_id_creator() {
+		return _user_id_creator;
 	}
 
-	public void setCreate_user_id(long create_user_id) {
-		_create_user_id = create_user_id;
+	public void setUser_id_creator(long user_id_creator) {
+		_user_id_creator = user_id_creator;
 	}
 
 	public String getStatus() {
@@ -141,6 +141,6 @@ public class ForumSoap implements Serializable {
 	private String _description;
 	private Date _timestamp;
 	private long _company_id;
-	private long _create_user_id;
+	private long _user_id_creator;
 	private String _status;
 }

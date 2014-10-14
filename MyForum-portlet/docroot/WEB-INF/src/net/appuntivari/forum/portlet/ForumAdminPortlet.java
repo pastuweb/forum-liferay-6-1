@@ -36,7 +36,7 @@ public class ForumAdminPortlet extends MVCPortlet {
 		    ArrayList<String> errors = new ArrayList<String>();
 		    
 			Forum forum = ActionUtil.forumFromRequest(request);
-			long creatorUSerId = forum.getCreate_user_id();
+			long creatorUSerId = forum.getUser_id_creator();
 			
 			 if (ActionUtil.validateForumInInsert(forum, errors) ) {
 				 

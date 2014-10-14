@@ -50,7 +50,7 @@ public class ForumWrapper implements Forum, ModelWrapper<Forum> {
 		attributes.put("description", getDescription());
 		attributes.put("timestamp", getTimestamp());
 		attributes.put("company_id", getCompany_id());
-		attributes.put("create_user_id", getCreate_user_id());
+		attributes.put("user_id_creator", getUser_id_creator());
 		attributes.put("status", getStatus());
 
 		return attributes;
@@ -81,10 +81,10 @@ public class ForumWrapper implements Forum, ModelWrapper<Forum> {
 			setCompany_id(company_id);
 		}
 
-		Long create_user_id = (Long)attributes.get("create_user_id");
+		Long user_id_creator = (Long)attributes.get("user_id_creator");
 
-		if (create_user_id != null) {
-			setCreate_user_id(create_user_id);
+		if (user_id_creator != null) {
+			setUser_id_creator(user_id_creator);
 		}
 
 		String status = (String)attributes.get("status");
@@ -185,21 +185,21 @@ public class ForumWrapper implements Forum, ModelWrapper<Forum> {
 	}
 
 	/**
-	* Returns the create_user_id of this forum.
+	* Returns the user_id_creator of this forum.
 	*
-	* @return the create_user_id of this forum
+	* @return the user_id_creator of this forum
 	*/
-	public long getCreate_user_id() {
-		return _forum.getCreate_user_id();
+	public long getUser_id_creator() {
+		return _forum.getUser_id_creator();
 	}
 
 	/**
-	* Sets the create_user_id of this forum.
+	* Sets the user_id_creator of this forum.
 	*
-	* @param create_user_id the create_user_id of this forum
+	* @param user_id_creator the user_id_creator of this forum
 	*/
-	public void setCreate_user_id(long create_user_id) {
-		_forum.setCreate_user_id(create_user_id);
+	public void setUser_id_creator(long user_id_creator) {
+		_forum.setUser_id_creator(user_id_creator);
 	}
 
 	/**

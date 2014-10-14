@@ -302,9 +302,9 @@ public class ForumCategoryLocalServiceUtil {
 	}
 
 	public static java.util.List<net.appuntivari.forum.model.ForumCategory> getForumCategoriesByCreateUserId(
-		long create_user_id)
+		long user_id_creator)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService().getForumCategoriesByCreateUserId(create_user_id);
+		return getService().getForumCategoriesByCreateUserId(user_id_creator);
 	}
 
 	public static void clearService() {
