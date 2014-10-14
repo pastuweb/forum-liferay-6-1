@@ -49,8 +49,8 @@ public class ForumCategoryCacheModel implements CacheModel<ForumCategory>,
 		sb.append(id_category_parent);
 		sb.append(", timestamp=");
 		sb.append(timestamp);
-		sb.append(", create_user_id=");
-		sb.append(create_user_id);
+		sb.append(", user_id_creator=");
+		sb.append(user_id_creator);
 		sb.append(", status=");
 		sb.append(status);
 		sb.append("}");
@@ -87,7 +87,7 @@ public class ForumCategoryCacheModel implements CacheModel<ForumCategory>,
 			forumCategoryImpl.setTimestamp(new Date(timestamp));
 		}
 
-		forumCategoryImpl.setCreate_user_id(create_user_id);
+		forumCategoryImpl.setUser_id_creator(user_id_creator);
 
 		if (status == null) {
 			forumCategoryImpl.setStatus(StringPool.BLANK);
@@ -107,6 +107,6 @@ public class ForumCategoryCacheModel implements CacheModel<ForumCategory>,
 	public long id_forum;
 	public long id_category_parent;
 	public long timestamp;
-	public long create_user_id;
+	public long user_id_creator;
 	public String status;
 }

@@ -808,13 +808,13 @@ public class ForumCategoryLocalServiceClp implements ForumCategoryLocalService {
 	}
 
 	public java.util.List<net.appuntivari.forum.model.ForumCategory> getForumCategoriesByCreateUserId(
-		long create_user_id)
+		long user_id_creator)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName24,
-					_methodParameterTypes24, new Object[] { create_user_id });
+					_methodParameterTypes24, new Object[] { user_id_creator });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);

@@ -57,7 +57,7 @@ public class ForumCategoryLocalServiceImpl
 		newForumCategory.setTitle(forumCategory.getTitle());
 		newForumCategory.setDescription(forumCategory.getDescription());
 		newForumCategory.setId_category_parent(forumCategory.getId_category_parent());
-		newForumCategory.setCreate_user_id(forumCategory.getCreate_user_id());
+		newForumCategory.setUser_id_creator(forumCategory.getUser_id_creator());
 		newForumCategory.setId_forum(forumCategory.getId_forum());
 		newForumCategory.setTimestamp(forumCategory.getTimestamp());
 		newForumCategory.setStatus(forumCategory.getStatus());
@@ -79,7 +79,7 @@ public class ForumCategoryLocalServiceImpl
 		return forumCategoryPersistence.findByIdForum(id_forum);
 	}
 	
-	public List<ForumCategory> getForumCategoriesByCreateUserId(long create_user_id) throws SystemException{
-		return forumCategoryPersistence.findByCreateUserId(create_user_id);
+	public List<ForumCategory> getForumCategoriesByCreateUserId(long user_id_creator) throws SystemException{
+		return forumCategoryPersistence.findByUserIdCreator(user_id_creator);
 	}
 }

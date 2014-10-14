@@ -70,10 +70,10 @@ public class ForumCategoryModelImpl extends BaseModelImpl<ForumCategory>
 			{ "id_forum", Types.BIGINT },
 			{ "id_category_parent", Types.BIGINT },
 			{ "timestamp", Types.TIMESTAMP },
-			{ "create_user_id", Types.BIGINT },
+			{ "user_id_creator", Types.BIGINT },
 			{ "status", Types.VARCHAR }
 		};
-	public static final String TABLE_SQL_CREATE = "create table PW_ForumCategory (id_category LONG not null primary key,title VARCHAR(75) null,description VARCHAR(75) null,id_forum LONG,id_category_parent LONG,timestamp DATE null,create_user_id LONG,status VARCHAR(75) null)";
+	public static final String TABLE_SQL_CREATE = "create table PW_ForumCategory (id_category LONG not null primary key,title VARCHAR(75) null,description VARCHAR(75) null,id_forum LONG,id_category_parent LONG,timestamp DATE null,user_id_creator LONG,status VARCHAR(75) null)";
 	public static final String TABLE_SQL_DROP = "drop table PW_ForumCategory";
 	public static final String ORDER_BY_JPQL = " ORDER BY forumCategory.id_category DESC";
 	public static final String ORDER_BY_SQL = " ORDER BY PW_ForumCategory.id_category DESC";
@@ -89,11 +89,11 @@ public class ForumCategoryModelImpl extends BaseModelImpl<ForumCategory>
 	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.column.bitmask.enabled.net.appuntivari.forum.model.ForumCategory"),
 			true);
-	public static long CREATE_USER_ID_COLUMN_BITMASK = 1L;
-	public static long ID_FORUM_COLUMN_BITMASK = 2L;
-	public static long STATUS_COLUMN_BITMASK = 4L;
-	public static long TIMESTAMP_COLUMN_BITMASK = 8L;
-	public static long TITLE_COLUMN_BITMASK = 16L;
+	public static long ID_FORUM_COLUMN_BITMASK = 1L;
+	public static long STATUS_COLUMN_BITMASK = 2L;
+	public static long TIMESTAMP_COLUMN_BITMASK = 4L;
+	public static long TITLE_COLUMN_BITMASK = 8L;
+	public static long USER_ID_CREATOR_COLUMN_BITMASK = 16L;
 
 	/**
 	 * Converts the soap model instance into a normal model instance.
@@ -114,7 +114,7 @@ public class ForumCategoryModelImpl extends BaseModelImpl<ForumCategory>
 		model.setId_forum(soapModel.getId_forum());
 		model.setId_category_parent(soapModel.getId_category_parent());
 		model.setTimestamp(soapModel.getTimestamp());
-		model.setCreate_user_id(soapModel.getCreate_user_id());
+		model.setUser_id_creator(soapModel.getUser_id_creator());
 		model.setStatus(soapModel.getStatus());
 
 		return model;
@@ -180,7 +180,7 @@ public class ForumCategoryModelImpl extends BaseModelImpl<ForumCategory>
 		attributes.put("id_forum", getId_forum());
 		attributes.put("id_category_parent", getId_category_parent());
 		attributes.put("timestamp", getTimestamp());
-		attributes.put("create_user_id", getCreate_user_id());
+		attributes.put("user_id_creator", getUser_id_creator());
 		attributes.put("status", getStatus());
 
 		return attributes;
@@ -224,10 +224,10 @@ public class ForumCategoryModelImpl extends BaseModelImpl<ForumCategory>
 			setTimestamp(timestamp);
 		}
 
-		Long create_user_id = (Long)attributes.get("create_user_id");
+		Long user_id_creator = (Long)attributes.get("user_id_creator");
 
-		if (create_user_id != null) {
-			setCreate_user_id(create_user_id);
+		if (user_id_creator != null) {
+			setUser_id_creator(user_id_creator);
 		}
 
 		String status = (String)attributes.get("status");
@@ -336,24 +336,24 @@ public class ForumCategoryModelImpl extends BaseModelImpl<ForumCategory>
 	}
 
 	@JSON
-	public long getCreate_user_id() {
-		return _create_user_id;
+	public long getUser_id_creator() {
+		return _user_id_creator;
 	}
 
-	public void setCreate_user_id(long create_user_id) {
-		_columnBitmask |= CREATE_USER_ID_COLUMN_BITMASK;
+	public void setUser_id_creator(long user_id_creator) {
+		_columnBitmask |= USER_ID_CREATOR_COLUMN_BITMASK;
 
-		if (!_setOriginalCreate_user_id) {
-			_setOriginalCreate_user_id = true;
+		if (!_setOriginalUser_id_creator) {
+			_setOriginalUser_id_creator = true;
 
-			_originalCreate_user_id = _create_user_id;
+			_originalUser_id_creator = _user_id_creator;
 		}
 
-		_create_user_id = create_user_id;
+		_user_id_creator = user_id_creator;
 	}
 
-	public long getOriginalCreate_user_id() {
-		return _originalCreate_user_id;
+	public long getOriginalUser_id_creator() {
+		return _originalUser_id_creator;
 	}
 
 	@JSON
@@ -421,7 +421,7 @@ public class ForumCategoryModelImpl extends BaseModelImpl<ForumCategory>
 		forumCategoryImpl.setId_forum(getId_forum());
 		forumCategoryImpl.setId_category_parent(getId_category_parent());
 		forumCategoryImpl.setTimestamp(getTimestamp());
-		forumCategoryImpl.setCreate_user_id(getCreate_user_id());
+		forumCategoryImpl.setUser_id_creator(getUser_id_creator());
 		forumCategoryImpl.setStatus(getStatus());
 
 		forumCategoryImpl.resetOriginalValues();
@@ -490,9 +490,9 @@ public class ForumCategoryModelImpl extends BaseModelImpl<ForumCategory>
 
 		forumCategoryModelImpl._originalTimestamp = forumCategoryModelImpl._timestamp;
 
-		forumCategoryModelImpl._originalCreate_user_id = forumCategoryModelImpl._create_user_id;
+		forumCategoryModelImpl._originalUser_id_creator = forumCategoryModelImpl._user_id_creator;
 
-		forumCategoryModelImpl._setOriginalCreate_user_id = false;
+		forumCategoryModelImpl._setOriginalUser_id_creator = false;
 
 		forumCategoryModelImpl._originalStatus = forumCategoryModelImpl._status;
 
@@ -534,7 +534,7 @@ public class ForumCategoryModelImpl extends BaseModelImpl<ForumCategory>
 			forumCategoryCacheModel.timestamp = Long.MIN_VALUE;
 		}
 
-		forumCategoryCacheModel.create_user_id = getCreate_user_id();
+		forumCategoryCacheModel.user_id_creator = getUser_id_creator();
 
 		forumCategoryCacheModel.status = getStatus();
 
@@ -563,8 +563,8 @@ public class ForumCategoryModelImpl extends BaseModelImpl<ForumCategory>
 		sb.append(getId_category_parent());
 		sb.append(", timestamp=");
 		sb.append(getTimestamp());
-		sb.append(", create_user_id=");
-		sb.append(getCreate_user_id());
+		sb.append(", user_id_creator=");
+		sb.append(getUser_id_creator());
 		sb.append(", status=");
 		sb.append(getStatus());
 		sb.append("}");
@@ -604,8 +604,8 @@ public class ForumCategoryModelImpl extends BaseModelImpl<ForumCategory>
 		sb.append(getTimestamp());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>create_user_id</column-name><column-value><![CDATA[");
-		sb.append(getCreate_user_id());
+			"<column><column-name>user_id_creator</column-name><column-value><![CDATA[");
+		sb.append(getUser_id_creator());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>status</column-name><column-value><![CDATA[");
@@ -631,9 +631,9 @@ public class ForumCategoryModelImpl extends BaseModelImpl<ForumCategory>
 	private long _id_category_parent;
 	private Date _timestamp;
 	private Date _originalTimestamp;
-	private long _create_user_id;
-	private long _originalCreate_user_id;
-	private boolean _setOriginalCreate_user_id;
+	private long _user_id_creator;
+	private long _originalUser_id_creator;
+	private boolean _setOriginalUser_id_creator;
 	private String _status;
 	private String _originalStatus;
 	private long _columnBitmask;

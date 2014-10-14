@@ -74,7 +74,7 @@ public class ForumCategoryClp extends BaseModelImpl<ForumCategory>
 		attributes.put("id_forum", getId_forum());
 		attributes.put("id_category_parent", getId_category_parent());
 		attributes.put("timestamp", getTimestamp());
-		attributes.put("create_user_id", getCreate_user_id());
+		attributes.put("user_id_creator", getUser_id_creator());
 		attributes.put("status", getStatus());
 
 		return attributes;
@@ -118,10 +118,10 @@ public class ForumCategoryClp extends BaseModelImpl<ForumCategory>
 			setTimestamp(timestamp);
 		}
 
-		Long create_user_id = (Long)attributes.get("create_user_id");
+		Long user_id_creator = (Long)attributes.get("user_id_creator");
 
-		if (create_user_id != null) {
-			setCreate_user_id(create_user_id);
+		if (user_id_creator != null) {
+			setUser_id_creator(user_id_creator);
 		}
 
 		String status = (String)attributes.get("status");
@@ -258,20 +258,20 @@ public class ForumCategoryClp extends BaseModelImpl<ForumCategory>
 		}
 	}
 
-	public long getCreate_user_id() {
-		return _create_user_id;
+	public long getUser_id_creator() {
+		return _user_id_creator;
 	}
 
-	public void setCreate_user_id(long create_user_id) {
-		_create_user_id = create_user_id;
+	public void setUser_id_creator(long user_id_creator) {
+		_user_id_creator = user_id_creator;
 
 		if (_forumCategoryRemoteModel != null) {
 			try {
 				Class<?> clazz = _forumCategoryRemoteModel.getClass();
 
-				Method method = clazz.getMethod("setCreate_user_id", long.class);
+				Method method = clazz.getMethod("setUser_id_creator", long.class);
 
-				method.invoke(_forumCategoryRemoteModel, create_user_id);
+				method.invoke(_forumCategoryRemoteModel, user_id_creator);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -379,7 +379,7 @@ public class ForumCategoryClp extends BaseModelImpl<ForumCategory>
 		clone.setId_forum(getId_forum());
 		clone.setId_category_parent(getId_category_parent());
 		clone.setTimestamp(getTimestamp());
-		clone.setCreate_user_id(getCreate_user_id());
+		clone.setUser_id_creator(getUser_id_creator());
 		clone.setStatus(getStatus());
 
 		return clone;
@@ -450,8 +450,8 @@ public class ForumCategoryClp extends BaseModelImpl<ForumCategory>
 		sb.append(getId_category_parent());
 		sb.append(", timestamp=");
 		sb.append(getTimestamp());
-		sb.append(", create_user_id=");
-		sb.append(getCreate_user_id());
+		sb.append(", user_id_creator=");
+		sb.append(getUser_id_creator());
 		sb.append(", status=");
 		sb.append(getStatus());
 		sb.append("}");
@@ -491,8 +491,8 @@ public class ForumCategoryClp extends BaseModelImpl<ForumCategory>
 		sb.append(getTimestamp());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>create_user_id</column-name><column-value><![CDATA[");
-		sb.append(getCreate_user_id());
+			"<column><column-name>user_id_creator</column-name><column-value><![CDATA[");
+		sb.append(getUser_id_creator());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>status</column-name><column-value><![CDATA[");
@@ -510,7 +510,7 @@ public class ForumCategoryClp extends BaseModelImpl<ForumCategory>
 	private long _id_forum;
 	private long _id_category_parent;
 	private Date _timestamp;
-	private long _create_user_id;
+	private long _user_id_creator;
 	private String _status;
 	private BaseModel<?> _forumCategoryRemoteModel;
 }

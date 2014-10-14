@@ -67,10 +67,10 @@ public class ForumModelImpl extends BaseModelImpl<Forum> implements ForumModel {
 			{ "description", Types.VARCHAR },
 			{ "timestamp", Types.TIMESTAMP },
 			{ "company_id", Types.BIGINT },
-			{ "create_user_id", Types.BIGINT },
+			{ "user_id_creator", Types.BIGINT },
 			{ "status", Types.VARCHAR }
 		};
-	public static final String TABLE_SQL_CREATE = "create table PW_Forum (id_forum LONG not null primary key,description VARCHAR(75) null,timestamp DATE null,company_id LONG,create_user_id LONG,status VARCHAR(75) null)";
+	public static final String TABLE_SQL_CREATE = "create table PW_Forum (id_forum LONG not null primary key,description VARCHAR(75) null,timestamp DATE null,company_id LONG,user_id_creator LONG,status VARCHAR(75) null)";
 	public static final String TABLE_SQL_DROP = "drop table PW_Forum";
 	public static final String ORDER_BY_JPQL = " ORDER BY forum.id_forum DESC";
 	public static final String ORDER_BY_SQL = " ORDER BY PW_Forum.id_forum DESC";
@@ -87,9 +87,9 @@ public class ForumModelImpl extends BaseModelImpl<Forum> implements ForumModel {
 				"value.object.column.bitmask.enabled.net.appuntivari.forum.model.Forum"),
 			true);
 	public static long COMPANY_ID_COLUMN_BITMASK = 1L;
-	public static long CREATE_USER_ID_COLUMN_BITMASK = 2L;
-	public static long STATUS_COLUMN_BITMASK = 4L;
-	public static long TIMESTAMP_COLUMN_BITMASK = 8L;
+	public static long STATUS_COLUMN_BITMASK = 2L;
+	public static long TIMESTAMP_COLUMN_BITMASK = 4L;
+	public static long USER_ID_CREATOR_COLUMN_BITMASK = 8L;
 
 	/**
 	 * Converts the soap model instance into a normal model instance.
@@ -108,7 +108,7 @@ public class ForumModelImpl extends BaseModelImpl<Forum> implements ForumModel {
 		model.setDescription(soapModel.getDescription());
 		model.setTimestamp(soapModel.getTimestamp());
 		model.setCompany_id(soapModel.getCompany_id());
-		model.setCreate_user_id(soapModel.getCreate_user_id());
+		model.setUser_id_creator(soapModel.getUser_id_creator());
 		model.setStatus(soapModel.getStatus());
 
 		return model;
@@ -172,7 +172,7 @@ public class ForumModelImpl extends BaseModelImpl<Forum> implements ForumModel {
 		attributes.put("description", getDescription());
 		attributes.put("timestamp", getTimestamp());
 		attributes.put("company_id", getCompany_id());
-		attributes.put("create_user_id", getCreate_user_id());
+		attributes.put("user_id_creator", getUser_id_creator());
 		attributes.put("status", getStatus());
 
 		return attributes;
@@ -204,10 +204,10 @@ public class ForumModelImpl extends BaseModelImpl<Forum> implements ForumModel {
 			setCompany_id(company_id);
 		}
 
-		Long create_user_id = (Long)attributes.get("create_user_id");
+		Long user_id_creator = (Long)attributes.get("user_id_creator");
 
-		if (create_user_id != null) {
-			setCreate_user_id(create_user_id);
+		if (user_id_creator != null) {
+			setUser_id_creator(user_id_creator);
 		}
 
 		String status = (String)attributes.get("status");
@@ -283,24 +283,24 @@ public class ForumModelImpl extends BaseModelImpl<Forum> implements ForumModel {
 	}
 
 	@JSON
-	public long getCreate_user_id() {
-		return _create_user_id;
+	public long getUser_id_creator() {
+		return _user_id_creator;
 	}
 
-	public void setCreate_user_id(long create_user_id) {
-		_columnBitmask |= CREATE_USER_ID_COLUMN_BITMASK;
+	public void setUser_id_creator(long user_id_creator) {
+		_columnBitmask |= USER_ID_CREATOR_COLUMN_BITMASK;
 
-		if (!_setOriginalCreate_user_id) {
-			_setOriginalCreate_user_id = true;
+		if (!_setOriginalUser_id_creator) {
+			_setOriginalUser_id_creator = true;
 
-			_originalCreate_user_id = _create_user_id;
+			_originalUser_id_creator = _user_id_creator;
 		}
 
-		_create_user_id = create_user_id;
+		_user_id_creator = user_id_creator;
 	}
 
-	public long getOriginalCreate_user_id() {
-		return _originalCreate_user_id;
+	public long getOriginalUser_id_creator() {
+		return _originalUser_id_creator;
 	}
 
 	@JSON
@@ -366,7 +366,7 @@ public class ForumModelImpl extends BaseModelImpl<Forum> implements ForumModel {
 		forumImpl.setDescription(getDescription());
 		forumImpl.setTimestamp(getTimestamp());
 		forumImpl.setCompany_id(getCompany_id());
-		forumImpl.setCreate_user_id(getCreate_user_id());
+		forumImpl.setUser_id_creator(getUser_id_creator());
 		forumImpl.setStatus(getStatus());
 
 		forumImpl.resetOriginalValues();
@@ -433,9 +433,9 @@ public class ForumModelImpl extends BaseModelImpl<Forum> implements ForumModel {
 
 		forumModelImpl._setOriginalCompany_id = false;
 
-		forumModelImpl._originalCreate_user_id = forumModelImpl._create_user_id;
+		forumModelImpl._originalUser_id_creator = forumModelImpl._user_id_creator;
 
-		forumModelImpl._setOriginalCreate_user_id = false;
+		forumModelImpl._setOriginalUser_id_creator = false;
 
 		forumModelImpl._originalStatus = forumModelImpl._status;
 
@@ -467,7 +467,7 @@ public class ForumModelImpl extends BaseModelImpl<Forum> implements ForumModel {
 
 		forumCacheModel.company_id = getCompany_id();
 
-		forumCacheModel.create_user_id = getCreate_user_id();
+		forumCacheModel.user_id_creator = getUser_id_creator();
 
 		forumCacheModel.status = getStatus();
 
@@ -492,8 +492,8 @@ public class ForumModelImpl extends BaseModelImpl<Forum> implements ForumModel {
 		sb.append(getTimestamp());
 		sb.append(", company_id=");
 		sb.append(getCompany_id());
-		sb.append(", create_user_id=");
-		sb.append(getCreate_user_id());
+		sb.append(", user_id_creator=");
+		sb.append(getUser_id_creator());
 		sb.append(", status=");
 		sb.append(getStatus());
 		sb.append("}");
@@ -525,8 +525,8 @@ public class ForumModelImpl extends BaseModelImpl<Forum> implements ForumModel {
 		sb.append(getCompany_id());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>create_user_id</column-name><column-value><![CDATA[");
-		sb.append(getCreate_user_id());
+			"<column><column-name>user_id_creator</column-name><column-value><![CDATA[");
+		sb.append(getUser_id_creator());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>status</column-name><column-value><![CDATA[");
@@ -547,9 +547,9 @@ public class ForumModelImpl extends BaseModelImpl<Forum> implements ForumModel {
 	private long _company_id;
 	private long _originalCompany_id;
 	private boolean _setOriginalCompany_id;
-	private long _create_user_id;
-	private long _originalCreate_user_id;
-	private boolean _setOriginalCreate_user_id;
+	private long _user_id_creator;
+	private long _originalUser_id_creator;
+	private boolean _setOriginalUser_id_creator;
 	private String _status;
 	private String _originalStatus;
 	private long _columnBitmask;

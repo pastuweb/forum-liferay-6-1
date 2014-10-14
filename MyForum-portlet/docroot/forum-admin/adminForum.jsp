@@ -42,7 +42,7 @@
 					<%} %>
 					</aui:select>
 										
-					<aui:input name="create_user_id" type="hidden" value="<%=remote_userid %>"/>
+					<aui:input name="user_id_creator" type="hidden" value="<%=remote_userid %>"/>
 					<aui:input name="status" type="hidden" value="ACTIVE"/>
 					
 				<div>
@@ -99,8 +99,8 @@
 	          value="<%=CompanyLocalServiceUtil.getCompanyById(company.getCompanyId()).getName() %>" />
 	          
 	      <liferay-ui:search-container-column-text
-		          name="create_user_id" 
-		          value="<%=UserLocalServiceUtil.getUserById(forum.getCreate_user_id()).getScreenName() %>"/>
+		          name="user_id_creator" 
+		          value="<%=UserLocalServiceUtil.getUserById(forum.getUser_id_creator()).getScreenName() %>"/>
 		          
 		  <liferay-ui:search-container-column-text
 		          name="status" 

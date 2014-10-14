@@ -53,7 +53,7 @@ public class ForumCategoryWrapper implements ForumCategory,
 		attributes.put("id_forum", getId_forum());
 		attributes.put("id_category_parent", getId_category_parent());
 		attributes.put("timestamp", getTimestamp());
-		attributes.put("create_user_id", getCreate_user_id());
+		attributes.put("user_id_creator", getUser_id_creator());
 		attributes.put("status", getStatus());
 
 		return attributes;
@@ -96,10 +96,10 @@ public class ForumCategoryWrapper implements ForumCategory,
 			setTimestamp(timestamp);
 		}
 
-		Long create_user_id = (Long)attributes.get("create_user_id");
+		Long user_id_creator = (Long)attributes.get("user_id_creator");
 
-		if (create_user_id != null) {
-			setCreate_user_id(create_user_id);
+		if (user_id_creator != null) {
+			setUser_id_creator(user_id_creator);
 		}
 
 		String status = (String)attributes.get("status");
@@ -236,21 +236,21 @@ public class ForumCategoryWrapper implements ForumCategory,
 	}
 
 	/**
-	* Returns the create_user_id of this forum category.
+	* Returns the user_id_creator of this forum category.
 	*
-	* @return the create_user_id of this forum category
+	* @return the user_id_creator of this forum category
 	*/
-	public long getCreate_user_id() {
-		return _forumCategory.getCreate_user_id();
+	public long getUser_id_creator() {
+		return _forumCategory.getUser_id_creator();
 	}
 
 	/**
-	* Sets the create_user_id of this forum category.
+	* Sets the user_id_creator of this forum category.
 	*
-	* @param create_user_id the create_user_id of this forum category
+	* @param user_id_creator the user_id_creator of this forum category
 	*/
-	public void setCreate_user_id(long create_user_id) {
-		_forumCategory.setCreate_user_id(create_user_id);
+	public void setUser_id_creator(long user_id_creator) {
+		_forumCategory.setUser_id_creator(user_id_creator);
 	}
 
 	/**

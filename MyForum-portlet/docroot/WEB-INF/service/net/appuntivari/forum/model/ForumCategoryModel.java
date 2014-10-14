@@ -146,18 +146,18 @@ public interface ForumCategoryModel extends BaseModel<ForumCategory> {
 	public void setTimestamp(Date timestamp);
 
 	/**
-	 * Returns the create_user_id of this forum category.
+	 * Returns the user_id_creator of this forum category.
 	 *
-	 * @return the create_user_id of this forum category
+	 * @return the user_id_creator of this forum category
 	 */
-	public long getCreate_user_id();
+	public long getUser_id_creator();
 
 	/**
-	 * Sets the create_user_id of this forum category.
+	 * Sets the user_id_creator of this forum category.
 	 *
-	 * @param create_user_id the create_user_id of this forum category
+	 * @param user_id_creator the user_id_creator of this forum category
 	 */
-	public void setCreate_user_id(long create_user_id);
+	public void setUser_id_creator(long user_id_creator);
 
 	/**
 	 * Returns the status of this forum category.

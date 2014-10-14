@@ -471,191 +471,194 @@ public class ForumUtil {
 	}
 
 	/**
-	* Returns all the forums where create_user_id = &#63;.
+	* Returns all the forums where user_id_creator = &#63;.
 	*
-	* @param create_user_id the create_user_id
+	* @param user_id_creator the user_id_creator
 	* @return the matching forums
 	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<net.appuntivari.forum.model.Forum> findByCreateUserId(
-		long create_user_id)
+	public static java.util.List<net.appuntivari.forum.model.Forum> findByUserIdCreator(
+		long user_id_creator)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().findByCreateUserId(create_user_id);
+		return getPersistence().findByUserIdCreator(user_id_creator);
 	}
 
 	/**
-	* Returns a range of all the forums where create_user_id = &#63;.
+	* Returns a range of all the forums where user_id_creator = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param create_user_id the create_user_id
+	* @param user_id_creator the user_id_creator
 	* @param start the lower bound of the range of forums
 	* @param end the upper bound of the range of forums (not inclusive)
 	* @return the range of matching forums
 	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<net.appuntivari.forum.model.Forum> findByCreateUserId(
-		long create_user_id, int start, int end)
+	public static java.util.List<net.appuntivari.forum.model.Forum> findByUserIdCreator(
+		long user_id_creator, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().findByCreateUserId(create_user_id, start, end);
+		return getPersistence().findByUserIdCreator(user_id_creator, start, end);
 	}
 
 	/**
-	* Returns an ordered range of all the forums where create_user_id = &#63;.
+	* Returns an ordered range of all the forums where user_id_creator = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param create_user_id the create_user_id
+	* @param user_id_creator the user_id_creator
 	* @param start the lower bound of the range of forums
 	* @param end the upper bound of the range of forums (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching forums
 	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<net.appuntivari.forum.model.Forum> findByCreateUserId(
-		long create_user_id, int start, int end,
+	public static java.util.List<net.appuntivari.forum.model.Forum> findByUserIdCreator(
+		long user_id_creator, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence()
-				   .findByCreateUserId(create_user_id, start, end,
+				   .findByUserIdCreator(user_id_creator, start, end,
 			orderByComparator);
 	}
 
 	/**
-	* Returns the first forum in the ordered set where create_user_id = &#63;.
+	* Returns the first forum in the ordered set where user_id_creator = &#63;.
 	*
-	* @param create_user_id the create_user_id
+	* @param user_id_creator the user_id_creator
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching forum
 	* @throws net.appuntivari.forum.NoSuchForumException if a matching forum could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static net.appuntivari.forum.model.Forum findByCreateUserId_First(
-		long create_user_id,
+	public static net.appuntivari.forum.model.Forum findByUserIdCreator_First(
+		long user_id_creator,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			net.appuntivari.forum.NoSuchForumException {
 		return getPersistence()
-				   .findByCreateUserId_First(create_user_id, orderByComparator);
+				   .findByUserIdCreator_First(user_id_creator, orderByComparator);
 	}
 
 	/**
-	* Returns the first forum in the ordered set where create_user_id = &#63;.
+	* Returns the first forum in the ordered set where user_id_creator = &#63;.
 	*
-	* @param create_user_id the create_user_id
+	* @param user_id_creator the user_id_creator
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching forum, or <code>null</code> if a matching forum could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static net.appuntivari.forum.model.Forum fetchByCreateUserId_First(
-		long create_user_id,
+	public static net.appuntivari.forum.model.Forum fetchByUserIdCreator_First(
+		long user_id_creator,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence()
-				   .fetchByCreateUserId_First(create_user_id, orderByComparator);
+				   .fetchByUserIdCreator_First(user_id_creator,
+			orderByComparator);
 	}
 
 	/**
-	* Returns the last forum in the ordered set where create_user_id = &#63;.
+	* Returns the last forum in the ordered set where user_id_creator = &#63;.
 	*
-	* @param create_user_id the create_user_id
+	* @param user_id_creator the user_id_creator
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching forum
 	* @throws net.appuntivari.forum.NoSuchForumException if a matching forum could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static net.appuntivari.forum.model.Forum findByCreateUserId_Last(
-		long create_user_id,
+	public static net.appuntivari.forum.model.Forum findByUserIdCreator_Last(
+		long user_id_creator,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			net.appuntivari.forum.NoSuchForumException {
 		return getPersistence()
-				   .findByCreateUserId_Last(create_user_id, orderByComparator);
+				   .findByUserIdCreator_Last(user_id_creator, orderByComparator);
 	}
 
 	/**
-	* Returns the last forum in the ordered set where create_user_id = &#63;.
+	* Returns the last forum in the ordered set where user_id_creator = &#63;.
 	*
-	* @param create_user_id the create_user_id
+	* @param user_id_creator the user_id_creator
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching forum, or <code>null</code> if a matching forum could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static net.appuntivari.forum.model.Forum fetchByCreateUserId_Last(
-		long create_user_id,
+	public static net.appuntivari.forum.model.Forum fetchByUserIdCreator_Last(
+		long user_id_creator,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence()
-				   .fetchByCreateUserId_Last(create_user_id, orderByComparator);
+				   .fetchByUserIdCreator_Last(user_id_creator, orderByComparator);
 	}
 
 	/**
-	* Returns the forums before and after the current forum in the ordered set where create_user_id = &#63;.
+	* Returns the forums before and after the current forum in the ordered set where user_id_creator = &#63;.
 	*
 	* @param id_forum the primary key of the current forum
-	* @param create_user_id the create_user_id
+	* @param user_id_creator the user_id_creator
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next forum
 	* @throws net.appuntivari.forum.NoSuchForumException if a forum with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static net.appuntivari.forum.model.Forum[] findByCreateUserId_PrevAndNext(
-		long id_forum, long create_user_id,
+	public static net.appuntivari.forum.model.Forum[] findByUserIdCreator_PrevAndNext(
+		long id_forum, long user_id_creator,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			net.appuntivari.forum.NoSuchForumException {
 		return getPersistence()
-				   .findByCreateUserId_PrevAndNext(id_forum, create_user_id,
+				   .findByUserIdCreator_PrevAndNext(id_forum, user_id_creator,
 			orderByComparator);
 	}
 
 	/**
-	* Returns all the forums where create_user_id = &#63; and status = &#63;.
+	* Returns all the forums where user_id_creator = &#63; and status = &#63;.
 	*
-	* @param create_user_id the create_user_id
+	* @param user_id_creator the user_id_creator
 	* @param status the status
 	* @return the matching forums
 	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<net.appuntivari.forum.model.Forum> findByCreateUserIdStatus(
-		long create_user_id, java.lang.String status)
+	public static java.util.List<net.appuntivari.forum.model.Forum> findByUserIdCreatorStatus(
+		long user_id_creator, java.lang.String status)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().findByCreateUserIdStatus(create_user_id, status);
+		return getPersistence()
+				   .findByUserIdCreatorStatus(user_id_creator, status);
 	}
 
 	/**
-	* Returns a range of all the forums where create_user_id = &#63; and status = &#63;.
+	* Returns a range of all the forums where user_id_creator = &#63; and status = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param create_user_id the create_user_id
+	* @param user_id_creator the user_id_creator
 	* @param status the status
 	* @param start the lower bound of the range of forums
 	* @param end the upper bound of the range of forums (not inclusive)
 	* @return the range of matching forums
 	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<net.appuntivari.forum.model.Forum> findByCreateUserIdStatus(
-		long create_user_id, java.lang.String status, int start, int end)
+	public static java.util.List<net.appuntivari.forum.model.Forum> findByUserIdCreatorStatus(
+		long user_id_creator, java.lang.String status, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence()
-				   .findByCreateUserIdStatus(create_user_id, status, start, end);
+				   .findByUserIdCreatorStatus(user_id_creator, status, start,
+			end);
 	}
 
 	/**
-	* Returns an ordered range of all the forums where create_user_id = &#63; and status = &#63;.
+	* Returns an ordered range of all the forums where user_id_creator = &#63; and status = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param create_user_id the create_user_id
+	* @param user_id_creator the user_id_creator
 	* @param status the status
 	* @param start the lower bound of the range of forums
 	* @param end the upper bound of the range of forums (not inclusive)
@@ -663,110 +666,110 @@ public class ForumUtil {
 	* @return the ordered range of matching forums
 	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<net.appuntivari.forum.model.Forum> findByCreateUserIdStatus(
-		long create_user_id, java.lang.String status, int start, int end,
+	public static java.util.List<net.appuntivari.forum.model.Forum> findByUserIdCreatorStatus(
+		long user_id_creator, java.lang.String status, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence()
-				   .findByCreateUserIdStatus(create_user_id, status, start,
+				   .findByUserIdCreatorStatus(user_id_creator, status, start,
 			end, orderByComparator);
 	}
 
 	/**
-	* Returns the first forum in the ordered set where create_user_id = &#63; and status = &#63;.
+	* Returns the first forum in the ordered set where user_id_creator = &#63; and status = &#63;.
 	*
-	* @param create_user_id the create_user_id
+	* @param user_id_creator the user_id_creator
 	* @param status the status
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching forum
 	* @throws net.appuntivari.forum.NoSuchForumException if a matching forum could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static net.appuntivari.forum.model.Forum findByCreateUserIdStatus_First(
-		long create_user_id, java.lang.String status,
+	public static net.appuntivari.forum.model.Forum findByUserIdCreatorStatus_First(
+		long user_id_creator, java.lang.String status,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			net.appuntivari.forum.NoSuchForumException {
 		return getPersistence()
-				   .findByCreateUserIdStatus_First(create_user_id, status,
+				   .findByUserIdCreatorStatus_First(user_id_creator, status,
 			orderByComparator);
 	}
 
 	/**
-	* Returns the first forum in the ordered set where create_user_id = &#63; and status = &#63;.
+	* Returns the first forum in the ordered set where user_id_creator = &#63; and status = &#63;.
 	*
-	* @param create_user_id the create_user_id
+	* @param user_id_creator the user_id_creator
 	* @param status the status
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching forum, or <code>null</code> if a matching forum could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static net.appuntivari.forum.model.Forum fetchByCreateUserIdStatus_First(
-		long create_user_id, java.lang.String status,
+	public static net.appuntivari.forum.model.Forum fetchByUserIdCreatorStatus_First(
+		long user_id_creator, java.lang.String status,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence()
-				   .fetchByCreateUserIdStatus_First(create_user_id, status,
+				   .fetchByUserIdCreatorStatus_First(user_id_creator, status,
 			orderByComparator);
 	}
 
 	/**
-	* Returns the last forum in the ordered set where create_user_id = &#63; and status = &#63;.
+	* Returns the last forum in the ordered set where user_id_creator = &#63; and status = &#63;.
 	*
-	* @param create_user_id the create_user_id
+	* @param user_id_creator the user_id_creator
 	* @param status the status
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching forum
 	* @throws net.appuntivari.forum.NoSuchForumException if a matching forum could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static net.appuntivari.forum.model.Forum findByCreateUserIdStatus_Last(
-		long create_user_id, java.lang.String status,
+	public static net.appuntivari.forum.model.Forum findByUserIdCreatorStatus_Last(
+		long user_id_creator, java.lang.String status,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			net.appuntivari.forum.NoSuchForumException {
 		return getPersistence()
-				   .findByCreateUserIdStatus_Last(create_user_id, status,
+				   .findByUserIdCreatorStatus_Last(user_id_creator, status,
 			orderByComparator);
 	}
 
 	/**
-	* Returns the last forum in the ordered set where create_user_id = &#63; and status = &#63;.
+	* Returns the last forum in the ordered set where user_id_creator = &#63; and status = &#63;.
 	*
-	* @param create_user_id the create_user_id
+	* @param user_id_creator the user_id_creator
 	* @param status the status
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching forum, or <code>null</code> if a matching forum could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static net.appuntivari.forum.model.Forum fetchByCreateUserIdStatus_Last(
-		long create_user_id, java.lang.String status,
+	public static net.appuntivari.forum.model.Forum fetchByUserIdCreatorStatus_Last(
+		long user_id_creator, java.lang.String status,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence()
-				   .fetchByCreateUserIdStatus_Last(create_user_id, status,
+				   .fetchByUserIdCreatorStatus_Last(user_id_creator, status,
 			orderByComparator);
 	}
 
 	/**
-	* Returns the forums before and after the current forum in the ordered set where create_user_id = &#63; and status = &#63;.
+	* Returns the forums before and after the current forum in the ordered set where user_id_creator = &#63; and status = &#63;.
 	*
 	* @param id_forum the primary key of the current forum
-	* @param create_user_id the create_user_id
+	* @param user_id_creator the user_id_creator
 	* @param status the status
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next forum
 	* @throws net.appuntivari.forum.NoSuchForumException if a forum with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static net.appuntivari.forum.model.Forum[] findByCreateUserIdStatus_PrevAndNext(
-		long id_forum, long create_user_id, java.lang.String status,
+	public static net.appuntivari.forum.model.Forum[] findByUserIdCreatorStatus_PrevAndNext(
+		long id_forum, long user_id_creator, java.lang.String status,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			net.appuntivari.forum.NoSuchForumException {
 		return getPersistence()
-				   .findByCreateUserIdStatus_PrevAndNext(id_forum,
-			create_user_id, status, orderByComparator);
+				   .findByUserIdCreatorStatus_PrevAndNext(id_forum,
+			user_id_creator, status, orderByComparator);
 	}
 
 	/**
@@ -841,27 +844,27 @@ public class ForumUtil {
 	}
 
 	/**
-	* Removes all the forums where create_user_id = &#63; from the database.
+	* Removes all the forums where user_id_creator = &#63; from the database.
 	*
-	* @param create_user_id the create_user_id
+	* @param user_id_creator the user_id_creator
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeByCreateUserId(long create_user_id)
+	public static void removeByUserIdCreator(long user_id_creator)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeByCreateUserId(create_user_id);
+		getPersistence().removeByUserIdCreator(user_id_creator);
 	}
 
 	/**
-	* Removes all the forums where create_user_id = &#63; and status = &#63; from the database.
+	* Removes all the forums where user_id_creator = &#63; and status = &#63; from the database.
 	*
-	* @param create_user_id the create_user_id
+	* @param user_id_creator the user_id_creator
 	* @param status the status
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeByCreateUserIdStatus(long create_user_id,
+	public static void removeByUserIdCreatorStatus(long user_id_creator,
 		java.lang.String status)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeByCreateUserIdStatus(create_user_id, status);
+		getPersistence().removeByUserIdCreatorStatus(user_id_creator, status);
 	}
 
 	/**
@@ -899,29 +902,30 @@ public class ForumUtil {
 	}
 
 	/**
-	* Returns the number of forums where create_user_id = &#63;.
+	* Returns the number of forums where user_id_creator = &#63;.
 	*
-	* @param create_user_id the create_user_id
+	* @param user_id_creator the user_id_creator
 	* @return the number of matching forums
 	* @throws SystemException if a system exception occurred
 	*/
-	public static int countByCreateUserId(long create_user_id)
+	public static int countByUserIdCreator(long user_id_creator)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByCreateUserId(create_user_id);
+		return getPersistence().countByUserIdCreator(user_id_creator);
 	}
 
 	/**
-	* Returns the number of forums where create_user_id = &#63; and status = &#63;.
+	* Returns the number of forums where user_id_creator = &#63; and status = &#63;.
 	*
-	* @param create_user_id the create_user_id
+	* @param user_id_creator the user_id_creator
 	* @param status the status
 	* @return the number of matching forums
 	* @throws SystemException if a system exception occurred
 	*/
-	public static int countByCreateUserIdStatus(long create_user_id,
+	public static int countByUserIdCreatorStatus(long user_id_creator,
 		java.lang.String status)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByCreateUserIdStatus(create_user_id, status);
+		return getPersistence()
+				   .countByUserIdCreatorStatus(user_id_creator, status);
 	}
 
 	/**

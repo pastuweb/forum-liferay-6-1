@@ -279,15 +279,15 @@ public class ForumLocalServiceWrapper implements ForumLocalService,
 	}
 
 	public java.util.List<net.appuntivari.forum.model.Forum> getForumsByCreateUserId(
-		long create_user_id)
+		long user_id_creator)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return _forumLocalService.getForumsByCreateUserId(create_user_id);
+		return _forumLocalService.getForumsByCreateUserId(user_id_creator);
 	}
 
 	public java.util.List<net.appuntivari.forum.model.Forum> getForumsByStatus(
-		long create_user_id, boolean status)
+		long user_id_creator, boolean status)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return _forumLocalService.getForumsByStatus(create_user_id, status);
+		return _forumLocalService.getForumsByStatus(user_id_creator, status);
 	}
 
 	public java.util.List<net.appuntivari.forum.model.Forum> getForumsByTimestamp(

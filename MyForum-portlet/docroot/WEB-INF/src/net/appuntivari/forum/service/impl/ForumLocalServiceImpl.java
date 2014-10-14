@@ -57,7 +57,7 @@ public class ForumLocalServiceImpl extends ForumLocalServiceBaseImpl {
 		
 		newForum.setDescription(forum.getDescription());
 		newForum.setCompany_id(forum.getCompany_id());
-		newForum.setCreate_user_id(forum.getCreate_user_id());
+		newForum.setUser_id_creator(forum.getUser_id_creator());
 		newForum.setStatus(forum.getStatus());
 		newForum.setTimestamp(forum.getTimestamp());
 		
@@ -70,16 +70,16 @@ public class ForumLocalServiceImpl extends ForumLocalServiceBaseImpl {
 		return forumPersistence.findByCompanyId(company_id);
 	}
 	
-	public List<Forum> getForumsByCreateUserId(long create_user_id) throws SystemException{
-		return forumPersistence.findByCreateUserId(create_user_id);
+	public List<Forum> getForumsByCreateUserId(long user_id_creator) throws SystemException{
+		return forumPersistence.findByUserIdCreator(user_id_creator);
 	}
 	
-	public List<Forum> getForumsByStatus(long create_user_id, boolean status) throws SystemException{
+	public List<Forum> getForumsByStatus(long user_id_creator, boolean status) throws SystemException{
 		String strStatus = "DEACTIVE";
 		if(status){
 			strStatus = "ACTIVE";
 		}
-		return forumPersistence.findByCreateUserIdStatus(create_user_id, strStatus);
+		return forumPersistence.findByUserIdCreatorStatus(user_id_creator, strStatus);
 	}
 	
 	public List<Forum> getForumsByTimestamp(Date timestamp) throws SystemException{

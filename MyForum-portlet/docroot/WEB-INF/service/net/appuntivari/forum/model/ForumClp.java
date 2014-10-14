@@ -71,7 +71,7 @@ public class ForumClp extends BaseModelImpl<Forum> implements Forum {
 		attributes.put("description", getDescription());
 		attributes.put("timestamp", getTimestamp());
 		attributes.put("company_id", getCompany_id());
-		attributes.put("create_user_id", getCreate_user_id());
+		attributes.put("user_id_creator", getUser_id_creator());
 		attributes.put("status", getStatus());
 
 		return attributes;
@@ -103,10 +103,10 @@ public class ForumClp extends BaseModelImpl<Forum> implements Forum {
 			setCompany_id(company_id);
 		}
 
-		Long create_user_id = (Long)attributes.get("create_user_id");
+		Long user_id_creator = (Long)attributes.get("user_id_creator");
 
-		if (create_user_id != null) {
-			setCreate_user_id(create_user_id);
+		if (user_id_creator != null) {
+			setUser_id_creator(user_id_creator);
 		}
 
 		String status = (String)attributes.get("status");
@@ -200,20 +200,20 @@ public class ForumClp extends BaseModelImpl<Forum> implements Forum {
 		}
 	}
 
-	public long getCreate_user_id() {
-		return _create_user_id;
+	public long getUser_id_creator() {
+		return _user_id_creator;
 	}
 
-	public void setCreate_user_id(long create_user_id) {
-		_create_user_id = create_user_id;
+	public void setUser_id_creator(long user_id_creator) {
+		_user_id_creator = user_id_creator;
 
 		if (_forumRemoteModel != null) {
 			try {
 				Class<?> clazz = _forumRemoteModel.getClass();
 
-				Method method = clazz.getMethod("setCreate_user_id", long.class);
+				Method method = clazz.getMethod("setUser_id_creator", long.class);
 
-				method.invoke(_forumRemoteModel, create_user_id);
+				method.invoke(_forumRemoteModel, user_id_creator);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -318,7 +318,7 @@ public class ForumClp extends BaseModelImpl<Forum> implements Forum {
 		clone.setDescription(getDescription());
 		clone.setTimestamp(getTimestamp());
 		clone.setCompany_id(getCompany_id());
-		clone.setCreate_user_id(getCreate_user_id());
+		clone.setUser_id_creator(getUser_id_creator());
 		clone.setStatus(getStatus());
 
 		return clone;
@@ -385,8 +385,8 @@ public class ForumClp extends BaseModelImpl<Forum> implements Forum {
 		sb.append(getTimestamp());
 		sb.append(", company_id=");
 		sb.append(getCompany_id());
-		sb.append(", create_user_id=");
-		sb.append(getCreate_user_id());
+		sb.append(", user_id_creator=");
+		sb.append(getUser_id_creator());
 		sb.append(", status=");
 		sb.append(getStatus());
 		sb.append("}");
@@ -418,8 +418,8 @@ public class ForumClp extends BaseModelImpl<Forum> implements Forum {
 		sb.append(getCompany_id());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>create_user_id</column-name><column-value><![CDATA[");
-		sb.append(getCreate_user_id());
+			"<column><column-name>user_id_creator</column-name><column-value><![CDATA[");
+		sb.append(getUser_id_creator());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>status</column-name><column-value><![CDATA[");
@@ -435,7 +435,7 @@ public class ForumClp extends BaseModelImpl<Forum> implements Forum {
 	private String _description;
 	private Date _timestamp;
 	private long _company_id;
-	private long _create_user_id;
+	private long _user_id_creator;
 	private String _status;
 	private BaseModel<?> _forumRemoteModel;
 }

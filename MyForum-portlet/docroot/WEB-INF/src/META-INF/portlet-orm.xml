@@ -15,7 +15,7 @@
 				<temporal>TIMESTAMP</temporal>
 			</basic>
 			<basic name="company_id" />
-			<basic name="create_user_id" />
+			<basic name="user_id_creator" />
 			<basic name="status" />
 			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
@@ -32,7 +32,7 @@
 			<basic name="timestamp">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
-			<basic name="create_user_id" />
+			<basic name="user_id_creator" />
 			<basic name="status" />
 			<transient name="modelAttributes" />
 			<transient name="primaryKey" />

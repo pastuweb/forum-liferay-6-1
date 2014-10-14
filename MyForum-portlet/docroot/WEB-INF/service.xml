@@ -15,7 +15,7 @@
     <column name="description" type="String" />
 	<column name="timestamp" type="Date" />
 	<column name="company_id" type="long" />
-	<column name="create_user_id" type="long" />
+	<column name="user_id_creator" type="long" />
 	<column name="status" type="String"  />    
     
 	<order by="desc">
@@ -29,11 +29,11 @@
     <finder name="CompanyId" return-type="Collection">
       <finder-column name="company_id" />
     </finder>
-    <finder name="CreateUserId" return-type="Collection">
-      <finder-column name="create_user_id" />
+    <finder name="UserIdCreator" return-type="Collection">
+      <finder-column name="user_id_creator" />
     </finder>
-    <finder name="CreateUserIdStatus" return-type="Collection">
-      <finder-column name="create_user_id" />
+    <finder name="UserIdCreatorStatus" return-type="Collection">
+      <finder-column name="user_id_creator" />
       <finder-column name="status" />
     </finder>
     
@@ -49,7 +49,7 @@
     <column name="id_forum" type="long" />
     <column name="id_category_parent" type="long" />
 	<column name="timestamp" type="Date" />
-	<column name="create_user_id" type="long" />
+	<column name="user_id_creator" type="long" />
 	<column name="status" type="String"  />    
     
 	<order by="desc">
@@ -66,8 +66,8 @@
     <finder name="IdForum" return-type="Collection">
       <finder-column name="id_forum" />
     </finder>
-    <finder name="CreateUserId" return-type="Collection">
-      <finder-column name="create_user_id" />
+    <finder name="UserIdCreator" return-type="Collection">
+      <finder-column name="user_id_creator" />
     </finder>
     <finder name="IdForumStatus" return-type="Collection">
       <finder-column name="id_forum" />
@@ -107,6 +107,7 @@
     </finder>
     
 </entity>
+
 <entity  name="ForumUser"   local-service="true" remote-service="true"  >
 
     <!-- PK Fields -->

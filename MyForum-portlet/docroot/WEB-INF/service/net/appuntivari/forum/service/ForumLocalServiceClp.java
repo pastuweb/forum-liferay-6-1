@@ -741,13 +741,13 @@ public class ForumLocalServiceClp implements ForumLocalService {
 	}
 
 	public java.util.List<net.appuntivari.forum.model.Forum> getForumsByCreateUserId(
-		long create_user_id)
+		long user_id_creator)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName22,
-					_methodParameterTypes22, new Object[] { create_user_id });
+					_methodParameterTypes22, new Object[] { user_id_creator });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -769,14 +769,14 @@ public class ForumLocalServiceClp implements ForumLocalService {
 	}
 
 	public java.util.List<net.appuntivari.forum.model.Forum> getForumsByStatus(
-		long create_user_id, boolean status)
+		long user_id_creator, boolean status)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName23,
 					_methodParameterTypes23,
-					new Object[] { create_user_id, status });
+					new Object[] { user_id_creator, status });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);

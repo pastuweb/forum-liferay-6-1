@@ -37,7 +37,7 @@ public class ForumCategorySoap implements Serializable {
 		soapModel.setId_forum(model.getId_forum());
 		soapModel.setId_category_parent(model.getId_category_parent());
 		soapModel.setTimestamp(model.getTimestamp());
-		soapModel.setCreate_user_id(model.getCreate_user_id());
+		soapModel.setUser_id_creator(model.getUser_id_creator());
 		soapModel.setStatus(model.getStatus());
 
 		return soapModel;
@@ -139,12 +139,12 @@ public class ForumCategorySoap implements Serializable {
 		_timestamp = timestamp;
 	}
 
-	public long getCreate_user_id() {
-		return _create_user_id;
+	public long getUser_id_creator() {
+		return _user_id_creator;
 	}
 
-	public void setCreate_user_id(long create_user_id) {
-		_create_user_id = create_user_id;
+	public void setUser_id_creator(long user_id_creator) {
+		_user_id_creator = user_id_creator;
 	}
 
 	public String getStatus() {
@@ -161,6 +161,6 @@ public class ForumCategorySoap implements Serializable {
 	private long _id_forum;
 	private long _id_category_parent;
 	private Date _timestamp;
-	private long _create_user_id;
+	private long _user_id_creator;
 	private String _status;
 }
