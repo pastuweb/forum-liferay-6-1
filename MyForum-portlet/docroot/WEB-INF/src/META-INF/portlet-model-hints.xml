@@ -1,27 +1,48 @@
 <?xml version="1.0"?>
 
 <model-hints>
+	<hint-collection name="DESCRIPTION-TEXTAREA">
+		<hint name="editor">true</hint>
+		<hint name="max-length">250</hint>
+	</hint-collection>
 	<model name="net.appuntivari.forum.model.Forum">
 		<field name="id_forum" type="long" />
-		<field name="description" type="String" />
+		<field name="description" type="String">
+			<hint name="display-width">100</hint>
+			<hint name="max-length">250</hint>
+		</field>
 		<field name="timestamp" type="Date" />
 		<field name="company_id" type="long" />
 		<field name="user_id_creator" type="long" />
-		<field name="status" type="String" />
+		<field name="status" type="String">
+			<hint name="display-width">10</hint>
+			<hint name="max-length">10</hint>
+		</field>
 	</model>
 	<model name="net.appuntivari.forum.model.ForumCategory">
 		<field name="id_category" type="long" />
-		<field name="title" type="String" />
-		<field name="description" type="String" />
+		<field name="title" type="String">
+			<hint name="display-width">100</hint>
+			<hint name="max-length">100</hint>
+		</field>
+		<field name="description" type="String">
+			<hint name="display-width">100</hint>
+			<hint name="max-length">250</hint>
+		</field>
 		<field name="id_forum" type="long" />
 		<field name="id_category_parent" type="long" />
 		<field name="timestamp" type="Date" />
 		<field name="user_id_creator" type="long" />
-		<field name="status" type="String" />
+		<field name="status" type="String">
+			<hint name="display-width">10</hint>
+			<hint name="max-length">10</hint>
+		</field>
 	</model>
 	<model name="net.appuntivari.forum.model.ForumPost">
 		<field name="id_post" type="long" />
-		<field name="post" type="String" />
+		<field name="post" type="String">
+			<hint-collection name="DESCRIPTION-TEXTAREA" />
+		</field>
 		<field name="timestamp" type="Date" />
 		<field name="user_id" type="long" />
 		<field name="id_category" type="long" />

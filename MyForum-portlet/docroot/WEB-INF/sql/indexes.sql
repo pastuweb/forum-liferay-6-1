@@ -8,17 +8,21 @@ create index IX_1133F3A3 on PW_Forum (user_id_creator, status);
 
 create index IX_1FB6D52D on PW_ForumCategory (create_user_id);
 create index IX_ED481F5E on PW_ForumCategory (id_forum);
+create index IX_34DD2F9 on PW_ForumCategory (id_forum, id_category_parent);
 create index IX_68182044 on PW_ForumCategory (id_forum, status);
 create index IX_70C56639 on PW_ForumCategory (timestamp);
 create index IX_81BD777B on PW_ForumCategory (title);
 create index IX_331298DF on PW_ForumCategory (user_id_creator);
 
 create index IX_D1ACE123 on PW_ForumPost (id_category);
+create index IX_51718BBC on PW_ForumPost (id_category, user_id);
+create index IX_A2DAF8C8 on PW_ForumPost (id_post_parent);
 create index IX_A522F557 on PW_ForumPost (timestamp);
 create index IX_9E937D0 on PW_ForumPost (user_id);
 create index IX_A0A7DFBA on PW_ForumPost (user_id_post_parent);
 
 create index IX_D9AD1F2B on PW_ForumUser (id_forum);
 create index IX_95DB0311 on PW_ForumUser (id_forum, status);
+create index IX_5488E19A on PW_ForumUser (id_forum, user_id, status);
 create index IX_814E67E0 on PW_ForumUser (status);
 create index IX_381BCBC5 on PW_ForumUser (user_id);

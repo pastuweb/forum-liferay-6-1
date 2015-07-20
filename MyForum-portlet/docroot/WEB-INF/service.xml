@@ -5,7 +5,6 @@
   <author>Pasturenzi Francesco</author>
   <namespace>PW</namespace><!-- AppuntiVari -->
 
- <!-- Tables will be created in Custom db: DTLM_API -->
  <entity  name="Forum"   local-service="true" remote-service="true" >
 
     <!-- PK Fields -->
@@ -18,7 +17,7 @@
 	<column name="user_id_creator" type="long" />
 	<column name="status" type="String"  />    
     
-	<order by="desc">
+	<order by="asc">
       <order-column name="id_forum" />
     </order>
 	
@@ -34,6 +33,9 @@
     </finder>
     <finder name="UserIdCreatorStatus" return-type="Collection">
       <finder-column name="user_id_creator" />
+      <finder-column name="status" />
+    </finder>
+    <finder name="Status" return-type="Collection">
       <finder-column name="status" />
     </finder>
     
@@ -52,7 +54,7 @@
 	<column name="user_id_creator" type="long" />
 	<column name="status" type="String"  />    
     
-	<order by="desc">
+	<order by="asc">
       <order-column name="id_category" />
     </order>
 	
@@ -65,6 +67,10 @@
     </finder>
     <finder name="IdForum" return-type="Collection">
       <finder-column name="id_forum" />
+    </finder>
+    <finder name="IdForumIdCategoryParent" return-type="Collection">
+      <finder-column name="id_forum" />
+      <finder-column name="id_category_parent" />
     </finder>
     <finder name="UserIdCreator" return-type="Collection">
       <finder-column name="user_id_creator" />
@@ -88,7 +94,7 @@
 	<column name="id_post_parent" type="long"  /> 
 	<column name="user_id_post_parent" type="long"  />   
     
-	<order by="desc">
+	<order by="asc">
       <order-column name="id_post" />
     </order>
 	
@@ -105,12 +111,19 @@
     <finder name="IdCategory" return-type="Collection">
       <finder-column name="id_category" />
     </finder>
+    <finder name="IdCategoryUserId" return-type="Collection">
+      <finder-column name="id_category" />
+       <finder-column name="user_id" />
+    </finder>
+    <finder name="IdPostParent" return-type="Collection">
+      <finder-column name="id_post_parent" />
+    </finder>
     
 </entity>
 
 <entity  name="ForumUser"   local-service="true" remote-service="true"  >
 
-    <!-- PK Fields -->
+   <!-- PK Fields -->
     <column name="id_forum_user" type="long"  primary="true"   />
 
     <!-- Other Fields -->
@@ -118,7 +131,7 @@
 	<column name="user_id" type="long" />
 	<column name="status" type="String"  />    
     
-	<order by="desc">
+	<order by="asc">
       <order-column name="id_forum_user" />
     </order>
 	
@@ -134,6 +147,11 @@
     </finder>
     <finder name="IdForumStatus" return-type="Collection">
       <finder-column name="id_forum" />
+      <finder-column name="status" />
+    </finder>
+    <finder name="IdForumUserIdStatus" return-type="Collection">
+      <finder-column name="id_forum" />
+      <finder-column name="user_id" />
       <finder-column name="status" />
     </finder>
     

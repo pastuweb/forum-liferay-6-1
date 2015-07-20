@@ -292,10 +292,33 @@ public class ForumPostLocalServiceWrapper implements ForumPostLocalService,
 		return _forumPostLocalService.getForumPostsByUserIdPostParent(user_id_post_parent);
 	}
 
+	public java.util.List<net.appuntivari.forum.model.ForumPost> getForumPostsRootByIdCategory(
+		long id_category)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _forumPostLocalService.getForumPostsRootByIdCategory(id_category);
+	}
+
 	public java.util.List<net.appuntivari.forum.model.ForumPost> getForumPostsByIdCategory(
 		long id_category)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _forumPostLocalService.getForumPostsByIdCategory(id_category);
+	}
+
+	public java.util.List<net.appuntivari.forum.model.ForumPost> getForumPostsByIdCategoryUserId(
+		long id_category, long user_id)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _forumPostLocalService.getForumPostsByIdCategoryUserId(id_category,
+			user_id);
+	}
+
+	public java.util.List<net.appuntivari.forum.model.ForumPost> getForumPostsByIdPostParent(
+		long id_post)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _forumPostLocalService.getForumPostsByIdPostParent(id_post);
+	}
+
+	public boolean hasReplys(long id_post) {
+		return _forumPostLocalService.hasReplys(id_post);
 	}
 
 	/**

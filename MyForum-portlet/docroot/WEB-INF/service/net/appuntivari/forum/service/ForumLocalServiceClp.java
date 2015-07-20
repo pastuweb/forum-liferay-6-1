@@ -126,17 +126,25 @@ public class ForumLocalServiceClp implements ForumLocalService {
 
 		_methodParameterTypes21 = new String[] { "long" };
 
-		_methodName22 = "getForumsByCreateUserId";
+		_methodName22 = "getForumsByUserIdCreator";
 
 		_methodParameterTypes22 = new String[] { "long" };
 
-		_methodName23 = "getForumsByStatus";
+		_methodName23 = "getForumsByUserIdCreatorStatus";
 
 		_methodParameterTypes23 = new String[] { "long", "boolean" };
 
 		_methodName24 = "getForumsByTimestamp";
 
 		_methodParameterTypes24 = new String[] { "java.util.Date" };
+
+		_methodName25 = "isActive";
+
+		_methodParameterTypes25 = new String[] { "long" };
+
+		_methodName26 = "changeStatusForum";
+
+		_methodParameterTypes26 = new String[] { "long" };
 	}
 
 	public net.appuntivari.forum.model.Forum addForum(
@@ -740,7 +748,7 @@ public class ForumLocalServiceClp implements ForumLocalService {
 		return (java.util.List<net.appuntivari.forum.model.Forum>)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public java.util.List<net.appuntivari.forum.model.Forum> getForumsByCreateUserId(
+	public java.util.List<net.appuntivari.forum.model.Forum> getForumsByUserIdCreator(
 		long user_id_creator)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -768,7 +776,7 @@ public class ForumLocalServiceClp implements ForumLocalService {
 		return (java.util.List<net.appuntivari.forum.model.Forum>)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public java.util.List<net.appuntivari.forum.model.Forum> getForumsByStatus(
+	public java.util.List<net.appuntivari.forum.model.Forum> getForumsByUserIdCreatorStatus(
 		long user_id_creator, boolean status)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -826,6 +834,61 @@ public class ForumLocalServiceClp implements ForumLocalService {
 		return (java.util.List<net.appuntivari.forum.model.Forum>)ClpSerializer.translateOutput(returnObj);
 	}
 
+	public boolean isActive(long id_forum)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName25,
+					_methodParameterTypes25, new Object[] { id_forum });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return ((Boolean)returnObj).booleanValue();
+	}
+
+	public void changeStatusForum(long id_forum)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		try {
+			_invokableLocalService.invokeMethod(_methodName26,
+				_methodParameterTypes26, new Object[] { id_forum });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+	}
+
 	private InvokableLocalService _invokableLocalService;
 	private String _methodName0;
 	private String[] _methodParameterTypes0;
@@ -875,4 +938,8 @@ public class ForumLocalServiceClp implements ForumLocalService {
 	private String[] _methodParameterTypes23;
 	private String _methodName24;
 	private String[] _methodParameterTypes24;
+	private String _methodName25;
+	private String[] _methodParameterTypes25;
+	private String _methodName26;
+	private String[] _methodParameterTypes26;
 }

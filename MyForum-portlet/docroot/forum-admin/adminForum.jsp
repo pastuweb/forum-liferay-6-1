@@ -5,60 +5,111 @@
 	
 	<%
 	long remote_userid =  PrincipalThreadLocal.getUserId();
+	List<Company> companyList = CompanyLocalServiceUtil.getCompanies(0, CompanyLocalServiceUtil.getCompaniesCount());
+	Forum forumEdit = (Forum) request.getAttribute("forumEdit");
 	%>
 	<liferay-ui:error key="mandatory-description" message="mandatory-description" />
-	<liferay-ui:error key="mandatory-status" message="mandatory-status" />
-	<liferay-ui:error key="mandatory-create-user-id" message="mandatory-create-user-id" />
 	<liferay-ui:error key="mandatory-company-id" message="mandatory-company-id" />
 	<liferay-ui:error key="mandatory-fields" message="mandatory-fields" />
+	
 	<liferay-ui:error key="forum-not-created" message="forum-not-created" />
 	<liferay-ui:error key="forum-not-updated" message="forum-not-updated" />
 	<liferay-ui:success key="forum-created" message="forum-created" />
 	<liferay-ui:success key="forum-updated" message="forum-updated" />
+	<liferay-ui:success key="forum-deleted" message="forum-deleted" />
 	
 	<portlet:actionURL name="createForum" var="createForumURL"/>
-	
-	<div style="text-align:center;">
-		<h2 style="color:#FF0000;">
-			Forums
-		</h2>
-	</div>
-
+	<portlet:actionURL name="updateForum" var="updateForumURL"/>
 
 	<div style="position:relative;">
+		<%if(forumEdit == null){ 
+			Forum editForumInsert = (Forum) request.getAttribute("forumInInsert");
+		%>
+		<p><strong style="color:#283eff;">INSERT</strong></p>
 		<aui:form action="<%= createForumURL.toString() %>" method="post">
-	
-			<aui:fieldset>
-		
-					<aui:input name="description" type="hidden" value=""/>					
+				<aui:fieldset>
+					<%if(editForumInsert == null){ %>
+						<aui:input name="description" label="description_obbl" size="45" value=""/>
+						<!-- select a portal (or Company Id) -->
+						<aui:select name="company_id">
+						<%
+						for(Company itemCompany : companyList){
+						%>
+							<aui:option value="<%=itemCompany.getCompanyId()%>"><%=itemCompany.getName()%></aui:option>
+						<%} %>
+						</aui:select>
+					<%}else{ %>	
 					
-					<!-- select a portal (or Company Id) -->
-					<aui:select name="company_id">
-					<%
-					List<Company> companyList = CompanyLocalServiceUtil.getCompanies(0, CompanyLocalServiceUtil.getCompaniesCount());
-					for(Company itemCompany : companyList){
-					%>
-						<aui:option value="<%=itemCompany.getCompanyId()%>"><%=itemCompany.getName()%></aui:option>
+						<aui:input name="description" label="description_obbl" size="45" value="<%=editForumInsert.getDescription() %>"/>
+						<aui:select name="company_id">
+						<%
+						for (Company itemCompany : companyList) {
+						%>
+								<aui:option selected='<%= itemCompany.getCompanyId() == editForumInsert.getCompany_id() %>'
+								value="<%=itemCompany.getCompanyId()%>">
+								<%=itemCompany.getName()%>
+								</aui:option>
+						<%
+						}
+						%>
+						</aui:select>
 					<%} %>
-					</aui:select>
-										
 					<aui:input name="user_id_creator" type="hidden" value="<%=remote_userid %>"/>
 					<aui:input name="status" type="hidden" value="ACTIVE"/>
 					
-				<div>
-					<liferay-ui:message key="mandatory-fields" />
-				</div>
-				
-				<aui:button-row>
-					<aui:button type="submit" />
-					<aui:button type="reset" value="Cancel" />
-				</aui:button-row>
-			</aui:fieldset>
+					<div>
+						<liferay-ui:message key="mandatory-fields" />
+					</div>
+						
+						<aui:button-row>
+							<aui:button type="submit" value="Save"/>
+							<aui:button type="reset" value="Cancel" />
+						</aui:button-row>
+					</aui:fieldset>
 		</aui:form>
+		<%}else{ %>
+		<p><strong style="color:#283eff;">EDIT</strong></p>
+		<aui:form action="<%= updateForumURL.toString() %>" method="post">
+					<aui:fieldset>
+						<aui:input name="description" label="description_obbl" size="45" value="<%=forumEdit.getDescription() %>"/>
+						<aui:select name="company_id">
+						<%
+						for (Company itemCompany : companyList) {
+						%>
+								<aui:option selected='<%= itemCompany.getCompanyId() == forumEdit.getCompany_id() %>'
+								value="<%=itemCompany.getCompanyId()%>">
+								<%=itemCompany.getName()%>
+								</aui:option>
+						<%
+						}
+						%>
+						</aui:select>
+						<aui:input name="id_forum" type="hidden" value="<%=forumEdit.getId_forum() %>"/>
+						<aui:input name="user_id_creator" type="hidden" value="<%=remote_userid %>"/>
+						<aui:input name="status" type="hidden" value="ACTIVE"/>
+						
+						<div>
+							<liferay-ui:message key="mandatory-fields" />
+						</div>
+						
+						<aui:button-row>
+							<aui:button type="submit" value="Save"/>
+							<aui:button type="reset" value="Cancel" />
+						</aui:button-row>
+					</aui:fieldset>
+			</aui:form>
+		<%} %>
 	
 	</div>
 	
-	<br><br>
+	<br>
+	<div class="portlet-msg-alert">
+		<p>
+		Only <strong style="color:#FF0000;">Liferay "Administrator"</strong> can manage all Forums and Categories.
+		</p>
+	</div>
+	
+	<br>
 		
 	<div style="position:relative;">	
 	<%
@@ -90,16 +141,12 @@
 	          name="description"
 	          property="description" />
 
-          <liferay-ui:search-container-column-text
-	          name="timestamp"
-	          property="timestamp" />
-
 	      <liferay-ui:search-container-column-text
-	          name="company_id"
+	          name="company"
 	          value="<%=CompanyLocalServiceUtil.getCompanyById(company.getCompanyId()).getName() %>" />
 	          
 	      <liferay-ui:search-container-column-text
-		          name="user_id_creator" 
+		          name="owner" 
 		          value="<%=UserLocalServiceUtil.getUserById(forum.getUser_id_creator()).getScreenName() %>"/>
 		          
 		  <liferay-ui:search-container-column-text
@@ -114,15 +161,7 @@
 	
 	    <liferay-ui:search-iterator />
 	
-	  </liferay-ui:search-container>
-	  
-	  <%-- 	
-	    <portlet:renderURL var="backURL">
-	  		<portlet:param name="jspPage" value="/forum-admin/adminForum.jsp" />
-		</portlet:renderURL>
-		<aui:button type="button" value="Back" onClick="<%= backURL.toString() %>" />
-	  --%>
-	
+	  </liferay-ui:search-container>	
 	
 	</div>
 

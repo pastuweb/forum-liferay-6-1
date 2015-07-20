@@ -759,6 +759,174 @@ public class ForumUserUtil {
 	}
 
 	/**
+	* Returns all the forum users where id_forum = &#63; and user_id = &#63; and status = &#63;.
+	*
+	* @param id_forum the id_forum
+	* @param user_id the user_id
+	* @param status the status
+	* @return the matching forum users
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<net.appuntivari.forum.model.ForumUser> findByIdForumUserIdStatus(
+		long id_forum, long user_id, java.lang.String status)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByIdForumUserIdStatus(id_forum, user_id, status);
+	}
+
+	/**
+	* Returns a range of all the forum users where id_forum = &#63; and user_id = &#63; and status = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param id_forum the id_forum
+	* @param user_id the user_id
+	* @param status the status
+	* @param start the lower bound of the range of forum users
+	* @param end the upper bound of the range of forum users (not inclusive)
+	* @return the range of matching forum users
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<net.appuntivari.forum.model.ForumUser> findByIdForumUserIdStatus(
+		long id_forum, long user_id, java.lang.String status, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByIdForumUserIdStatus(id_forum, user_id, status, start,
+			end);
+	}
+
+	/**
+	* Returns an ordered range of all the forum users where id_forum = &#63; and user_id = &#63; and status = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param id_forum the id_forum
+	* @param user_id the user_id
+	* @param status the status
+	* @param start the lower bound of the range of forum users
+	* @param end the upper bound of the range of forum users (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of matching forum users
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<net.appuntivari.forum.model.ForumUser> findByIdForumUserIdStatus(
+		long id_forum, long user_id, java.lang.String status, int start,
+		int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByIdForumUserIdStatus(id_forum, user_id, status, start,
+			end, orderByComparator);
+	}
+
+	/**
+	* Returns the first forum user in the ordered set where id_forum = &#63; and user_id = &#63; and status = &#63;.
+	*
+	* @param id_forum the id_forum
+	* @param user_id the user_id
+	* @param status the status
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching forum user
+	* @throws net.appuntivari.forum.NoSuchForumUserException if a matching forum user could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static net.appuntivari.forum.model.ForumUser findByIdForumUserIdStatus_First(
+		long id_forum, long user_id, java.lang.String status,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			net.appuntivari.forum.NoSuchForumUserException {
+		return getPersistence()
+				   .findByIdForumUserIdStatus_First(id_forum, user_id, status,
+			orderByComparator);
+	}
+
+	/**
+	* Returns the first forum user in the ordered set where id_forum = &#63; and user_id = &#63; and status = &#63;.
+	*
+	* @param id_forum the id_forum
+	* @param user_id the user_id
+	* @param status the status
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching forum user, or <code>null</code> if a matching forum user could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static net.appuntivari.forum.model.ForumUser fetchByIdForumUserIdStatus_First(
+		long id_forum, long user_id, java.lang.String status,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .fetchByIdForumUserIdStatus_First(id_forum, user_id, status,
+			orderByComparator);
+	}
+
+	/**
+	* Returns the last forum user in the ordered set where id_forum = &#63; and user_id = &#63; and status = &#63;.
+	*
+	* @param id_forum the id_forum
+	* @param user_id the user_id
+	* @param status the status
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching forum user
+	* @throws net.appuntivari.forum.NoSuchForumUserException if a matching forum user could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static net.appuntivari.forum.model.ForumUser findByIdForumUserIdStatus_Last(
+		long id_forum, long user_id, java.lang.String status,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			net.appuntivari.forum.NoSuchForumUserException {
+		return getPersistence()
+				   .findByIdForumUserIdStatus_Last(id_forum, user_id, status,
+			orderByComparator);
+	}
+
+	/**
+	* Returns the last forum user in the ordered set where id_forum = &#63; and user_id = &#63; and status = &#63;.
+	*
+	* @param id_forum the id_forum
+	* @param user_id the user_id
+	* @param status the status
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching forum user, or <code>null</code> if a matching forum user could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static net.appuntivari.forum.model.ForumUser fetchByIdForumUserIdStatus_Last(
+		long id_forum, long user_id, java.lang.String status,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .fetchByIdForumUserIdStatus_Last(id_forum, user_id, status,
+			orderByComparator);
+	}
+
+	/**
+	* Returns the forum users before and after the current forum user in the ordered set where id_forum = &#63; and user_id = &#63; and status = &#63;.
+	*
+	* @param id_forum_user the primary key of the current forum user
+	* @param id_forum the id_forum
+	* @param user_id the user_id
+	* @param status the status
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the previous, current, and next forum user
+	* @throws net.appuntivari.forum.NoSuchForumUserException if a forum user with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static net.appuntivari.forum.model.ForumUser[] findByIdForumUserIdStatus_PrevAndNext(
+		long id_forum_user, long id_forum, long user_id,
+		java.lang.String status,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			net.appuntivari.forum.NoSuchForumUserException {
+		return getPersistence()
+				   .findByIdForumUserIdStatus_PrevAndNext(id_forum_user,
+			id_forum, user_id, status, orderByComparator);
+	}
+
+	/**
 	* Returns all the forum users.
 	*
 	* @return the forum users
@@ -854,6 +1022,20 @@ public class ForumUserUtil {
 	}
 
 	/**
+	* Removes all the forum users where id_forum = &#63; and user_id = &#63; and status = &#63; from the database.
+	*
+	* @param id_forum the id_forum
+	* @param user_id the user_id
+	* @param status the status
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByIdForumUserIdStatus(long id_forum, long user_id,
+		java.lang.String status)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByIdForumUserIdStatus(id_forum, user_id, status);
+	}
+
+	/**
 	* Removes all the forum users from the database.
 	*
 	* @throws SystemException if a system exception occurred
@@ -911,6 +1093,22 @@ public class ForumUserUtil {
 		java.lang.String status)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().countByIdForumStatus(id_forum, status);
+	}
+
+	/**
+	* Returns the number of forum users where id_forum = &#63; and user_id = &#63; and status = &#63;.
+	*
+	* @param id_forum the id_forum
+	* @param user_id the user_id
+	* @param status the status
+	* @return the number of matching forum users
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByIdForumUserIdStatus(long id_forum, long user_id,
+		java.lang.String status)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .countByIdForumUserIdStatus(id_forum, user_id, status);
 	}
 
 	/**

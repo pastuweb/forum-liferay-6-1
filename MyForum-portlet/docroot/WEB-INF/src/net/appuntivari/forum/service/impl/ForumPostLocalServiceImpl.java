@@ -14,15 +14,18 @@
 
 package net.appuntivari.forum.service.impl;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import com.liferay.portal.kernel.exception.SystemException;
+
 import net.appuntivari.forum.model.Forum;
 import net.appuntivari.forum.model.ForumCategory;
 import net.appuntivari.forum.model.ForumPost;
 import net.appuntivari.forum.model.impl.ForumImpl;
 import net.appuntivari.forum.model.impl.ForumPostImpl;
+import net.appuntivari.forum.service.ForumPostLocalServiceUtil;
 import net.appuntivari.forum.service.base.ForumPostLocalServiceBaseImpl;
 
 /**
@@ -43,7 +46,7 @@ public class ForumPostLocalServiceImpl extends ForumPostLocalServiceBaseImpl {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never reference this interface directly. Always use {@link net.appuntivari.forum.service.ForumPostLocalServiceUtil} to access the forum post local service.
+	 * Never reference this interface directly. Always use {@link com.telecomlab.nhapi.service.ForumPostLocalServiceUtil} to access the forum post local service.
 	 */
 	public ForumPost getNewForumPost(){
 		return new ForumPostImpl();
@@ -61,9 +64,9 @@ public class ForumPostLocalServiceImpl extends ForumPostLocalServiceBaseImpl {
 		newForumPost.setTimestamp(forumPost.getTimestamp());
 		newForumPost.setId_post_parent(forumPost.getId_post_parent());
 		newForumPost.setUser_id_post_parent(forumPost.getUser_id_post_parent());
-		forumPostPersistence.update(newForumPost, false);
 		
-		return newForumPost;
+		
+		return forumPostPersistence.update(newForumPost, false);
 	}
 	
 	
@@ -74,12 +77,60 @@ public class ForumPostLocalServiceImpl extends ForumPostLocalServiceBaseImpl {
 		return forumPostPersistence.findByUserId(user_id);
 	}
 	public List<ForumPost> getForumPostsByUserIdPostParent(long user_id_post_parent) throws SystemException{
-		return forumPostPersistence.findByUserIdPostParent(user_id_post_parent);
+		List<ForumPost> result = new ArrayList<ForumPost>();
+		List<ForumPost> temp =  forumPostPersistence.findByUserIdPostParent(user_id_post_parent);
+		
+		for (ForumPost forumPost : temp) {
+			if(forumPost.getId_post() != forumPost.getId_post_parent()){
+				result.add(forumPost);
+			}
+		}
+				
+		return result;
+	}
+	public List<ForumPost> getForumPostsRootByIdCategory(long id_category) throws SystemException{
+		List<ForumPost> result = new ArrayList<ForumPost>();
+		List<ForumPost> temp =  forumPostPersistence.findByIdCategory(id_category);	
+		
+		for (ForumPost forumPost : temp) {
+			if(forumPost.getId_post() == forumPost.getId_post_parent()){
+				result.add(forumPost);
+			}
+		}
+				
+		return result;
 	}
 	public List<ForumPost> getForumPostsByIdCategory(long id_category) throws SystemException{
-		return forumPostPersistence.findByIdCategory(id_category);
+		return forumPostPersistence.findByIdCategory(id_category);	
+	}
+	public List<ForumPost> getForumPostsByIdCategoryUserId(long id_category, long user_id)throws SystemException{
+		return forumPostPersistence.findByIdCategoryUserId(id_category,user_id);
+	}
+	public List<ForumPost> getForumPostsByIdPostParent(long id_post)throws SystemException{
+		List<ForumPost> result = new ArrayList<ForumPost>();
+		List<ForumPost> temp = forumPostPersistence.findByIdPostParent(id_post);
+		for (ForumPost forumPost : temp) {
+			if(forumPost.getId_post() != forumPost.getId_post_parent()){
+				result.add(forumPost);
+			}
+		}
+				
+		return result;
 	}
 	
-	
-	
+	public boolean hasReplys(long id_post){
+		List<ForumPost> posts;
+		try {
+			posts = ForumPostLocalServiceUtil.getForumPostsByIdPostParent(id_post);
+			if(posts.size() > 0){
+				return true;
+			}else{
+				return false;
+			}
+		} catch (SystemException e) {
+			e.printStackTrace();
+			return false;
+		}
+		
+	}
 }

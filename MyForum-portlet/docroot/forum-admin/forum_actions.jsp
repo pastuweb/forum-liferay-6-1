@@ -1,7 +1,8 @@
 <%@include file="/init.jsp" %>
 
 <%
-ResultRow row = (ResultRow) request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT_ROW);
+	long remote_userid =  PrincipalThreadLocal.getUserId();
+	ResultRow row = (ResultRow) request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT_ROW);
 
     Forum myForum = (Forum) row.getObject();
 	String name = Forum.class.getName();
@@ -10,25 +11,48 @@ ResultRow row = (ResultRow) request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT
 
 <liferay-ui:icon-menu>
 	
+	<portlet:actionURL name="infoForum" var="infoForumURL">
+      <portlet:param name="resourcePrimKey" value="<%= primKey %>" />
+    </portlet:actionURL>
+    <liferay-ui:icon image="preview"  message="Info" url="<%= infoForumURL.toString() %>" />
+    
+    <%if(remote_userid == myForum.getUser_id_creator() || RoleLocalServiceUtil.hasUserRole(remote_userid, RoleLocalServiceUtil.getRole(themeDisplay.getCompanyId(), "Administrator").getRoleId())){ %>
     <portlet:actionURL name="editForum" var="editForumURL">
       <portlet:param name="resourcePrimKey" value="<%= primKey %>" />
     </portlet:actionURL>
-    <liferay-ui:icon-delete url="<%= editForumURL.toString() %>" />
+    <liferay-ui:icon image="edit"  message="Edit" url="<%= editForumURL.toString() %>" />
+    <%} %>
     
-    <portlet:actionURL name="statisticsForum" var="statisticsForumURL">
+    <portlet:actionURL name="forumStatistics" var="forumStatisticsURL">
       <portlet:param name="resourcePrimKey" value="<%= primKey %>" />
     </portlet:actionURL>
-    <liferay-ui:icon-delete url="<%= statisticsForumURL.toString() %>" />
+    <liferay-ui:icon image="desktop" message="Statistics" url="<%= forumStatisticsURL.toString() %>" />
     
-    <portlet:actionURL name="addCategoryForum" var="addCategoryForumURL">
+    <portlet:actionURL name="viewForumCategory" var="viewForumCategoryURL">
       <portlet:param name="resourcePrimKey" value="<%= primKey %>" />
     </portlet:actionURL>
-    <liferay-ui:icon-delete url="<%= addCategoryForumURL.toString() %>" />
+    <liferay-ui:icon image="category" message="Categories" url="<%= viewForumCategoryURL.toString() %>" />
     
+    
+    <%if(remote_userid == myForum.getUser_id_creator() || RoleLocalServiceUtil.hasUserRole(remote_userid, RoleLocalServiceUtil.getRole(themeDisplay.getCompanyId(), "Administrator").getRoleId())){ %>
     <portlet:actionURL name="deleteForum" var="deleteForumURL">
       <portlet:param name="resourcePrimKey" value="<%= primKey %>" />
     </portlet:actionURL>
     <liferay-ui:icon-delete url="<%= deleteForumURL.toString() %>" />	
-
+    <%} %>
+    
+    
+    <portlet:actionURL name="forumCommunity" var="forumCommunityURL">
+      <portlet:param name="resourcePrimKey" value="<%= primKey %>" />
+    </portlet:actionURL>
+    <liferay-ui:icon image="user_icon" message="Community" url="<%= forumCommunityURL.toString() %>" />
+    
+    <%if(remote_userid == myForum.getUser_id_creator() || RoleLocalServiceUtil.hasUserRole(remote_userid, RoleLocalServiceUtil.getRole(themeDisplay.getCompanyId(), "Administrator").getRoleId())){ %>
+    <portlet:actionURL name="active_deactiveForum" var="active_deactiveForumURL">
+      <portlet:param name="resourcePrimKey" value="<%= primKey %>" />
+    </portlet:actionURL>
+    <liferay-ui:icon image="activate" message="Toogle Status" url="<%= active_deactiveForumURL.toString() %>" />
+	<%} %>
+	
 </liferay-ui:icon-menu>
 

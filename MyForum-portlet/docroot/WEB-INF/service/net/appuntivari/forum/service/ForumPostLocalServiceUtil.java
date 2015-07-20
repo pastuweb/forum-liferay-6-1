@@ -301,10 +301,32 @@ public class ForumPostLocalServiceUtil {
 		return getService().getForumPostsByUserIdPostParent(user_id_post_parent);
 	}
 
+	public static java.util.List<net.appuntivari.forum.model.ForumPost> getForumPostsRootByIdCategory(
+		long id_category)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getForumPostsRootByIdCategory(id_category);
+	}
+
 	public static java.util.List<net.appuntivari.forum.model.ForumPost> getForumPostsByIdCategory(
 		long id_category)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().getForumPostsByIdCategory(id_category);
+	}
+
+	public static java.util.List<net.appuntivari.forum.model.ForumPost> getForumPostsByIdCategoryUserId(
+		long id_category, long user_id)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getForumPostsByIdCategoryUserId(id_category, user_id);
+	}
+
+	public static java.util.List<net.appuntivari.forum.model.ForumPost> getForumPostsByIdPostParent(
+		long id_post)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getForumPostsByIdPostParent(id_post);
+	}
+
+	public static boolean hasReplys(long id_post) {
+		return getService().hasReplys(id_post);
 	}
 
 	public static void clearService() {

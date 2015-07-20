@@ -14,6 +14,13 @@
 
 package net.appuntivari.forum.service.http;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+
+import net.appuntivari.forum.service.ForumServiceUtil;
+
+import java.rmi.RemoteException;
+
 /**
  * <p>
  * This class provides a SOAP utility for the
@@ -58,4 +65,76 @@ package net.appuntivari.forum.service.http;
  * @generated
  */
 public class ForumServiceSoap {
+	public static net.appuntivari.forum.model.ForumSoap getForumById(
+		long id_forum) throws RemoteException {
+		try {
+			net.appuntivari.forum.model.Forum returnValue = ForumServiceUtil.getForumById(id_forum);
+
+			return net.appuntivari.forum.model.ForumSoap.toSoapModel(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static net.appuntivari.forum.model.ForumSoap[] getForum(
+		long id_forum) throws RemoteException {
+		try {
+			java.util.List<net.appuntivari.forum.model.Forum> returnValue = ForumServiceUtil.getForum(id_forum);
+
+			return net.appuntivari.forum.model.ForumSoap.toSoapModels(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static net.appuntivari.forum.model.ForumSoap[] getForumByCompanyId(
+		long company_id) throws RemoteException {
+		try {
+			java.util.List<net.appuntivari.forum.model.Forum> returnValue = ForumServiceUtil.getForumByCompanyId(company_id);
+
+			return net.appuntivari.forum.model.ForumSoap.toSoapModels(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static net.appuntivari.forum.model.ForumSoap[] getForumByOwner(
+		long userid_creator) throws RemoteException {
+		try {
+			java.util.List<net.appuntivari.forum.model.Forum> returnValue = ForumServiceUtil.getForumByOwner(userid_creator);
+
+			return net.appuntivari.forum.model.ForumSoap.toSoapModels(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static net.appuntivari.forum.model.ForumSoap[] getForumByOwnerStatus(
+		long userid_creator, boolean status) throws RemoteException {
+		try {
+			java.util.List<net.appuntivari.forum.model.Forum> returnValue = ForumServiceUtil.getForumByOwnerStatus(userid_creator,
+					status);
+
+			return net.appuntivari.forum.model.ForumSoap.toSoapModels(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	private static Log _log = LogFactoryUtil.getLog(ForumServiceSoap.class);
 }

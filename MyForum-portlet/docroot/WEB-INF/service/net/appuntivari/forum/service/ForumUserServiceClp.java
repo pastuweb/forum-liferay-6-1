@@ -30,6 +30,30 @@ public class ForumUserServiceClp implements ForumUserService {
 		_methodName1 = "setBeanIdentifier";
 
 		_methodParameterTypes1 = new String[] { "java.lang.String" };
+
+		_methodName3 = "getForumUserById";
+
+		_methodParameterTypes3 = new String[] { "long" };
+
+		_methodName4 = "getForumUser";
+
+		_methodParameterTypes4 = new String[] {  };
+
+		_methodName5 = "getForumUserByIdForum";
+
+		_methodParameterTypes5 = new String[] { "long" };
+
+		_methodName6 = "getForumUserByIdForumStatus";
+
+		_methodParameterTypes6 = new String[] { "long", "boolean" };
+
+		_methodName7 = "getForumUserByStatus";
+
+		_methodParameterTypes7 = new String[] { "boolean" };
+
+		_methodName8 = "getForumUserByUserId";
+
+		_methodParameterTypes8 = new String[] { "long" };
 	}
 
 	public java.lang.String getBeanIdentifier() {
@@ -79,9 +103,158 @@ public class ForumUserServiceClp implements ForumUserService {
 		throw new UnsupportedOperationException();
 	}
 
+	public net.appuntivari.forum.model.ForumUser getForumUserById(
+		long id_forum_user) {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableService.invokeMethod(_methodName3,
+					_methodParameterTypes3, new Object[] { id_forum_user });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (net.appuntivari.forum.model.ForumUser)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public java.util.List<net.appuntivari.forum.model.ForumUser> getForumUser() {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableService.invokeMethod(_methodName4,
+					_methodParameterTypes4, new Object[] {  });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<net.appuntivari.forum.model.ForumUser>)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public java.util.List<net.appuntivari.forum.model.ForumUser> getForumUserByIdForum(
+		long id_forum) {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableService.invokeMethod(_methodName5,
+					_methodParameterTypes5, new Object[] { id_forum });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<net.appuntivari.forum.model.ForumUser>)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public java.util.List<net.appuntivari.forum.model.ForumUser> getForumUserByIdForumStatus(
+		long id_forum, boolean status) {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableService.invokeMethod(_methodName6,
+					_methodParameterTypes6, new Object[] { id_forum, status });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<net.appuntivari.forum.model.ForumUser>)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public java.util.List<net.appuntivari.forum.model.ForumUser> getForumUserByStatus(
+		boolean status) {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableService.invokeMethod(_methodName7,
+					_methodParameterTypes7, new Object[] { status });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<net.appuntivari.forum.model.ForumUser>)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public java.util.List<net.appuntivari.forum.model.ForumUser> getForumUserByUserId(
+		long userid) {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableService.invokeMethod(_methodName8,
+					_methodParameterTypes8, new Object[] { userid });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<net.appuntivari.forum.model.ForumUser>)ClpSerializer.translateOutput(returnObj);
+	}
+
 	private InvokableService _invokableService;
 	private String _methodName0;
 	private String[] _methodParameterTypes0;
 	private String _methodName1;
 	private String[] _methodParameterTypes1;
+	private String _methodName3;
+	private String[] _methodParameterTypes3;
+	private String _methodName4;
+	private String[] _methodParameterTypes4;
+	private String _methodName5;
+	private String[] _methodParameterTypes5;
+	private String _methodName6;
+	private String[] _methodParameterTypes6;
+	private String _methodName7;
+	private String[] _methodParameterTypes7;
+	private String _methodName8;
+	private String[] _methodParameterTypes8;
 }

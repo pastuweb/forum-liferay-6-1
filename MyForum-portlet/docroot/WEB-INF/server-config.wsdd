@@ -33,8 +33,32 @@
 		</responseFlow>
 	</transport>
 	<service name="Plugin_PW_ForumCategoryService" provider="java:RPC" style="rpc" use="encoded">
-		<parameter name="allowedMethods" value="*" />
+		<arrayMapping xmlns:ns="urn:http.service.forum.appuntivari.net" xmlns:cmp-ns="http://model.forum.appuntivari.net" qname="ns:ArrayOf_tns2_ForumCategorySoap" type="java:net.appuntivari.forum.model.ForumCategorySoap[]" innerType="cmp-ns:ForumCategorySoap" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"></arrayMapping>
+		<typeMapping xmlns:ns="http://model.forum.appuntivari.net" qname="ns:ForumCategorySoap" type="java:net.appuntivari.forum.model.ForumCategorySoap" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"></typeMapping>
+		<operation xmlns:operNS="urn:http.service.forum.appuntivari.net" xmlns:rtns="urn:http.service.forum.appuntivari.net" xmlns:tns2="http://model.forum.appuntivari.net" name="getForumCategoryByIdForumCategoryParent" qname="operNS:getForumCategoryByIdForumCategoryParent" returnQName="getForumCategoryByIdForumCategoryParentReturn" returnType="rtns:ArrayOf_tns2_ForumCategorySoap" returnItemType="tns2:ForumCategorySoap" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="id_forum" type="tns:long"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="id_category_parent" type="tns:long"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.forum.appuntivari.net" xmlns:rtns="urn:http.service.forum.appuntivari.net" xmlns:tns2="http://model.forum.appuntivari.net" name="getForumCategoryByIdForumStatus" qname="operNS:getForumCategoryByIdForumStatus" returnQName="getForumCategoryByIdForumStatusReturn" returnType="rtns:ArrayOf_tns2_ForumCategorySoap" returnItemType="tns2:ForumCategorySoap" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="id_forum" type="tns:long"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="status" type="tns:boolean"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.forum.appuntivari.net" xmlns:rtns="urn:http.service.forum.appuntivari.net" xmlns:tns2="http://model.forum.appuntivari.net" name="getForumCategoryByIdForum" qname="operNS:getForumCategoryByIdForum" returnQName="getForumCategoryByIdForumReturn" returnType="rtns:ArrayOf_tns2_ForumCategorySoap" returnItemType="tns2:ForumCategorySoap" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="id_forum" type="tns:long"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.forum.appuntivari.net" xmlns:rtns="http://model.forum.appuntivari.net" name="getForumCategoryById" qname="operNS:getForumCategoryById" returnQName="getForumCategoryByIdReturn" returnType="rtns:ForumCategorySoap" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="id_category" type="tns:long"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.forum.appuntivari.net" xmlns:rtns="urn:http.service.forum.appuntivari.net" xmlns:tns2="http://model.forum.appuntivari.net" name="getForumCategoryByOwner" qname="operNS:getForumCategoryByOwner" returnQName="getForumCategoryByOwnerReturn" returnType="rtns:ArrayOf_tns2_ForumCategorySoap" returnItemType="tns2:ForumCategorySoap" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="userid_creator" type="tns:long"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.forum.appuntivari.net" xmlns:rtns="urn:http.service.forum.appuntivari.net" xmlns:tns2="http://model.forum.appuntivari.net" name="getForumCategoryByTitle" qname="operNS:getForumCategoryByTitle" returnQName="getForumCategoryByTitleReturn" returnType="rtns:ArrayOf_tns2_ForumCategorySoap" returnItemType="tns2:ForumCategorySoap" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="title" type="tns:string"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.forum.appuntivari.net" xmlns:rtns="urn:http.service.forum.appuntivari.net" xmlns:tns2="http://model.forum.appuntivari.net" name="getForumCategory" qname="operNS:getForumCategory" returnQName="getForumCategoryReturn" returnType="rtns:ArrayOf_tns2_ForumCategorySoap" returnItemType="tns2:ForumCategorySoap" soapAction=""> </operation>
+		<parameter name="allowedMethods" value="getForumCategory getForumCategoryById getForumCategoryByIdForum getForumCategoryByIdForumCategoryParent getForumCategoryByIdForumStatus getForumCategoryByOwner getForumCategoryByTitle" />
 		<parameter name="className" value="net.appuntivari.forum.service.http.ForumCategoryServiceSoap" />
+		<parameter name="schemaUnqualified" value="http://model.forum.appuntivari.net,urn:http.service.forum.appuntivari.net" />
 		<parameter name="typeMappingVersion" value="1.2" />
 		<parameter name="wsdlPortType" value="ForumCategoryServiceSoap" />
 		<parameter name="wsdlServiceElement" value="ForumCategoryServiceSoapService" />
@@ -42,8 +66,31 @@
 		<parameter name="wsdlTargetNamespace" value="urn:http.service.forum.appuntivari.net" />
 	</service>
 	<service name="Plugin_PW_ForumPostService" provider="java:RPC" style="rpc" use="encoded">
-		<parameter name="allowedMethods" value="*" />
+		<arrayMapping xmlns:ns="urn:http.service.forum.appuntivari.net" xmlns:cmp-ns="http://model.forum.appuntivari.net" qname="ns:ArrayOf_tns2_ForumPostSoap" type="java:net.appuntivari.forum.model.ForumPostSoap[]" innerType="cmp-ns:ForumPostSoap" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"></arrayMapping>
+		<typeMapping xmlns:ns="http://model.forum.appuntivari.net" qname="ns:ForumPostSoap" type="java:net.appuntivari.forum.model.ForumPostSoap" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"></typeMapping>
+		<operation xmlns:operNS="urn:http.service.forum.appuntivari.net" xmlns:rtns="urn:http.service.forum.appuntivari.net" xmlns:tns2="http://model.forum.appuntivari.net" name="getForumPostByIdCategoryUserId" qname="operNS:getForumPostByIdCategoryUserId" returnQName="getForumPostByIdCategoryUserIdReturn" returnType="rtns:ArrayOf_tns2_ForumPostSoap" returnItemType="tns2:ForumPostSoap" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="id_category" type="tns:long"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="user_id" type="tns:long"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.forum.appuntivari.net" xmlns:rtns="urn:http.service.forum.appuntivari.net" xmlns:tns2="http://model.forum.appuntivari.net" name="getForumPostByIdCategory" qname="operNS:getForumPostByIdCategory" returnQName="getForumPostByIdCategoryReturn" returnType="rtns:ArrayOf_tns2_ForumPostSoap" returnItemType="tns2:ForumPostSoap" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="id_category" type="tns:long"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.forum.appuntivari.net" xmlns:rtns="urn:http.service.forum.appuntivari.net" xmlns:tns2="http://model.forum.appuntivari.net" name="getForumPostByIdPostParent" qname="operNS:getForumPostByIdPostParent" returnQName="getForumPostByIdPostParentReturn" returnType="rtns:ArrayOf_tns2_ForumPostSoap" returnItemType="tns2:ForumPostSoap" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="id_post" type="tns:long"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.forum.appuntivari.net" xmlns:rtns="http://model.forum.appuntivari.net" name="getForumPostById" qname="operNS:getForumPostById" returnQName="getForumPostByIdReturn" returnType="rtns:ForumPostSoap" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="id_post" type="tns:long"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.forum.appuntivari.net" xmlns:rtns="urn:http.service.forum.appuntivari.net" xmlns:tns2="http://model.forum.appuntivari.net" name="getForumPostByUserIdParent" qname="operNS:getForumPostByUserIdParent" returnQName="getForumPostByUserIdParentReturn" returnType="rtns:ArrayOf_tns2_ForumPostSoap" returnItemType="tns2:ForumPostSoap" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="user_id_post_parent" type="tns:long"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.forum.appuntivari.net" xmlns:rtns="urn:http.service.forum.appuntivari.net" xmlns:tns2="http://model.forum.appuntivari.net" name="getForumPostByUserId" qname="operNS:getForumPostByUserId" returnQName="getForumPostByUserIdReturn" returnType="rtns:ArrayOf_tns2_ForumPostSoap" returnItemType="tns2:ForumPostSoap" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="user_id" type="tns:long"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.forum.appuntivari.net" xmlns:rtns="urn:http.service.forum.appuntivari.net" xmlns:tns2="http://model.forum.appuntivari.net" name="getForumPost" qname="operNS:getForumPost" returnQName="getForumPostReturn" returnType="rtns:ArrayOf_tns2_ForumPostSoap" returnItemType="tns2:ForumPostSoap" soapAction=""> </operation>
+		<parameter name="allowedMethods" value="getForumPost getForumPostById getForumPostByIdCategory getForumPostByIdCategoryUserId getForumPostByIdPostParent getForumPostByUserId getForumPostByUserIdParent" />
 		<parameter name="className" value="net.appuntivari.forum.service.http.ForumPostServiceSoap" />
+		<parameter name="schemaUnqualified" value="http://model.forum.appuntivari.net,urn:http.service.forum.appuntivari.net" />
 		<parameter name="typeMappingVersion" value="1.2" />
 		<parameter name="wsdlPortType" value="ForumPostServiceSoap" />
 		<parameter name="wsdlServiceElement" value="ForumPostServiceSoapService" />
@@ -51,8 +98,27 @@
 		<parameter name="wsdlTargetNamespace" value="urn:http.service.forum.appuntivari.net" />
 	</service>
 	<service name="Plugin_PW_ForumService" provider="java:RPC" style="rpc" use="encoded">
-		<parameter name="allowedMethods" value="*" />
+		<arrayMapping xmlns:ns="urn:http.service.forum.appuntivari.net" xmlns:cmp-ns="http://model.forum.appuntivari.net" qname="ns:ArrayOf_tns2_ForumSoap" type="java:net.appuntivari.forum.model.ForumSoap[]" innerType="cmp-ns:ForumSoap" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"></arrayMapping>
+		<typeMapping xmlns:ns="http://model.forum.appuntivari.net" qname="ns:ForumSoap" type="java:net.appuntivari.forum.model.ForumSoap" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"></typeMapping>
+		<operation xmlns:operNS="urn:http.service.forum.appuntivari.net" xmlns:rtns="urn:http.service.forum.appuntivari.net" xmlns:tns2="http://model.forum.appuntivari.net" name="getForumByCompanyId" qname="operNS:getForumByCompanyId" returnQName="getForumByCompanyIdReturn" returnType="rtns:ArrayOf_tns2_ForumSoap" returnItemType="tns2:ForumSoap" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="company_id" type="tns:long"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.forum.appuntivari.net" xmlns:rtns="http://model.forum.appuntivari.net" name="getForumById" qname="operNS:getForumById" returnQName="getForumByIdReturn" returnType="rtns:ForumSoap" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="id_forum" type="tns:long"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.forum.appuntivari.net" xmlns:rtns="urn:http.service.forum.appuntivari.net" xmlns:tns2="http://model.forum.appuntivari.net" name="getForumByOwnerStatus" qname="operNS:getForumByOwnerStatus" returnQName="getForumByOwnerStatusReturn" returnType="rtns:ArrayOf_tns2_ForumSoap" returnItemType="tns2:ForumSoap" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="userid_creator" type="tns:long"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="status" type="tns:boolean"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.forum.appuntivari.net" xmlns:rtns="urn:http.service.forum.appuntivari.net" xmlns:tns2="http://model.forum.appuntivari.net" name="getForumByOwner" qname="operNS:getForumByOwner" returnQName="getForumByOwnerReturn" returnType="rtns:ArrayOf_tns2_ForumSoap" returnItemType="tns2:ForumSoap" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="userid_creator" type="tns:long"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.forum.appuntivari.net" xmlns:rtns="urn:http.service.forum.appuntivari.net" xmlns:tns2="http://model.forum.appuntivari.net" name="getForum" qname="operNS:getForum" returnQName="getForumReturn" returnType="rtns:ArrayOf_tns2_ForumSoap" returnItemType="tns2:ForumSoap" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="id_forum" type="tns:long"></parameter>
+		</operation>
+		<parameter name="allowedMethods" value="getForum getForumByCompanyId getForumById getForumByOwner getForumByOwnerStatus" />
 		<parameter name="className" value="net.appuntivari.forum.service.http.ForumServiceSoap" />
+		<parameter name="schemaUnqualified" value="http://model.forum.appuntivari.net,urn:http.service.forum.appuntivari.net" />
 		<parameter name="typeMappingVersion" value="1.2" />
 		<parameter name="wsdlPortType" value="ForumServiceSoap" />
 		<parameter name="wsdlServiceElement" value="ForumServiceSoapService" />
@@ -60,8 +126,28 @@
 		<parameter name="wsdlTargetNamespace" value="urn:http.service.forum.appuntivari.net" />
 	</service>
 	<service name="Plugin_PW_ForumUserService" provider="java:RPC" style="rpc" use="encoded">
-		<parameter name="allowedMethods" value="*" />
+		<arrayMapping xmlns:ns="urn:http.service.forum.appuntivari.net" xmlns:cmp-ns="http://model.forum.appuntivari.net" qname="ns:ArrayOf_tns2_ForumUserSoap" type="java:net.appuntivari.forum.model.ForumUserSoap[]" innerType="cmp-ns:ForumUserSoap" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"></arrayMapping>
+		<typeMapping xmlns:ns="http://model.forum.appuntivari.net" qname="ns:ForumUserSoap" type="java:net.appuntivari.forum.model.ForumUserSoap" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"></typeMapping>
+		<operation xmlns:operNS="urn:http.service.forum.appuntivari.net" xmlns:rtns="urn:http.service.forum.appuntivari.net" xmlns:tns2="http://model.forum.appuntivari.net" name="getForumUserByIdForumStatus" qname="operNS:getForumUserByIdForumStatus" returnQName="getForumUserByIdForumStatusReturn" returnType="rtns:ArrayOf_tns2_ForumUserSoap" returnItemType="tns2:ForumUserSoap" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="id_forum" type="tns:long"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="status" type="tns:boolean"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.forum.appuntivari.net" xmlns:rtns="urn:http.service.forum.appuntivari.net" xmlns:tns2="http://model.forum.appuntivari.net" name="getForumUserByIdForum" qname="operNS:getForumUserByIdForum" returnQName="getForumUserByIdForumReturn" returnType="rtns:ArrayOf_tns2_ForumUserSoap" returnItemType="tns2:ForumUserSoap" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="id_forum" type="tns:long"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.forum.appuntivari.net" xmlns:rtns="http://model.forum.appuntivari.net" name="getForumUserById" qname="operNS:getForumUserById" returnQName="getForumUserByIdReturn" returnType="rtns:ForumUserSoap" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="id_forum_user" type="tns:long"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.forum.appuntivari.net" xmlns:rtns="urn:http.service.forum.appuntivari.net" xmlns:tns2="http://model.forum.appuntivari.net" name="getForumUserByStatus" qname="operNS:getForumUserByStatus" returnQName="getForumUserByStatusReturn" returnType="rtns:ArrayOf_tns2_ForumUserSoap" returnItemType="tns2:ForumUserSoap" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="status" type="tns:boolean"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.forum.appuntivari.net" xmlns:rtns="urn:http.service.forum.appuntivari.net" xmlns:tns2="http://model.forum.appuntivari.net" name="getForumUserByUserId" qname="operNS:getForumUserByUserId" returnQName="getForumUserByUserIdReturn" returnType="rtns:ArrayOf_tns2_ForumUserSoap" returnItemType="tns2:ForumUserSoap" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="userid" type="tns:long"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.forum.appuntivari.net" xmlns:rtns="urn:http.service.forum.appuntivari.net" xmlns:tns2="http://model.forum.appuntivari.net" name="getForumUser" qname="operNS:getForumUser" returnQName="getForumUserReturn" returnType="rtns:ArrayOf_tns2_ForumUserSoap" returnItemType="tns2:ForumUserSoap" soapAction=""> </operation>
+		<parameter name="allowedMethods" value="getForumUser getForumUserById getForumUserByIdForum getForumUserByIdForumStatus getForumUserByStatus getForumUserByUserId" />
 		<parameter name="className" value="net.appuntivari.forum.service.http.ForumUserServiceSoap" />
+		<parameter name="schemaUnqualified" value="http://model.forum.appuntivari.net,urn:http.service.forum.appuntivari.net" />
 		<parameter name="typeMappingVersion" value="1.2" />
 		<parameter name="wsdlPortType" value="ForumUserServiceSoap" />
 		<parameter name="wsdlServiceElement" value="ForumUserServiceSoapService" />

@@ -273,7 +273,7 @@ public class ForumCategoryLocalServiceUtil {
 		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
-	public static net.appuntivari.forum.model.Forum getNewForumCategory() {
+	public static net.appuntivari.forum.model.ForumCategory getNewForumCategory() {
 		return getService().getNewForumCategory();
 	}
 
@@ -295,16 +295,47 @@ public class ForumCategoryLocalServiceUtil {
 		return getService().getForumCategoriesByTitle(title);
 	}
 
+	public static java.util.List<net.appuntivari.forum.model.ForumCategory> getForumCategoriesByUserIdCreator(
+		long user_id_creator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getForumCategoriesByUserIdCreator(user_id_creator);
+	}
+
 	public static java.util.List<net.appuntivari.forum.model.ForumCategory> getForumCategoriesByIdForum(
 		long id_forum)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().getForumCategoriesByIdForum(id_forum);
 	}
 
-	public static java.util.List<net.appuntivari.forum.model.ForumCategory> getForumCategoriesByCreateUserId(
-		long user_id_creator)
+	public static boolean isActive(long id_category, long id_forum)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService().getForumCategoriesByCreateUserId(user_id_creator);
+		return getService().isActive(id_category, id_forum);
+	}
+
+	public static java.util.List<net.appuntivari.forum.model.ForumCategory> getForumCategoriesByIdForumIdCategoryParent(
+		long id_forum, long id_category_parent)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .getForumCategoriesByIdForumIdCategoryParent(id_forum,
+			id_category_parent);
+	}
+
+	public static void changeStatusForumCategory(long id_category)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		getService().changeStatusForumCategory(id_category);
+	}
+
+	public static boolean isMaxLevelOne(long id_category)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService().isMaxLevelOne(id_category);
+	}
+
+	public static java.util.List<net.appuntivari.forum.model.ForumCategory> getForumCategoriesByIdForumStatus(
+		long id_forum, boolean status)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getForumCategoriesByIdForumStatus(id_forum, status);
 	}
 
 	public static void clearService() {

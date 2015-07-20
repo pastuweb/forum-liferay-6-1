@@ -30,6 +30,26 @@ public class ForumServiceClp implements ForumService {
 		_methodName1 = "setBeanIdentifier";
 
 		_methodParameterTypes1 = new String[] { "java.lang.String" };
+
+		_methodName3 = "getForumById";
+
+		_methodParameterTypes3 = new String[] { "long" };
+
+		_methodName4 = "getForum";
+
+		_methodParameterTypes4 = new String[] { "long" };
+
+		_methodName5 = "getForumByCompanyId";
+
+		_methodParameterTypes5 = new String[] { "long" };
+
+		_methodName6 = "getForumByOwner";
+
+		_methodParameterTypes6 = new String[] { "long" };
+
+		_methodName7 = "getForumByOwnerStatus";
+
+		_methodParameterTypes7 = new String[] { "long", "boolean" };
 	}
 
 	public java.lang.String getBeanIdentifier() {
@@ -79,9 +99,134 @@ public class ForumServiceClp implements ForumService {
 		throw new UnsupportedOperationException();
 	}
 
+	public net.appuntivari.forum.model.Forum getForumById(long id_forum) {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableService.invokeMethod(_methodName3,
+					_methodParameterTypes3, new Object[] { id_forum });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (net.appuntivari.forum.model.Forum)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public java.util.List<net.appuntivari.forum.model.Forum> getForum(
+		long id_forum) {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableService.invokeMethod(_methodName4,
+					_methodParameterTypes4, new Object[] { id_forum });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<net.appuntivari.forum.model.Forum>)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public java.util.List<net.appuntivari.forum.model.Forum> getForumByCompanyId(
+		long company_id) {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableService.invokeMethod(_methodName5,
+					_methodParameterTypes5, new Object[] { company_id });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<net.appuntivari.forum.model.Forum>)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public java.util.List<net.appuntivari.forum.model.Forum> getForumByOwner(
+		long userid_creator) {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableService.invokeMethod(_methodName6,
+					_methodParameterTypes6, new Object[] { userid_creator });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<net.appuntivari.forum.model.Forum>)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public java.util.List<net.appuntivari.forum.model.Forum> getForumByOwnerStatus(
+		long userid_creator, boolean status) {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableService.invokeMethod(_methodName7,
+					_methodParameterTypes7,
+					new Object[] { userid_creator, status });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<net.appuntivari.forum.model.Forum>)ClpSerializer.translateOutput(returnObj);
+	}
+
 	private InvokableService _invokableService;
 	private String _methodName0;
 	private String[] _methodParameterTypes0;
 	private String _methodName1;
 	private String[] _methodParameterTypes1;
+	private String _methodName3;
+	private String[] _methodParameterTypes3;
+	private String _methodName4;
+	private String[] _methodParameterTypes4;
+	private String _methodName5;
+	private String[] _methodParameterTypes5;
+	private String _methodName6;
+	private String[] _methodParameterTypes6;
+	private String _methodName7;
+	private String[] _methodParameterTypes7;
 }

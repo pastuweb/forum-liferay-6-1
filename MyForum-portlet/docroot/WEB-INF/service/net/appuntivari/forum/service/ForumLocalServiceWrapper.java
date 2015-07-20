@@ -278,22 +278,34 @@ public class ForumLocalServiceWrapper implements ForumLocalService,
 		return _forumLocalService.getForumsByCompanyId(company_id);
 	}
 
-	public java.util.List<net.appuntivari.forum.model.Forum> getForumsByCreateUserId(
+	public java.util.List<net.appuntivari.forum.model.Forum> getForumsByUserIdCreator(
 		long user_id_creator)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return _forumLocalService.getForumsByCreateUserId(user_id_creator);
+		return _forumLocalService.getForumsByUserIdCreator(user_id_creator);
 	}
 
-	public java.util.List<net.appuntivari.forum.model.Forum> getForumsByStatus(
+	public java.util.List<net.appuntivari.forum.model.Forum> getForumsByUserIdCreatorStatus(
 		long user_id_creator, boolean status)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return _forumLocalService.getForumsByStatus(user_id_creator, status);
+		return _forumLocalService.getForumsByUserIdCreatorStatus(user_id_creator,
+			status);
 	}
 
 	public java.util.List<net.appuntivari.forum.model.Forum> getForumsByTimestamp(
 		java.util.Date timestamp)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _forumLocalService.getForumsByTimestamp(timestamp);
+	}
+
+	public boolean isActive(long id_forum)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _forumLocalService.isActive(id_forum);
+	}
+
+	public void changeStatusForum(long id_forum)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		_forumLocalService.changeStatusForum(id_forum);
 	}
 
 	/**

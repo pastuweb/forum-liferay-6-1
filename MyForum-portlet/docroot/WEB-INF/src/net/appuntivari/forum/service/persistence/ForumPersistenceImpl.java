@@ -164,6 +164,25 @@ public class ForumPersistenceImpl extends BasePersistenceImpl<Forum>
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
 			"countByUserIdCreatorStatus",
 			new String[] { Long.class.getName(), String.class.getName() });
+	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_STATUS = new FinderPath(ForumModelImpl.ENTITY_CACHE_ENABLED,
+			ForumModelImpl.FINDER_CACHE_ENABLED, ForumImpl.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByStatus",
+			new String[] {
+				String.class.getName(),
+				
+			"java.lang.Integer", "java.lang.Integer",
+				"com.liferay.portal.kernel.util.OrderByComparator"
+			});
+	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_STATUS =
+		new FinderPath(ForumModelImpl.ENTITY_CACHE_ENABLED,
+			ForumModelImpl.FINDER_CACHE_ENABLED, ForumImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByStatus",
+			new String[] { String.class.getName() },
+			ForumModelImpl.STATUS_COLUMN_BITMASK);
+	public static final FinderPath FINDER_PATH_COUNT_BY_STATUS = new FinderPath(ForumModelImpl.ENTITY_CACHE_ENABLED,
+			ForumModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByStatus",
+			new String[] { String.class.getName() });
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_ALL = new FinderPath(ForumModelImpl.ENTITY_CACHE_ENABLED,
 			ForumModelImpl.FINDER_CACHE_ENABLED, ForumImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findAll", new String[0]);
@@ -454,6 +473,21 @@ public class ForumPersistenceImpl extends BasePersistenceImpl<Forum>
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_USERIDCREATORSTATUS,
 					args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_USERIDCREATORSTATUS,
+					args);
+			}
+
+			if ((forumModelImpl.getColumnBitmask() &
+					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_STATUS.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] { forumModelImpl.getOriginalStatus() };
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_STATUS, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_STATUS,
+					args);
+
+				args = new Object[] { forumModelImpl.getStatus() };
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_STATUS, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_STATUS,
 					args);
 			}
 		}
@@ -2176,6 +2210,406 @@ public class ForumPersistenceImpl extends BasePersistenceImpl<Forum>
 	}
 
 	/**
+	 * Returns all the forums where status = &#63;.
+	 *
+	 * @param status the status
+	 * @return the matching forums
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Forum> findByStatus(String status) throws SystemException {
+		return findByStatus(status, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+	}
+
+	/**
+	 * Returns a range of all the forums where status = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param status the status
+	 * @param start the lower bound of the range of forums
+	 * @param end the upper bound of the range of forums (not inclusive)
+	 * @return the range of matching forums
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Forum> findByStatus(String status, int start, int end)
+		throws SystemException {
+		return findByStatus(status, start, end, null);
+	}
+
+	/**
+	 * Returns an ordered range of all the forums where status = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param status the status
+	 * @param start the lower bound of the range of forums
+	 * @param end the upper bound of the range of forums (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching forums
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Forum> findByStatus(String status, int start, int end,
+		OrderByComparator orderByComparator) throws SystemException {
+		FinderPath finderPath = null;
+		Object[] finderArgs = null;
+
+		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
+				(orderByComparator == null)) {
+			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_STATUS;
+			finderArgs = new Object[] { status };
+		}
+		else {
+			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_STATUS;
+			finderArgs = new Object[] { status, start, end, orderByComparator };
+		}
+
+		List<Forum> list = (List<Forum>)FinderCacheUtil.getResult(finderPath,
+				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (Forum forum : list) {
+				if (!Validator.equals(status, forum.getStatus())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
+		if (list == null) {
+			StringBundler query = null;
+
+			if (orderByComparator != null) {
+				query = new StringBundler(3 +
+						(orderByComparator.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(3);
+			}
+
+			query.append(_SQL_SELECT_FORUM_WHERE);
+
+			if (status == null) {
+				query.append(_FINDER_COLUMN_STATUS_STATUS_1);
+			}
+			else {
+				if (status.equals(StringPool.BLANK)) {
+					query.append(_FINDER_COLUMN_STATUS_STATUS_3);
+				}
+				else {
+					query.append(_FINDER_COLUMN_STATUS_STATUS_2);
+				}
+			}
+
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+
+			else {
+				query.append(ForumModelImpl.ORDER_BY_JPQL);
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				if (status != null) {
+					qPos.add(status);
+				}
+
+				list = (List<Forum>)QueryUtil.list(q, getDialect(), start, end);
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (list == null) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
+				else {
+					cacheResult(list);
+
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
+
+				closeSession(session);
+			}
+		}
+
+		return list;
+	}
+
+	/**
+	 * Returns the first forum in the ordered set where status = &#63;.
+	 *
+	 * @param status the status
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching forum
+	 * @throws net.appuntivari.forum.NoSuchForumException if a matching forum could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Forum findByStatus_First(String status,
+		OrderByComparator orderByComparator)
+		throws NoSuchForumException, SystemException {
+		Forum forum = fetchByStatus_First(status, orderByComparator);
+
+		if (forum != null) {
+			return forum;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("status=");
+		msg.append(status);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchForumException(msg.toString());
+	}
+
+	/**
+	 * Returns the first forum in the ordered set where status = &#63;.
+	 *
+	 * @param status the status
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching forum, or <code>null</code> if a matching forum could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Forum fetchByStatus_First(String status,
+		OrderByComparator orderByComparator) throws SystemException {
+		List<Forum> list = findByStatus(status, 0, 1, orderByComparator);
+
+		if (!list.isEmpty()) {
+			return list.get(0);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Returns the last forum in the ordered set where status = &#63;.
+	 *
+	 * @param status the status
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching forum
+	 * @throws net.appuntivari.forum.NoSuchForumException if a matching forum could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Forum findByStatus_Last(String status,
+		OrderByComparator orderByComparator)
+		throws NoSuchForumException, SystemException {
+		Forum forum = fetchByStatus_Last(status, orderByComparator);
+
+		if (forum != null) {
+			return forum;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("status=");
+		msg.append(status);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchForumException(msg.toString());
+	}
+
+	/**
+	 * Returns the last forum in the ordered set where status = &#63;.
+	 *
+	 * @param status the status
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching forum, or <code>null</code> if a matching forum could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Forum fetchByStatus_Last(String status,
+		OrderByComparator orderByComparator) throws SystemException {
+		int count = countByStatus(status);
+
+		List<Forum> list = findByStatus(status, count - 1, count,
+				orderByComparator);
+
+		if (!list.isEmpty()) {
+			return list.get(0);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Returns the forums before and after the current forum in the ordered set where status = &#63;.
+	 *
+	 * @param id_forum the primary key of the current forum
+	 * @param status the status
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next forum
+	 * @throws net.appuntivari.forum.NoSuchForumException if a forum with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Forum[] findByStatus_PrevAndNext(long id_forum, String status,
+		OrderByComparator orderByComparator)
+		throws NoSuchForumException, SystemException {
+		Forum forum = findByPrimaryKey(id_forum);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			Forum[] array = new ForumImpl[3];
+
+			array[0] = getByStatus_PrevAndNext(session, forum, status,
+					orderByComparator, true);
+
+			array[1] = forum;
+
+			array[2] = getByStatus_PrevAndNext(session, forum, status,
+					orderByComparator, false);
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	protected Forum getByStatus_PrevAndNext(Session session, Forum forum,
+		String status, OrderByComparator orderByComparator, boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		query.append(_SQL_SELECT_FORUM_WHERE);
+
+		if (status == null) {
+			query.append(_FINDER_COLUMN_STATUS_STATUS_1);
+		}
+		else {
+			if (status.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_STATUS_STATUS_3);
+			}
+			else {
+				query.append(_FINDER_COLUMN_STATUS_STATUS_2);
+			}
+		}
+
+		if (orderByComparator != null) {
+			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+
+			if (orderByConditionFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByConditionFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByConditionFields[i]);
+
+				if ((i + 1) < orderByConditionFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+		}
+
+		else {
+			query.append(ForumModelImpl.ORDER_BY_JPQL);
+		}
+
+		String sql = query.toString();
+
+		Query q = session.createQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		if (status != null) {
+			qPos.add(status);
+		}
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByConditionValues(forum);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<Forum> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
+		}
+	}
+
+	/**
 	 * Returns all the forums.
 	 *
 	 * @return the forums
@@ -2336,6 +2770,18 @@ public class ForumPersistenceImpl extends BasePersistenceImpl<Forum>
 	public void removeByUserIdCreatorStatus(long user_id_creator, String status)
 		throws SystemException {
 		for (Forum forum : findByUserIdCreatorStatus(user_id_creator, status)) {
+			remove(forum);
+		}
+	}
+
+	/**
+	 * Removes all the forums where status = &#63; from the database.
+	 *
+	 * @param status the status
+	 * @throws SystemException if a system exception occurred
+	 */
+	public void removeByStatus(String status) throws SystemException {
+		for (Forum forum : findByStatus(status)) {
 			remove(forum);
 		}
 	}
@@ -2590,6 +3036,71 @@ public class ForumPersistenceImpl extends BasePersistenceImpl<Forum>
 	}
 
 	/**
+	 * Returns the number of forums where status = &#63;.
+	 *
+	 * @param status the status
+	 * @return the number of matching forums
+	 * @throws SystemException if a system exception occurred
+	 */
+	public int countByStatus(String status) throws SystemException {
+		Object[] finderArgs = new Object[] { status };
+
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_STATUS,
+				finderArgs, this);
+
+		if (count == null) {
+			StringBundler query = new StringBundler(2);
+
+			query.append(_SQL_COUNT_FORUM_WHERE);
+
+			if (status == null) {
+				query.append(_FINDER_COLUMN_STATUS_STATUS_1);
+			}
+			else {
+				if (status.equals(StringPool.BLANK)) {
+					query.append(_FINDER_COLUMN_STATUS_STATUS_3);
+				}
+				else {
+					query.append(_FINDER_COLUMN_STATUS_STATUS_2);
+				}
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				if (status != null) {
+					qPos.add(status);
+				}
+
+				count = (Long)q.uniqueResult();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_STATUS,
+					finderArgs, count);
+
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	/**
 	 * Returns the number of forums.
 	 *
 	 * @return the number of forums
@@ -2685,6 +3196,9 @@ public class ForumPersistenceImpl extends BasePersistenceImpl<Forum>
 	private static final String _FINDER_COLUMN_USERIDCREATORSTATUS_STATUS_1 = "forum.status IS NULL";
 	private static final String _FINDER_COLUMN_USERIDCREATORSTATUS_STATUS_2 = "forum.status = ?";
 	private static final String _FINDER_COLUMN_USERIDCREATORSTATUS_STATUS_3 = "(forum.status IS NULL OR forum.status = ?)";
+	private static final String _FINDER_COLUMN_STATUS_STATUS_1 = "forum.status IS NULL";
+	private static final String _FINDER_COLUMN_STATUS_STATUS_2 = "forum.status = ?";
+	private static final String _FINDER_COLUMN_STATUS_STATUS_3 = "(forum.status IS NULL OR forum.status = ?)";
 	private static final String _ORDER_BY_ENTITY_ALIAS = "forum.";
 	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No Forum exists with the primary key ";
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No Forum exists with the key {";

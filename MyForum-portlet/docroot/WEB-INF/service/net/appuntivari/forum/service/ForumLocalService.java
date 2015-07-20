@@ -256,12 +256,12 @@ public interface ForumLocalService extends BaseLocalService,
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<net.appuntivari.forum.model.Forum> getForumsByCreateUserId(
+	public java.util.List<net.appuntivari.forum.model.Forum> getForumsByUserIdCreator(
 		long user_id_creator)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<net.appuntivari.forum.model.Forum> getForumsByStatus(
+	public java.util.List<net.appuntivari.forum.model.Forum> getForumsByUserIdCreatorStatus(
 		long user_id_creator, boolean status)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
@@ -269,4 +269,12 @@ public interface ForumLocalService extends BaseLocalService,
 	public java.util.List<net.appuntivari.forum.model.Forum> getForumsByTimestamp(
 		java.util.Date timestamp)
 		throws com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public boolean isActive(long id_forum)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public void changeStatusForum(long id_forum)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
 }

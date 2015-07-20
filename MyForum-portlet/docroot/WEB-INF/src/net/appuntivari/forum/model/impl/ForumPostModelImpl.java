@@ -72,10 +72,10 @@ public class ForumPostModelImpl extends BaseModelImpl<ForumPost>
 			{ "id_post_parent", Types.BIGINT },
 			{ "user_id_post_parent", Types.BIGINT }
 		};
-	public static final String TABLE_SQL_CREATE = "create table PW_ForumPost (id_post LONG not null primary key,post VARCHAR(75) null,timestamp DATE null,user_id LONG,id_category LONG,id_post_parent LONG,user_id_post_parent LONG)";
+	public static final String TABLE_SQL_CREATE = "create table PW_ForumPost (id_post LONG not null primary key,post VARCHAR(250) null,timestamp DATE null,user_id LONG,id_category LONG,id_post_parent LONG,user_id_post_parent LONG)";
 	public static final String TABLE_SQL_DROP = "drop table PW_ForumPost";
-	public static final String ORDER_BY_JPQL = " ORDER BY forumPost.id_post DESC";
-	public static final String ORDER_BY_SQL = " ORDER BY PW_ForumPost.id_post DESC";
+	public static final String ORDER_BY_JPQL = " ORDER BY forumPost.id_post ASC";
+	public static final String ORDER_BY_SQL = " ORDER BY PW_ForumPost.id_post ASC";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";
@@ -89,9 +89,10 @@ public class ForumPostModelImpl extends BaseModelImpl<ForumPost>
 				"value.object.column.bitmask.enabled.net.appuntivari.forum.model.ForumPost"),
 			true);
 	public static long ID_CATEGORY_COLUMN_BITMASK = 1L;
-	public static long TIMESTAMP_COLUMN_BITMASK = 2L;
-	public static long USER_ID_COLUMN_BITMASK = 4L;
-	public static long USER_ID_POST_PARENT_COLUMN_BITMASK = 8L;
+	public static long ID_POST_PARENT_COLUMN_BITMASK = 2L;
+	public static long TIMESTAMP_COLUMN_BITMASK = 4L;
+	public static long USER_ID_COLUMN_BITMASK = 8L;
+	public static long USER_ID_POST_PARENT_COLUMN_BITMASK = 16L;
 
 	/**
 	 * Converts the soap model instance into a normal model instance.
@@ -319,7 +320,19 @@ public class ForumPostModelImpl extends BaseModelImpl<ForumPost>
 	}
 
 	public void setId_post_parent(long id_post_parent) {
+		_columnBitmask |= ID_POST_PARENT_COLUMN_BITMASK;
+
+		if (!_setOriginalId_post_parent) {
+			_setOriginalId_post_parent = true;
+
+			_originalId_post_parent = _id_post_parent;
+		}
+
 		_id_post_parent = id_post_parent;
+	}
+
+	public long getOriginalId_post_parent() {
+		return _originalId_post_parent;
 	}
 
 	@JSON
@@ -404,8 +417,6 @@ public class ForumPostModelImpl extends BaseModelImpl<ForumPost>
 			value = 0;
 		}
 
-		value = value * -1;
-
 		if (value != 0) {
 			return value;
 		}
@@ -453,6 +464,10 @@ public class ForumPostModelImpl extends BaseModelImpl<ForumPost>
 		forumPostModelImpl._originalId_category = forumPostModelImpl._id_category;
 
 		forumPostModelImpl._setOriginalId_category = false;
+
+		forumPostModelImpl._originalId_post_parent = forumPostModelImpl._id_post_parent;
+
+		forumPostModelImpl._setOriginalId_post_parent = false;
 
 		forumPostModelImpl._originalUser_id_post_parent = forumPostModelImpl._user_id_post_parent;
 
@@ -574,6 +589,8 @@ public class ForumPostModelImpl extends BaseModelImpl<ForumPost>
 	private long _originalId_category;
 	private boolean _setOriginalId_category;
 	private long _id_post_parent;
+	private long _originalId_post_parent;
+	private boolean _setOriginalId_post_parent;
 	private long _user_id_post_parent;
 	private long _originalUser_id_post_parent;
 	private boolean _setOriginalUser_id_post_parent;

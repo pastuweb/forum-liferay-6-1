@@ -73,10 +73,10 @@ public class ForumCategoryModelImpl extends BaseModelImpl<ForumCategory>
 			{ "user_id_creator", Types.BIGINT },
 			{ "status", Types.VARCHAR }
 		};
-	public static final String TABLE_SQL_CREATE = "create table PW_ForumCategory (id_category LONG not null primary key,title VARCHAR(75) null,description VARCHAR(75) null,id_forum LONG,id_category_parent LONG,timestamp DATE null,user_id_creator LONG,status VARCHAR(75) null)";
+	public static final String TABLE_SQL_CREATE = "create table PW_ForumCategory (id_category LONG not null primary key,title VARCHAR(100) null,description VARCHAR(250) null,id_forum LONG,id_category_parent LONG,timestamp DATE null,user_id_creator LONG,status VARCHAR(10) null)";
 	public static final String TABLE_SQL_DROP = "drop table PW_ForumCategory";
-	public static final String ORDER_BY_JPQL = " ORDER BY forumCategory.id_category DESC";
-	public static final String ORDER_BY_SQL = " ORDER BY PW_ForumCategory.id_category DESC";
+	public static final String ORDER_BY_JPQL = " ORDER BY forumCategory.id_category ASC";
+	public static final String ORDER_BY_SQL = " ORDER BY PW_ForumCategory.id_category ASC";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";
@@ -89,11 +89,12 @@ public class ForumCategoryModelImpl extends BaseModelImpl<ForumCategory>
 	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.column.bitmask.enabled.net.appuntivari.forum.model.ForumCategory"),
 			true);
-	public static long ID_FORUM_COLUMN_BITMASK = 1L;
-	public static long STATUS_COLUMN_BITMASK = 2L;
-	public static long TIMESTAMP_COLUMN_BITMASK = 4L;
-	public static long TITLE_COLUMN_BITMASK = 8L;
-	public static long USER_ID_CREATOR_COLUMN_BITMASK = 16L;
+	public static long ID_CATEGORY_PARENT_COLUMN_BITMASK = 1L;
+	public static long ID_FORUM_COLUMN_BITMASK = 2L;
+	public static long STATUS_COLUMN_BITMASK = 4L;
+	public static long TIMESTAMP_COLUMN_BITMASK = 8L;
+	public static long TITLE_COLUMN_BITMASK = 16L;
+	public static long USER_ID_CREATOR_COLUMN_BITMASK = 32L;
 
 	/**
 	 * Converts the soap model instance into a normal model instance.
@@ -313,7 +314,19 @@ public class ForumCategoryModelImpl extends BaseModelImpl<ForumCategory>
 	}
 
 	public void setId_category_parent(long id_category_parent) {
+		_columnBitmask |= ID_CATEGORY_PARENT_COLUMN_BITMASK;
+
+		if (!_setOriginalId_category_parent) {
+			_setOriginalId_category_parent = true;
+
+			_originalId_category_parent = _id_category_parent;
+		}
+
 		_id_category_parent = id_category_parent;
+	}
+
+	public long getOriginalId_category_parent() {
+		return _originalId_category_parent;
 	}
 
 	@JSON
@@ -442,8 +455,6 @@ public class ForumCategoryModelImpl extends BaseModelImpl<ForumCategory>
 			value = 0;
 		}
 
-		value = value * -1;
-
 		if (value != 0) {
 			return value;
 		}
@@ -487,6 +498,10 @@ public class ForumCategoryModelImpl extends BaseModelImpl<ForumCategory>
 		forumCategoryModelImpl._originalId_forum = forumCategoryModelImpl._id_forum;
 
 		forumCategoryModelImpl._setOriginalId_forum = false;
+
+		forumCategoryModelImpl._originalId_category_parent = forumCategoryModelImpl._id_category_parent;
+
+		forumCategoryModelImpl._setOriginalId_category_parent = false;
 
 		forumCategoryModelImpl._originalTimestamp = forumCategoryModelImpl._timestamp;
 
@@ -629,6 +644,8 @@ public class ForumCategoryModelImpl extends BaseModelImpl<ForumCategory>
 	private long _originalId_forum;
 	private boolean _setOriginalId_forum;
 	private long _id_category_parent;
+	private long _originalId_category_parent;
+	private boolean _setOriginalId_category_parent;
 	private Date _timestamp;
 	private Date _originalTimestamp;
 	private long _user_id_creator;

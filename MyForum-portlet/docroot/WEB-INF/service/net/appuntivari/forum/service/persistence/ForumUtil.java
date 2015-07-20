@@ -773,6 +773,143 @@ public class ForumUtil {
 	}
 
 	/**
+	* Returns all the forums where status = &#63;.
+	*
+	* @param status the status
+	* @return the matching forums
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<net.appuntivari.forum.model.Forum> findByStatus(
+		java.lang.String status)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByStatus(status);
+	}
+
+	/**
+	* Returns a range of all the forums where status = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param status the status
+	* @param start the lower bound of the range of forums
+	* @param end the upper bound of the range of forums (not inclusive)
+	* @return the range of matching forums
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<net.appuntivari.forum.model.Forum> findByStatus(
+		java.lang.String status, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByStatus(status, start, end);
+	}
+
+	/**
+	* Returns an ordered range of all the forums where status = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param status the status
+	* @param start the lower bound of the range of forums
+	* @param end the upper bound of the range of forums (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of matching forums
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<net.appuntivari.forum.model.Forum> findByStatus(
+		java.lang.String status, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByStatus(status, start, end, orderByComparator);
+	}
+
+	/**
+	* Returns the first forum in the ordered set where status = &#63;.
+	*
+	* @param status the status
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching forum
+	* @throws net.appuntivari.forum.NoSuchForumException if a matching forum could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static net.appuntivari.forum.model.Forum findByStatus_First(
+		java.lang.String status,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			net.appuntivari.forum.NoSuchForumException {
+		return getPersistence().findByStatus_First(status, orderByComparator);
+	}
+
+	/**
+	* Returns the first forum in the ordered set where status = &#63;.
+	*
+	* @param status the status
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching forum, or <code>null</code> if a matching forum could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static net.appuntivari.forum.model.Forum fetchByStatus_First(
+		java.lang.String status,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByStatus_First(status, orderByComparator);
+	}
+
+	/**
+	* Returns the last forum in the ordered set where status = &#63;.
+	*
+	* @param status the status
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching forum
+	* @throws net.appuntivari.forum.NoSuchForumException if a matching forum could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static net.appuntivari.forum.model.Forum findByStatus_Last(
+		java.lang.String status,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			net.appuntivari.forum.NoSuchForumException {
+		return getPersistence().findByStatus_Last(status, orderByComparator);
+	}
+
+	/**
+	* Returns the last forum in the ordered set where status = &#63;.
+	*
+	* @param status the status
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching forum, or <code>null</code> if a matching forum could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static net.appuntivari.forum.model.Forum fetchByStatus_Last(
+		java.lang.String status,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByStatus_Last(status, orderByComparator);
+	}
+
+	/**
+	* Returns the forums before and after the current forum in the ordered set where status = &#63;.
+	*
+	* @param id_forum the primary key of the current forum
+	* @param status the status
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the previous, current, and next forum
+	* @throws net.appuntivari.forum.NoSuchForumException if a forum with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static net.appuntivari.forum.model.Forum[] findByStatus_PrevAndNext(
+		long id_forum, java.lang.String status,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			net.appuntivari.forum.NoSuchForumException {
+		return getPersistence()
+				   .findByStatus_PrevAndNext(id_forum, status, orderByComparator);
+	}
+
+	/**
 	* Returns all the forums.
 	*
 	* @return the forums
@@ -868,6 +1005,17 @@ public class ForumUtil {
 	}
 
 	/**
+	* Removes all the forums where status = &#63; from the database.
+	*
+	* @param status the status
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByStatus(java.lang.String status)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByStatus(status);
+	}
+
+	/**
 	* Removes all the forums from the database.
 	*
 	* @throws SystemException if a system exception occurred
@@ -926,6 +1074,18 @@ public class ForumUtil {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence()
 				   .countByUserIdCreatorStatus(user_id_creator, status);
+	}
+
+	/**
+	* Returns the number of forums where status = &#63;.
+	*
+	* @param status the status
+	* @return the number of matching forums
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByStatus(java.lang.String status)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByStatus(status);
 	}
 
 	/**

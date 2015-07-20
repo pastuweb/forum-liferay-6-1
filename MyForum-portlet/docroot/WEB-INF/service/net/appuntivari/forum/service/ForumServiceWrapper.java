@@ -55,6 +55,30 @@ public class ForumServiceWrapper implements ForumService,
 		return _forumService.invokeMethod(name, parameterTypes, arguments);
 	}
 
+	public net.appuntivari.forum.model.Forum getForumById(long id_forum) {
+		return _forumService.getForumById(id_forum);
+	}
+
+	public java.util.List<net.appuntivari.forum.model.Forum> getForum(
+		long id_forum) {
+		return _forumService.getForum(id_forum);
+	}
+
+	public java.util.List<net.appuntivari.forum.model.Forum> getForumByCompanyId(
+		long company_id) {
+		return _forumService.getForumByCompanyId(company_id);
+	}
+
+	public java.util.List<net.appuntivari.forum.model.Forum> getForumByOwner(
+		long userid_creator) {
+		return _forumService.getForumByOwner(userid_creator);
+	}
+
+	public java.util.List<net.appuntivari.forum.model.Forum> getForumByOwnerStatus(
+		long userid_creator, boolean status) {
+		return _forumService.getForumByOwnerStatus(userid_creator, status);
+	}
+
 	/**
 	 * @deprecated Renamed to {@link #getWrappedService}
 	 */

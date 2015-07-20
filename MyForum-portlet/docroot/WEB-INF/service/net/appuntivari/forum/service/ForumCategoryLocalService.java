@@ -248,7 +248,7 @@ public interface ForumCategoryLocalService extends BaseLocalService,
 		throws java.lang.Throwable;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public net.appuntivari.forum.model.Forum getNewForumCategory();
+	public net.appuntivari.forum.model.ForumCategory getNewForumCategory();
 
 	public net.appuntivari.forum.model.ForumCategory createForumCategoryAdHoc(
 		net.appuntivari.forum.model.ForumCategory forumCategory)
@@ -265,12 +265,35 @@ public interface ForumCategoryLocalService extends BaseLocalService,
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<net.appuntivari.forum.model.ForumCategory> getForumCategoriesByUserIdCreator(
+		long user_id_creator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<net.appuntivari.forum.model.ForumCategory> getForumCategoriesByIdForum(
 		long id_forum)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<net.appuntivari.forum.model.ForumCategory> getForumCategoriesByCreateUserId(
-		long user_id_creator)
+	public boolean isActive(long id_category, long id_forum)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<net.appuntivari.forum.model.ForumCategory> getForumCategoriesByIdForumIdCategoryParent(
+		long id_forum, long id_category_parent)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public void changeStatusForumCategory(long id_category)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public boolean isMaxLevelOne(long id_category)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<net.appuntivari.forum.model.ForumCategory> getForumCategoriesByIdForumStatus(
+		long id_forum, boolean status)
 		throws com.liferay.portal.kernel.exception.SystemException;
 }

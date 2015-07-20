@@ -54,9 +54,9 @@
 	      <mime-type>text/html</mime-type>
 	    </supports>
 	    <portlet-info>
-	      <title>MyForums</title>
-	      <short-title>MyForums</short-title>
-	      <keywords>MyForums</keywords>
+	      <title>Manage Forums</title>
+	      <short-title>Manage Forums</short-title>
+	      <keywords>Manage Forums</keywords>
 	    </portlet-info>
 	    <security-role-ref>
 	      <role-name>administrator</role-name>

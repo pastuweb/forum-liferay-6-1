@@ -30,6 +30,34 @@ public class ForumPostServiceClpInvoker {
 		_methodName41 = "setBeanIdentifier";
 
 		_methodParameterTypes41 = new String[] { "java.lang.String" };
+
+		_methodName46 = "getForumPostById";
+
+		_methodParameterTypes46 = new String[] { "long" };
+
+		_methodName47 = "getForumPost";
+
+		_methodParameterTypes47 = new String[] {  };
+
+		_methodName48 = "getForumPostByIdCategory";
+
+		_methodParameterTypes48 = new String[] { "long" };
+
+		_methodName49 = "getForumPostByIdCategoryUserId";
+
+		_methodParameterTypes49 = new String[] { "long", "long" };
+
+		_methodName50 = "getForumPostByIdPostParent";
+
+		_methodParameterTypes50 = new String[] { "long" };
+
+		_methodName51 = "getForumPostByUserId";
+
+		_methodParameterTypes51 = new String[] { "long" };
+
+		_methodName52 = "getForumPostByUserIdParent";
+
+		_methodParameterTypes52 = new String[] { "long" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -46,6 +74,42 @@ public class ForumPostServiceClpInvoker {
 			return null;
 		}
 
+		if (_methodName46.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes46, parameterTypes)) {
+			return ForumPostServiceUtil.getForumPostById(((Long)arguments[0]).longValue());
+		}
+
+		if (_methodName47.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes47, parameterTypes)) {
+			return ForumPostServiceUtil.getForumPost();
+		}
+
+		if (_methodName48.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes48, parameterTypes)) {
+			return ForumPostServiceUtil.getForumPostByIdCategory(((Long)arguments[0]).longValue());
+		}
+
+		if (_methodName49.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes49, parameterTypes)) {
+			return ForumPostServiceUtil.getForumPostByIdCategoryUserId(((Long)arguments[0]).longValue(),
+				((Long)arguments[1]).longValue());
+		}
+
+		if (_methodName50.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes50, parameterTypes)) {
+			return ForumPostServiceUtil.getForumPostByIdPostParent(((Long)arguments[0]).longValue());
+		}
+
+		if (_methodName51.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes51, parameterTypes)) {
+			return ForumPostServiceUtil.getForumPostByUserId(((Long)arguments[0]).longValue());
+		}
+
+		if (_methodName52.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes52, parameterTypes)) {
+			return ForumPostServiceUtil.getForumPostByUserIdParent(((Long)arguments[0]).longValue());
+		}
+
 		throw new UnsupportedOperationException();
 	}
 
@@ -53,4 +117,18 @@ public class ForumPostServiceClpInvoker {
 	private String[] _methodParameterTypes40;
 	private String _methodName41;
 	private String[] _methodParameterTypes41;
+	private String _methodName46;
+	private String[] _methodParameterTypes46;
+	private String _methodName47;
+	private String[] _methodParameterTypes47;
+	private String _methodName48;
+	private String[] _methodParameterTypes48;
+	private String _methodName49;
+	private String[] _methodParameterTypes49;
+	private String _methodName50;
+	private String[] _methodParameterTypes50;
+	private String _methodName51;
+	private String[] _methodParameterTypes51;
+	private String _methodName52;
+	private String[] _methodParameterTypes52;
 }

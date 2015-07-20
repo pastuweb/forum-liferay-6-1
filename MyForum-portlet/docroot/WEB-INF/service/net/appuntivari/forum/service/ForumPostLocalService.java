@@ -266,7 +266,25 @@ public interface ForumPostLocalService extends BaseLocalService,
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<net.appuntivari.forum.model.ForumPost> getForumPostsRootByIdCategory(
+		long id_category)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<net.appuntivari.forum.model.ForumPost> getForumPostsByIdCategory(
 		long id_category)
 		throws com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<net.appuntivari.forum.model.ForumPost> getForumPostsByIdCategoryUserId(
+		long id_category, long user_id)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<net.appuntivari.forum.model.ForumPost> getForumPostsByIdPostParent(
+		long id_post)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public boolean hasReplys(long id_post);
 }
