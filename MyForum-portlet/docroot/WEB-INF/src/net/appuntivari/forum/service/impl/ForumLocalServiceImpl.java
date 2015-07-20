@@ -19,8 +19,10 @@ import java.util.List;
 
 import net.appuntivari.forum.model.Forum;
 import net.appuntivari.forum.model.impl.ForumImpl;
+import net.appuntivari.forum.service.ForumLocalServiceUtil;
 import net.appuntivari.forum.service.base.ForumLocalServiceBaseImpl;
 
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 
 
@@ -42,9 +44,8 @@ public class ForumLocalServiceImpl extends ForumLocalServiceBaseImpl {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never reference this interface directly. Always use {@link net.appuntivari.forum.service.ForumLocalServiceUtil} to access the forum local service.
+	 * Never reference this interface directly. Always use {@link com.telecomlab.nhapi.service.ForumLocalServiceUtil} to access the forum local service.
 	 */
-	
 	public Forum getNewForum(){
 		return new ForumImpl();
 	}
@@ -60,21 +61,19 @@ public class ForumLocalServiceImpl extends ForumLocalServiceBaseImpl {
 		newForum.setUser_id_creator(forum.getUser_id_creator());
 		newForum.setStatus(forum.getStatus());
 		newForum.setTimestamp(forum.getTimestamp());
-		
-		forumPersistence.update(newForum, false);
-		
-		return newForum;
+
+		return forumPersistence.update(newForum, false);
 	}
 	
 	public List<Forum> getForumsByCompanyId(long company_id) throws SystemException{
 		return forumPersistence.findByCompanyId(company_id);
 	}
 	
-	public List<Forum> getForumsByCreateUserId(long user_id_creator) throws SystemException{
+	public List<Forum> getForumsByUserIdCreator(long user_id_creator) throws SystemException{
 		return forumPersistence.findByUserIdCreator(user_id_creator);
 	}
 	
-	public List<Forum> getForumsByStatus(long user_id_creator, boolean status) throws SystemException{
+	public List<Forum> getForumsByUserIdCreatorStatus(long user_id_creator, boolean status) throws SystemException{
 		String strStatus = "DEACTIVE";
 		if(status){
 			strStatus = "ACTIVE";
@@ -86,7 +85,33 @@ public class ForumLocalServiceImpl extends ForumLocalServiceBaseImpl {
 		return forumPersistence.findByTimestamp(timestamp);
 	}
 	
+	public boolean isActive(long id_forum) throws SystemException{
+		
+		Forum forum;
+		try {
+			forum = ForumLocalServiceUtil.getForum(id_forum);
+			List<Forum> result =  forumPersistence.findByStatus("ACTIVE");
+			if(result.contains(forum)){
+				return true;
+			}else{
+				return false;
+			}
+		} catch (PortalException e) {
+			e.printStackTrace();
+			return false;
+		}
+		
+	}
 	
-	
-	
+	public void changeStatusForum(long id_forum) throws SystemException, PortalException{
+		Forum forum = ForumLocalServiceUtil.getForum(id_forum);
+		if(forum.getStatus().equals("ACTIVE")){
+			forum.setStatus("DEACTIVE");
+			ForumLocalServiceUtil.updateForum(forum, true);
+		}else{
+			forum.setStatus("ACTIVE");
+			ForumLocalServiceUtil.updateForum(forum, true);
+		}
+	}
+
 }

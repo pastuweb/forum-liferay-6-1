@@ -62,6 +62,35 @@ public class ForumUserServiceUtil {
 		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
+	public static net.appuntivari.forum.model.ForumUser getForumUserById(
+		long id_forum_user) {
+		return getService().getForumUserById(id_forum_user);
+	}
+
+	public static java.util.List<net.appuntivari.forum.model.ForumUser> getForumUser() {
+		return getService().getForumUser();
+	}
+
+	public static java.util.List<net.appuntivari.forum.model.ForumUser> getForumUserByIdForum(
+		long id_forum) {
+		return getService().getForumUserByIdForum(id_forum);
+	}
+
+	public static java.util.List<net.appuntivari.forum.model.ForumUser> getForumUserByIdForumStatus(
+		long id_forum, boolean status) {
+		return getService().getForumUserByIdForumStatus(id_forum, status);
+	}
+
+	public static java.util.List<net.appuntivari.forum.model.ForumUser> getForumUserByStatus(
+		boolean status) {
+		return getService().getForumUserByStatus(status);
+	}
+
+	public static java.util.List<net.appuntivari.forum.model.ForumUser> getForumUserByUserId(
+		long userid) {
+		return getService().getForumUserByUserId(userid);
+	}
+
 	public static void clearService() {
 		_service = null;
 	}

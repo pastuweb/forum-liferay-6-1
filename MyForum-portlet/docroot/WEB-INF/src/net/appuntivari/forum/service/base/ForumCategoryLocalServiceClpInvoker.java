@@ -130,13 +130,33 @@ public class ForumCategoryLocalServiceClpInvoker {
 
 		_methodParameterTypes65 = new String[] { "java.lang.String" };
 
-		_methodName66 = "getForumCategoriesByIdForum";
+		_methodName66 = "getForumCategoriesByUserIdCreator";
 
 		_methodParameterTypes66 = new String[] { "long" };
 
-		_methodName67 = "getForumCategoriesByCreateUserId";
+		_methodName67 = "getForumCategoriesByIdForum";
 
 		_methodParameterTypes67 = new String[] { "long" };
+
+		_methodName68 = "isActive";
+
+		_methodParameterTypes68 = new String[] { "long", "long" };
+
+		_methodName69 = "getForumCategoriesByIdForumIdCategoryParent";
+
+		_methodParameterTypes69 = new String[] { "long", "long" };
+
+		_methodName70 = "changeStatusForumCategory";
+
+		_methodParameterTypes70 = new String[] { "long" };
+
+		_methodName71 = "isMaxLevelOne";
+
+		_methodParameterTypes71 = new String[] { "long" };
+
+		_methodName72 = "getForumCategoriesByIdForumStatus";
+
+		_methodParameterTypes72 = new String[] { "long", "boolean" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -262,12 +282,42 @@ public class ForumCategoryLocalServiceClpInvoker {
 
 		if (_methodName66.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes66, parameterTypes)) {
-			return ForumCategoryLocalServiceUtil.getForumCategoriesByIdForum(((Long)arguments[0]).longValue());
+			return ForumCategoryLocalServiceUtil.getForumCategoriesByUserIdCreator(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName67.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes67, parameterTypes)) {
-			return ForumCategoryLocalServiceUtil.getForumCategoriesByCreateUserId(((Long)arguments[0]).longValue());
+			return ForumCategoryLocalServiceUtil.getForumCategoriesByIdForum(((Long)arguments[0]).longValue());
+		}
+
+		if (_methodName68.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes68, parameterTypes)) {
+			return ForumCategoryLocalServiceUtil.isActive(((Long)arguments[0]).longValue(),
+				((Long)arguments[1]).longValue());
+		}
+
+		if (_methodName69.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes69, parameterTypes)) {
+			return ForumCategoryLocalServiceUtil.getForumCategoriesByIdForumIdCategoryParent(((Long)arguments[0]).longValue(),
+				((Long)arguments[1]).longValue());
+		}
+
+		if (_methodName70.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes70, parameterTypes)) {
+			ForumCategoryLocalServiceUtil.changeStatusForumCategory(((Long)arguments[0]).longValue());
+
+			return null;
+		}
+
+		if (_methodName71.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes71, parameterTypes)) {
+			return ForumCategoryLocalServiceUtil.isMaxLevelOne(((Long)arguments[0]).longValue());
+		}
+
+		if (_methodName72.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes72, parameterTypes)) {
+			return ForumCategoryLocalServiceUtil.getForumCategoriesByIdForumStatus(((Long)arguments[0]).longValue(),
+				((Boolean)arguments[1]).booleanValue());
 		}
 
 		throw new UnsupportedOperationException();
@@ -321,4 +371,14 @@ public class ForumCategoryLocalServiceClpInvoker {
 	private String[] _methodParameterTypes66;
 	private String _methodName67;
 	private String[] _methodParameterTypes67;
+	private String _methodName68;
+	private String[] _methodParameterTypes68;
+	private String _methodName69;
+	private String[] _methodParameterTypes69;
+	private String _methodName70;
+	private String[] _methodParameterTypes70;
+	private String _methodName71;
+	private String[] _methodParameterTypes71;
+	private String _methodName72;
+	private String[] _methodParameterTypes72;
 }

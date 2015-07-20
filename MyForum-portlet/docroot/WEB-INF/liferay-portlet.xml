@@ -12,7 +12,8 @@
 	<portlet>
 		<portlet-name>admin-forum</portlet-name>
 		<icon>/icon.png</icon>
-		<instanceable>false</instanceable>
+		<control-panel-entry-category>content</control-panel-entry-category>
+	    <control-panel-entry-weight>2</control-panel-entry-weight>
     	<header-portlet-css>/css/style.css</header-portlet-css>
     	<header-portlet-javascript>/js/main.js</header-portlet-javascript>    
 	</portlet>

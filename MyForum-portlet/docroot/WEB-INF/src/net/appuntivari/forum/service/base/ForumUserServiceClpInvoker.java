@@ -30,6 +30,30 @@ public class ForumUserServiceClpInvoker {
 		_methodName41 = "setBeanIdentifier";
 
 		_methodParameterTypes41 = new String[] { "java.lang.String" };
+
+		_methodName46 = "getForumUserById";
+
+		_methodParameterTypes46 = new String[] { "long" };
+
+		_methodName47 = "getForumUser";
+
+		_methodParameterTypes47 = new String[] {  };
+
+		_methodName48 = "getForumUserByIdForum";
+
+		_methodParameterTypes48 = new String[] { "long" };
+
+		_methodName49 = "getForumUserByIdForumStatus";
+
+		_methodParameterTypes49 = new String[] { "long", "boolean" };
+
+		_methodName50 = "getForumUserByStatus";
+
+		_methodParameterTypes50 = new String[] { "boolean" };
+
+		_methodName51 = "getForumUserByUserId";
+
+		_methodParameterTypes51 = new String[] { "long" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -46,6 +70,37 @@ public class ForumUserServiceClpInvoker {
 			return null;
 		}
 
+		if (_methodName46.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes46, parameterTypes)) {
+			return ForumUserServiceUtil.getForumUserById(((Long)arguments[0]).longValue());
+		}
+
+		if (_methodName47.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes47, parameterTypes)) {
+			return ForumUserServiceUtil.getForumUser();
+		}
+
+		if (_methodName48.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes48, parameterTypes)) {
+			return ForumUserServiceUtil.getForumUserByIdForum(((Long)arguments[0]).longValue());
+		}
+
+		if (_methodName49.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes49, parameterTypes)) {
+			return ForumUserServiceUtil.getForumUserByIdForumStatus(((Long)arguments[0]).longValue(),
+				((Boolean)arguments[1]).booleanValue());
+		}
+
+		if (_methodName50.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes50, parameterTypes)) {
+			return ForumUserServiceUtil.getForumUserByStatus(((Boolean)arguments[0]).booleanValue());
+		}
+
+		if (_methodName51.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes51, parameterTypes)) {
+			return ForumUserServiceUtil.getForumUserByUserId(((Long)arguments[0]).longValue());
+		}
+
 		throw new UnsupportedOperationException();
 	}
 
@@ -53,4 +108,16 @@ public class ForumUserServiceClpInvoker {
 	private String[] _methodParameterTypes40;
 	private String _methodName41;
 	private String[] _methodParameterTypes41;
+	private String _methodName46;
+	private String[] _methodParameterTypes46;
+	private String _methodName47;
+	private String[] _methodParameterTypes47;
+	private String _methodName48;
+	private String[] _methodParameterTypes48;
+	private String _methodName49;
+	private String[] _methodParameterTypes49;
+	private String _methodName50;
+	private String[] _methodParameterTypes50;
+	private String _methodName51;
+	private String[] _methodParameterTypes51;
 }

@@ -156,6 +156,38 @@ public class ForumUserPersistenceImpl extends BasePersistenceImpl<ForumUser>
 			ForumUserModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByIdForumStatus",
 			new String[] { Long.class.getName(), String.class.getName() });
+	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_IDFORUMUSERIDSTATUS =
+		new FinderPath(ForumUserModelImpl.ENTITY_CACHE_ENABLED,
+			ForumUserModelImpl.FINDER_CACHE_ENABLED, ForumUserImpl.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
+			"findByIdForumUserIdStatus",
+			new String[] {
+				Long.class.getName(), Long.class.getName(),
+				String.class.getName(),
+				
+			"java.lang.Integer", "java.lang.Integer",
+				"com.liferay.portal.kernel.util.OrderByComparator"
+			});
+	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_IDFORUMUSERIDSTATUS =
+		new FinderPath(ForumUserModelImpl.ENTITY_CACHE_ENABLED,
+			ForumUserModelImpl.FINDER_CACHE_ENABLED, ForumUserImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+			"findByIdForumUserIdStatus",
+			new String[] {
+				Long.class.getName(), Long.class.getName(),
+				String.class.getName()
+			},
+			ForumUserModelImpl.ID_FORUM_COLUMN_BITMASK |
+			ForumUserModelImpl.USER_ID_COLUMN_BITMASK |
+			ForumUserModelImpl.STATUS_COLUMN_BITMASK);
+	public static final FinderPath FINDER_PATH_COUNT_BY_IDFORUMUSERIDSTATUS = new FinderPath(ForumUserModelImpl.ENTITY_CACHE_ENABLED,
+			ForumUserModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+			"countByIdForumUserIdStatus",
+			new String[] {
+				Long.class.getName(), Long.class.getName(),
+				String.class.getName()
+			});
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_ALL = new FinderPath(ForumUserModelImpl.ENTITY_CACHE_ENABLED,
 			ForumUserModelImpl.FINDER_CACHE_ENABLED, ForumUserImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findAll", new String[0]);
@@ -446,6 +478,33 @@ public class ForumUserPersistenceImpl extends BasePersistenceImpl<ForumUser>
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_IDFORUMSTATUS,
 					args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_IDFORUMSTATUS,
+					args);
+			}
+
+			if ((forumUserModelImpl.getColumnBitmask() &
+					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_IDFORUMUSERIDSTATUS.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] {
+						Long.valueOf(forumUserModelImpl.getOriginalId_forum()),
+						Long.valueOf(forumUserModelImpl.getOriginalUser_id()),
+						
+						forumUserModelImpl.getOriginalStatus()
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_IDFORUMUSERIDSTATUS,
+					args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_IDFORUMUSERIDSTATUS,
+					args);
+
+				args = new Object[] {
+						Long.valueOf(forumUserModelImpl.getId_forum()),
+						Long.valueOf(forumUserModelImpl.getUser_id()),
+						
+						forumUserModelImpl.getStatus()
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_IDFORUMUSERIDSTATUS,
+					args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_IDFORUMUSERIDSTATUS,
 					args);
 			}
 		}
@@ -2170,6 +2229,469 @@ public class ForumUserPersistenceImpl extends BasePersistenceImpl<ForumUser>
 	}
 
 	/**
+	 * Returns all the forum users where id_forum = &#63; and user_id = &#63; and status = &#63;.
+	 *
+	 * @param id_forum the id_forum
+	 * @param user_id the user_id
+	 * @param status the status
+	 * @return the matching forum users
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<ForumUser> findByIdForumUserIdStatus(long id_forum,
+		long user_id, String status) throws SystemException {
+		return findByIdForumUserIdStatus(id_forum, user_id, status,
+			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+	}
+
+	/**
+	 * Returns a range of all the forum users where id_forum = &#63; and user_id = &#63; and status = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param id_forum the id_forum
+	 * @param user_id the user_id
+	 * @param status the status
+	 * @param start the lower bound of the range of forum users
+	 * @param end the upper bound of the range of forum users (not inclusive)
+	 * @return the range of matching forum users
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<ForumUser> findByIdForumUserIdStatus(long id_forum,
+		long user_id, String status, int start, int end)
+		throws SystemException {
+		return findByIdForumUserIdStatus(id_forum, user_id, status, start, end,
+			null);
+	}
+
+	/**
+	 * Returns an ordered range of all the forum users where id_forum = &#63; and user_id = &#63; and status = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param id_forum the id_forum
+	 * @param user_id the user_id
+	 * @param status the status
+	 * @param start the lower bound of the range of forum users
+	 * @param end the upper bound of the range of forum users (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching forum users
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<ForumUser> findByIdForumUserIdStatus(long id_forum,
+		long user_id, String status, int start, int end,
+		OrderByComparator orderByComparator) throws SystemException {
+		FinderPath finderPath = null;
+		Object[] finderArgs = null;
+
+		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
+				(orderByComparator == null)) {
+			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_IDFORUMUSERIDSTATUS;
+			finderArgs = new Object[] { id_forum, user_id, status };
+		}
+		else {
+			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_IDFORUMUSERIDSTATUS;
+			finderArgs = new Object[] {
+					id_forum, user_id, status,
+					
+					start, end, orderByComparator
+				};
+		}
+
+		List<ForumUser> list = (List<ForumUser>)FinderCacheUtil.getResult(finderPath,
+				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (ForumUser forumUser : list) {
+				if ((id_forum != forumUser.getId_forum()) ||
+						(user_id != forumUser.getUser_id()) ||
+						!Validator.equals(status, forumUser.getStatus())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
+		if (list == null) {
+			StringBundler query = null;
+
+			if (orderByComparator != null) {
+				query = new StringBundler(5 +
+						(orderByComparator.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(5);
+			}
+
+			query.append(_SQL_SELECT_FORUMUSER_WHERE);
+
+			query.append(_FINDER_COLUMN_IDFORUMUSERIDSTATUS_ID_FORUM_2);
+
+			query.append(_FINDER_COLUMN_IDFORUMUSERIDSTATUS_USER_ID_2);
+
+			if (status == null) {
+				query.append(_FINDER_COLUMN_IDFORUMUSERIDSTATUS_STATUS_1);
+			}
+			else {
+				if (status.equals(StringPool.BLANK)) {
+					query.append(_FINDER_COLUMN_IDFORUMUSERIDSTATUS_STATUS_3);
+				}
+				else {
+					query.append(_FINDER_COLUMN_IDFORUMUSERIDSTATUS_STATUS_2);
+				}
+			}
+
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+
+			else {
+				query.append(ForumUserModelImpl.ORDER_BY_JPQL);
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(id_forum);
+
+				qPos.add(user_id);
+
+				if (status != null) {
+					qPos.add(status);
+				}
+
+				list = (List<ForumUser>)QueryUtil.list(q, getDialect(), start,
+						end);
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (list == null) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
+				else {
+					cacheResult(list);
+
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
+
+				closeSession(session);
+			}
+		}
+
+		return list;
+	}
+
+	/**
+	 * Returns the first forum user in the ordered set where id_forum = &#63; and user_id = &#63; and status = &#63;.
+	 *
+	 * @param id_forum the id_forum
+	 * @param user_id the user_id
+	 * @param status the status
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching forum user
+	 * @throws net.appuntivari.forum.NoSuchForumUserException if a matching forum user could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public ForumUser findByIdForumUserIdStatus_First(long id_forum,
+		long user_id, String status, OrderByComparator orderByComparator)
+		throws NoSuchForumUserException, SystemException {
+		ForumUser forumUser = fetchByIdForumUserIdStatus_First(id_forum,
+				user_id, status, orderByComparator);
+
+		if (forumUser != null) {
+			return forumUser;
+		}
+
+		StringBundler msg = new StringBundler(8);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("id_forum=");
+		msg.append(id_forum);
+
+		msg.append(", user_id=");
+		msg.append(user_id);
+
+		msg.append(", status=");
+		msg.append(status);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchForumUserException(msg.toString());
+	}
+
+	/**
+	 * Returns the first forum user in the ordered set where id_forum = &#63; and user_id = &#63; and status = &#63;.
+	 *
+	 * @param id_forum the id_forum
+	 * @param user_id the user_id
+	 * @param status the status
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching forum user, or <code>null</code> if a matching forum user could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public ForumUser fetchByIdForumUserIdStatus_First(long id_forum,
+		long user_id, String status, OrderByComparator orderByComparator)
+		throws SystemException {
+		List<ForumUser> list = findByIdForumUserIdStatus(id_forum, user_id,
+				status, 0, 1, orderByComparator);
+
+		if (!list.isEmpty()) {
+			return list.get(0);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Returns the last forum user in the ordered set where id_forum = &#63; and user_id = &#63; and status = &#63;.
+	 *
+	 * @param id_forum the id_forum
+	 * @param user_id the user_id
+	 * @param status the status
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching forum user
+	 * @throws net.appuntivari.forum.NoSuchForumUserException if a matching forum user could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public ForumUser findByIdForumUserIdStatus_Last(long id_forum,
+		long user_id, String status, OrderByComparator orderByComparator)
+		throws NoSuchForumUserException, SystemException {
+		ForumUser forumUser = fetchByIdForumUserIdStatus_Last(id_forum,
+				user_id, status, orderByComparator);
+
+		if (forumUser != null) {
+			return forumUser;
+		}
+
+		StringBundler msg = new StringBundler(8);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("id_forum=");
+		msg.append(id_forum);
+
+		msg.append(", user_id=");
+		msg.append(user_id);
+
+		msg.append(", status=");
+		msg.append(status);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchForumUserException(msg.toString());
+	}
+
+	/**
+	 * Returns the last forum user in the ordered set where id_forum = &#63; and user_id = &#63; and status = &#63;.
+	 *
+	 * @param id_forum the id_forum
+	 * @param user_id the user_id
+	 * @param status the status
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching forum user, or <code>null</code> if a matching forum user could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public ForumUser fetchByIdForumUserIdStatus_Last(long id_forum,
+		long user_id, String status, OrderByComparator orderByComparator)
+		throws SystemException {
+		int count = countByIdForumUserIdStatus(id_forum, user_id, status);
+
+		List<ForumUser> list = findByIdForumUserIdStatus(id_forum, user_id,
+				status, count - 1, count, orderByComparator);
+
+		if (!list.isEmpty()) {
+			return list.get(0);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Returns the forum users before and after the current forum user in the ordered set where id_forum = &#63; and user_id = &#63; and status = &#63;.
+	 *
+	 * @param id_forum_user the primary key of the current forum user
+	 * @param id_forum the id_forum
+	 * @param user_id the user_id
+	 * @param status the status
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next forum user
+	 * @throws net.appuntivari.forum.NoSuchForumUserException if a forum user with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public ForumUser[] findByIdForumUserIdStatus_PrevAndNext(
+		long id_forum_user, long id_forum, long user_id, String status,
+		OrderByComparator orderByComparator)
+		throws NoSuchForumUserException, SystemException {
+		ForumUser forumUser = findByPrimaryKey(id_forum_user);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			ForumUser[] array = new ForumUserImpl[3];
+
+			array[0] = getByIdForumUserIdStatus_PrevAndNext(session, forumUser,
+					id_forum, user_id, status, orderByComparator, true);
+
+			array[1] = forumUser;
+
+			array[2] = getByIdForumUserIdStatus_PrevAndNext(session, forumUser,
+					id_forum, user_id, status, orderByComparator, false);
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	protected ForumUser getByIdForumUserIdStatus_PrevAndNext(Session session,
+		ForumUser forumUser, long id_forum, long user_id, String status,
+		OrderByComparator orderByComparator, boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		query.append(_SQL_SELECT_FORUMUSER_WHERE);
+
+		query.append(_FINDER_COLUMN_IDFORUMUSERIDSTATUS_ID_FORUM_2);
+
+		query.append(_FINDER_COLUMN_IDFORUMUSERIDSTATUS_USER_ID_2);
+
+		if (status == null) {
+			query.append(_FINDER_COLUMN_IDFORUMUSERIDSTATUS_STATUS_1);
+		}
+		else {
+			if (status.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_IDFORUMUSERIDSTATUS_STATUS_3);
+			}
+			else {
+				query.append(_FINDER_COLUMN_IDFORUMUSERIDSTATUS_STATUS_2);
+			}
+		}
+
+		if (orderByComparator != null) {
+			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+
+			if (orderByConditionFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByConditionFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByConditionFields[i]);
+
+				if ((i + 1) < orderByConditionFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+		}
+
+		else {
+			query.append(ForumUserModelImpl.ORDER_BY_JPQL);
+		}
+
+		String sql = query.toString();
+
+		Query q = session.createQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(id_forum);
+
+		qPos.add(user_id);
+
+		if (status != null) {
+			qPos.add(status);
+		}
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByConditionValues(forumUser);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<ForumUser> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
+		}
+	}
+
+	/**
 	 * Returns all the forum users.
 	 *
 	 * @return the forum users
@@ -2330,6 +2852,22 @@ public class ForumUserPersistenceImpl extends BasePersistenceImpl<ForumUser>
 	public void removeByIdForumStatus(long id_forum, String status)
 		throws SystemException {
 		for (ForumUser forumUser : findByIdForumStatus(id_forum, status)) {
+			remove(forumUser);
+		}
+	}
+
+	/**
+	 * Removes all the forum users where id_forum = &#63; and user_id = &#63; and status = &#63; from the database.
+	 *
+	 * @param id_forum the id_forum
+	 * @param user_id the user_id
+	 * @param status the status
+	 * @throws SystemException if a system exception occurred
+	 */
+	public void removeByIdForumUserIdStatus(long id_forum, long user_id,
+		String status) throws SystemException {
+		for (ForumUser forumUser : findByIdForumUserIdStatus(id_forum, user_id,
+				status)) {
 			remove(forumUser);
 		}
 	}
@@ -2588,6 +3126,82 @@ public class ForumUserPersistenceImpl extends BasePersistenceImpl<ForumUser>
 	}
 
 	/**
+	 * Returns the number of forum users where id_forum = &#63; and user_id = &#63; and status = &#63;.
+	 *
+	 * @param id_forum the id_forum
+	 * @param user_id the user_id
+	 * @param status the status
+	 * @return the number of matching forum users
+	 * @throws SystemException if a system exception occurred
+	 */
+	public int countByIdForumUserIdStatus(long id_forum, long user_id,
+		String status) throws SystemException {
+		Object[] finderArgs = new Object[] { id_forum, user_id, status };
+
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_IDFORUMUSERIDSTATUS,
+				finderArgs, this);
+
+		if (count == null) {
+			StringBundler query = new StringBundler(4);
+
+			query.append(_SQL_COUNT_FORUMUSER_WHERE);
+
+			query.append(_FINDER_COLUMN_IDFORUMUSERIDSTATUS_ID_FORUM_2);
+
+			query.append(_FINDER_COLUMN_IDFORUMUSERIDSTATUS_USER_ID_2);
+
+			if (status == null) {
+				query.append(_FINDER_COLUMN_IDFORUMUSERIDSTATUS_STATUS_1);
+			}
+			else {
+				if (status.equals(StringPool.BLANK)) {
+					query.append(_FINDER_COLUMN_IDFORUMUSERIDSTATUS_STATUS_3);
+				}
+				else {
+					query.append(_FINDER_COLUMN_IDFORUMUSERIDSTATUS_STATUS_2);
+				}
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(id_forum);
+
+				qPos.add(user_id);
+
+				if (status != null) {
+					qPos.add(status);
+				}
+
+				count = (Long)q.uniqueResult();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_IDFORUMUSERIDSTATUS,
+					finderArgs, count);
+
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	/**
 	 * Returns the number of forum users.
 	 *
 	 * @return the number of forum users
@@ -2683,6 +3297,11 @@ public class ForumUserPersistenceImpl extends BasePersistenceImpl<ForumUser>
 	private static final String _FINDER_COLUMN_IDFORUMSTATUS_STATUS_1 = "forumUser.status IS NULL";
 	private static final String _FINDER_COLUMN_IDFORUMSTATUS_STATUS_2 = "forumUser.status = ?";
 	private static final String _FINDER_COLUMN_IDFORUMSTATUS_STATUS_3 = "(forumUser.status IS NULL OR forumUser.status = ?)";
+	private static final String _FINDER_COLUMN_IDFORUMUSERIDSTATUS_ID_FORUM_2 = "forumUser.id_forum = ? AND ";
+	private static final String _FINDER_COLUMN_IDFORUMUSERIDSTATUS_USER_ID_2 = "forumUser.user_id = ? AND ";
+	private static final String _FINDER_COLUMN_IDFORUMUSERIDSTATUS_STATUS_1 = "forumUser.status IS NULL";
+	private static final String _FINDER_COLUMN_IDFORUMUSERIDSTATUS_STATUS_2 = "forumUser.status = ?";
+	private static final String _FINDER_COLUMN_IDFORUMUSERIDSTATUS_STATUS_3 = "(forumUser.status IS NULL OR forumUser.status = ?)";
 	private static final String _ORDER_BY_ENTITY_ALIAS = "forumUser.";
 	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No ForumUser exists with the primary key ";
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No ForumUser exists with the key {";

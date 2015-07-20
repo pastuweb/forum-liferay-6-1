@@ -70,10 +70,10 @@ public class ForumModelImpl extends BaseModelImpl<Forum> implements ForumModel {
 			{ "user_id_creator", Types.BIGINT },
 			{ "status", Types.VARCHAR }
 		};
-	public static final String TABLE_SQL_CREATE = "create table PW_Forum (id_forum LONG not null primary key,description VARCHAR(75) null,timestamp DATE null,company_id LONG,user_id_creator LONG,status VARCHAR(75) null)";
+	public static final String TABLE_SQL_CREATE = "create table PW_Forum (id_forum LONG not null primary key,description VARCHAR(250) null,timestamp DATE null,company_id LONG,user_id_creator LONG,status VARCHAR(10) null)";
 	public static final String TABLE_SQL_DROP = "drop table PW_Forum";
-	public static final String ORDER_BY_JPQL = " ORDER BY forum.id_forum DESC";
-	public static final String ORDER_BY_SQL = " ORDER BY PW_Forum.id_forum DESC";
+	public static final String ORDER_BY_JPQL = " ORDER BY forum.id_forum ASC";
+	public static final String ORDER_BY_SQL = " ORDER BY PW_Forum.id_forum ASC";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";
@@ -386,8 +386,6 @@ public class ForumModelImpl extends BaseModelImpl<Forum> implements ForumModel {
 		else {
 			value = 0;
 		}
-
-		value = value * -1;
 
 		if (value != 0) {
 			return value;

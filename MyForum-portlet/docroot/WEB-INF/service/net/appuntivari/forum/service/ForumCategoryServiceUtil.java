@@ -62,6 +62,42 @@ public class ForumCategoryServiceUtil {
 		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
+	public static net.appuntivari.forum.model.ForumCategory getForumCategoryById(
+		long id_category) {
+		return getService().getForumCategoryById(id_category);
+	}
+
+	public static java.util.List<net.appuntivari.forum.model.ForumCategory> getForumCategory() {
+		return getService().getForumCategory();
+	}
+
+	public static java.util.List<net.appuntivari.forum.model.ForumCategory> getForumCategoryByIdForum(
+		long id_forum) {
+		return getService().getForumCategoryByIdForum(id_forum);
+	}
+
+	public static java.util.List<net.appuntivari.forum.model.ForumCategory> getForumCategoryByIdForumStatus(
+		long id_forum, boolean status) {
+		return getService().getForumCategoryByIdForumStatus(id_forum, status);
+	}
+
+	public static java.util.List<net.appuntivari.forum.model.ForumCategory> getForumCategoryByOwner(
+		long userid_creator) {
+		return getService().getForumCategoryByOwner(userid_creator);
+	}
+
+	public static java.util.List<net.appuntivari.forum.model.ForumCategory> getForumCategoryByTitle(
+		java.lang.String title) {
+		return getService().getForumCategoryByTitle(title);
+	}
+
+	public static java.util.List<net.appuntivari.forum.model.ForumCategory> getForumCategoryByIdForumCategoryParent(
+		long id_forum, long id_category_parent) {
+		return getService()
+				   .getForumCategoryByIdForumCategoryParent(id_forum,
+			id_category_parent);
+	}
+
 	public static void clearService() {
 		_service = null;
 	}

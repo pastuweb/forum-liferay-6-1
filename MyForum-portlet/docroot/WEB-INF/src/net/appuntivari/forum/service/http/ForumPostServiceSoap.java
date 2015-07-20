@@ -14,6 +14,13 @@
 
 package net.appuntivari.forum.service.http;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+
+import net.appuntivari.forum.service.ForumPostServiceUtil;
+
+import java.rmi.RemoteException;
+
 /**
  * <p>
  * This class provides a SOAP utility for the
@@ -58,4 +65,104 @@ package net.appuntivari.forum.service.http;
  * @generated
  */
 public class ForumPostServiceSoap {
+	public static net.appuntivari.forum.model.ForumPostSoap getForumPostById(
+		long id_post) throws RemoteException {
+		try {
+			net.appuntivari.forum.model.ForumPost returnValue = ForumPostServiceUtil.getForumPostById(id_post);
+
+			return net.appuntivari.forum.model.ForumPostSoap.toSoapModel(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static net.appuntivari.forum.model.ForumPostSoap[] getForumPost()
+		throws RemoteException {
+		try {
+			java.util.List<net.appuntivari.forum.model.ForumPost> returnValue = ForumPostServiceUtil.getForumPost();
+
+			return net.appuntivari.forum.model.ForumPostSoap.toSoapModels(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static net.appuntivari.forum.model.ForumPostSoap[] getForumPostByIdCategory(
+		long id_category) throws RemoteException {
+		try {
+			java.util.List<net.appuntivari.forum.model.ForumPost> returnValue = ForumPostServiceUtil.getForumPostByIdCategory(id_category);
+
+			return net.appuntivari.forum.model.ForumPostSoap.toSoapModels(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static net.appuntivari.forum.model.ForumPostSoap[] getForumPostByIdCategoryUserId(
+		long id_category, long user_id) throws RemoteException {
+		try {
+			java.util.List<net.appuntivari.forum.model.ForumPost> returnValue = ForumPostServiceUtil.getForumPostByIdCategoryUserId(id_category,
+					user_id);
+
+			return net.appuntivari.forum.model.ForumPostSoap.toSoapModels(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static net.appuntivari.forum.model.ForumPostSoap[] getForumPostByIdPostParent(
+		long id_post) throws RemoteException {
+		try {
+			java.util.List<net.appuntivari.forum.model.ForumPost> returnValue = ForumPostServiceUtil.getForumPostByIdPostParent(id_post);
+
+			return net.appuntivari.forum.model.ForumPostSoap.toSoapModels(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static net.appuntivari.forum.model.ForumPostSoap[] getForumPostByUserId(
+		long user_id) throws RemoteException {
+		try {
+			java.util.List<net.appuntivari.forum.model.ForumPost> returnValue = ForumPostServiceUtil.getForumPostByUserId(user_id);
+
+			return net.appuntivari.forum.model.ForumPostSoap.toSoapModels(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static net.appuntivari.forum.model.ForumPostSoap[] getForumPostByUserIdParent(
+		long user_id_post_parent) throws RemoteException {
+		try {
+			java.util.List<net.appuntivari.forum.model.ForumPost> returnValue = ForumPostServiceUtil.getForumPostByUserIdParent(user_id_post_parent);
+
+			return net.appuntivari.forum.model.ForumPostSoap.toSoapModels(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	private static Log _log = LogFactoryUtil.getLog(ForumPostServiceSoap.class);
 }

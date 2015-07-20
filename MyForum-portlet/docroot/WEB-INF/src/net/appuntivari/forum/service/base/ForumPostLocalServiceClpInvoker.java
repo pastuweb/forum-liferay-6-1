@@ -134,9 +134,25 @@ public class ForumPostLocalServiceClpInvoker {
 
 		_methodParameterTypes66 = new String[] { "long" };
 
-		_methodName67 = "getForumPostsByIdCategory";
+		_methodName67 = "getForumPostsRootByIdCategory";
 
 		_methodParameterTypes67 = new String[] { "long" };
+
+		_methodName68 = "getForumPostsByIdCategory";
+
+		_methodParameterTypes68 = new String[] { "long" };
+
+		_methodName69 = "getForumPostsByIdCategoryUserId";
+
+		_methodParameterTypes69 = new String[] { "long", "long" };
+
+		_methodName70 = "getForumPostsByIdPostParent";
+
+		_methodParameterTypes70 = new String[] { "long" };
+
+		_methodName71 = "hasReplys";
+
+		_methodParameterTypes71 = new String[] { "long" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -267,7 +283,28 @@ public class ForumPostLocalServiceClpInvoker {
 
 		if (_methodName67.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes67, parameterTypes)) {
+			return ForumPostLocalServiceUtil.getForumPostsRootByIdCategory(((Long)arguments[0]).longValue());
+		}
+
+		if (_methodName68.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes68, parameterTypes)) {
 			return ForumPostLocalServiceUtil.getForumPostsByIdCategory(((Long)arguments[0]).longValue());
+		}
+
+		if (_methodName69.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes69, parameterTypes)) {
+			return ForumPostLocalServiceUtil.getForumPostsByIdCategoryUserId(((Long)arguments[0]).longValue(),
+				((Long)arguments[1]).longValue());
+		}
+
+		if (_methodName70.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes70, parameterTypes)) {
+			return ForumPostLocalServiceUtil.getForumPostsByIdPostParent(((Long)arguments[0]).longValue());
+		}
+
+		if (_methodName71.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes71, parameterTypes)) {
+			return ForumPostLocalServiceUtil.hasReplys(((Long)arguments[0]).longValue());
 		}
 
 		throw new UnsupportedOperationException();
@@ -321,4 +358,12 @@ public class ForumPostLocalServiceClpInvoker {
 	private String[] _methodParameterTypes66;
 	private String _methodName67;
 	private String[] _methodParameterTypes67;
+	private String _methodName68;
+	private String[] _methodParameterTypes68;
+	private String _methodName69;
+	private String[] _methodParameterTypes69;
+	private String _methodName70;
+	private String[] _methodParameterTypes70;
+	private String _methodName71;
+	private String[] _methodParameterTypes71;
 }

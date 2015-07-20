@@ -18,6 +18,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.jsonwebservice.JSONWebService;
 import com.liferay.portal.kernel.transaction.Isolation;
+import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
 import com.liferay.portal.service.BaseService;
 import com.liferay.portal.service.InvokableService;
@@ -62,4 +63,31 @@ public interface ForumCategoryService extends BaseService, InvokableService {
 	public java.lang.Object invokeMethod(java.lang.String name,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public net.appuntivari.forum.model.ForumCategory getForumCategoryById(
+		long id_category);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<net.appuntivari.forum.model.ForumCategory> getForumCategory();
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<net.appuntivari.forum.model.ForumCategory> getForumCategoryByIdForum(
+		long id_forum);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<net.appuntivari.forum.model.ForumCategory> getForumCategoryByIdForumStatus(
+		long id_forum, boolean status);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<net.appuntivari.forum.model.ForumCategory> getForumCategoryByOwner(
+		long userid_creator);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<net.appuntivari.forum.model.ForumCategory> getForumCategoryByTitle(
+		java.lang.String title);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<net.appuntivari.forum.model.ForumCategory> getForumCategoryByIdForumCategoryParent(
+		long id_forum, long id_category_parent);
 }

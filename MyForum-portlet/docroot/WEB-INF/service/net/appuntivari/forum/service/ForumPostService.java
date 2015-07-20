@@ -18,6 +18,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.jsonwebservice.JSONWebService;
 import com.liferay.portal.kernel.transaction.Isolation;
+import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
 import com.liferay.portal.service.BaseService;
 import com.liferay.portal.service.InvokableService;
@@ -62,4 +63,30 @@ public interface ForumPostService extends BaseService, InvokableService {
 	public java.lang.Object invokeMethod(java.lang.String name,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public net.appuntivari.forum.model.ForumPost getForumPostById(long id_post);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<net.appuntivari.forum.model.ForumPost> getForumPost();
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<net.appuntivari.forum.model.ForumPost> getForumPostByIdCategory(
+		long id_category);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<net.appuntivari.forum.model.ForumPost> getForumPostByIdCategoryUserId(
+		long id_category, long user_id);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<net.appuntivari.forum.model.ForumPost> getForumPostByIdPostParent(
+		long id_post);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<net.appuntivari.forum.model.ForumPost> getForumPostByUserId(
+		long user_id);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<net.appuntivari.forum.model.ForumPost> getForumPostByUserIdParent(
+		long user_id_post_parent);
 }

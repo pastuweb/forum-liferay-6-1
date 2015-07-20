@@ -134,9 +134,25 @@ public class ForumPostLocalServiceClp implements ForumPostLocalService {
 
 		_methodParameterTypes23 = new String[] { "long" };
 
-		_methodName24 = "getForumPostsByIdCategory";
+		_methodName24 = "getForumPostsRootByIdCategory";
 
 		_methodParameterTypes24 = new String[] { "long" };
+
+		_methodName25 = "getForumPostsByIdCategory";
+
+		_methodParameterTypes25 = new String[] { "long" };
+
+		_methodName26 = "getForumPostsByIdCategoryUserId";
+
+		_methodParameterTypes26 = new String[] { "long", "long" };
+
+		_methodName27 = "getForumPostsByIdPostParent";
+
+		_methodParameterTypes27 = new String[] { "long" };
+
+		_methodName28 = "hasReplys";
+
+		_methodParameterTypes28 = new String[] { "long" };
 	}
 
 	public net.appuntivari.forum.model.ForumPost addForumPost(
@@ -798,7 +814,7 @@ public class ForumPostLocalServiceClp implements ForumPostLocalService {
 		return (java.util.List<net.appuntivari.forum.model.ForumPost>)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public java.util.List<net.appuntivari.forum.model.ForumPost> getForumPostsByIdCategory(
+	public java.util.List<net.appuntivari.forum.model.ForumPost> getForumPostsRootByIdCategory(
 		long id_category)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -824,6 +840,113 @@ public class ForumPostLocalServiceClp implements ForumPostLocalService {
 		}
 
 		return (java.util.List<net.appuntivari.forum.model.ForumPost>)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public java.util.List<net.appuntivari.forum.model.ForumPost> getForumPostsByIdCategory(
+		long id_category)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName25,
+					_methodParameterTypes25, new Object[] { id_category });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<net.appuntivari.forum.model.ForumPost>)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public java.util.List<net.appuntivari.forum.model.ForumPost> getForumPostsByIdCategoryUserId(
+		long id_category, long user_id)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName26,
+					_methodParameterTypes26,
+					new Object[] { id_category, user_id });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<net.appuntivari.forum.model.ForumPost>)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public java.util.List<net.appuntivari.forum.model.ForumPost> getForumPostsByIdPostParent(
+		long id_post)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName27,
+					_methodParameterTypes27, new Object[] { id_post });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<net.appuntivari.forum.model.ForumPost>)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public boolean hasReplys(long id_post) {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName28,
+					_methodParameterTypes28, new Object[] { id_post });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return ((Boolean)returnObj).booleanValue();
 	}
 
 	private InvokableLocalService _invokableLocalService;
@@ -875,4 +998,12 @@ public class ForumPostLocalServiceClp implements ForumPostLocalService {
 	private String[] _methodParameterTypes23;
 	private String _methodName24;
 	private String[] _methodParameterTypes24;
+	private String _methodName25;
+	private String[] _methodParameterTypes25;
+	private String _methodName26;
+	private String[] _methodParameterTypes26;
+	private String _methodName27;
+	private String[] _methodParameterTypes27;
+	private String _methodName28;
+	private String[] _methodParameterTypes28;
 }

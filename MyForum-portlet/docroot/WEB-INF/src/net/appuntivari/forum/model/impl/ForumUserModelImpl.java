@@ -70,8 +70,8 @@ public class ForumUserModelImpl extends BaseModelImpl<ForumUser>
 		};
 	public static final String TABLE_SQL_CREATE = "create table PW_ForumUser (id_forum_user LONG not null primary key,id_forum LONG,user_id LONG,status VARCHAR(75) null)";
 	public static final String TABLE_SQL_DROP = "drop table PW_ForumUser";
-	public static final String ORDER_BY_JPQL = " ORDER BY forumUser.id_forum_user DESC";
-	public static final String ORDER_BY_SQL = " ORDER BY PW_ForumUser.id_forum_user DESC";
+	public static final String ORDER_BY_JPQL = " ORDER BY forumUser.id_forum_user ASC";
+	public static final String ORDER_BY_SQL = " ORDER BY PW_ForumUser.id_forum_user ASC";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";
@@ -332,8 +332,6 @@ public class ForumUserModelImpl extends BaseModelImpl<ForumUser>
 		else {
 			value = 0;
 		}
-
-		value = value * -1;
 
 		if (value != 0) {
 			return value;

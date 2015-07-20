@@ -62,6 +62,40 @@ public class ForumPostServiceUtil {
 		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
+	public static net.appuntivari.forum.model.ForumPost getForumPostById(
+		long id_post) {
+		return getService().getForumPostById(id_post);
+	}
+
+	public static java.util.List<net.appuntivari.forum.model.ForumPost> getForumPost() {
+		return getService().getForumPost();
+	}
+
+	public static java.util.List<net.appuntivari.forum.model.ForumPost> getForumPostByIdCategory(
+		long id_category) {
+		return getService().getForumPostByIdCategory(id_category);
+	}
+
+	public static java.util.List<net.appuntivari.forum.model.ForumPost> getForumPostByIdCategoryUserId(
+		long id_category, long user_id) {
+		return getService().getForumPostByIdCategoryUserId(id_category, user_id);
+	}
+
+	public static java.util.List<net.appuntivari.forum.model.ForumPost> getForumPostByIdPostParent(
+		long id_post) {
+		return getService().getForumPostByIdPostParent(id_post);
+	}
+
+	public static java.util.List<net.appuntivari.forum.model.ForumPost> getForumPostByUserId(
+		long user_id) {
+		return getService().getForumPostByUserId(user_id);
+	}
+
+	public static java.util.List<net.appuntivari.forum.model.ForumPost> getForumPostByUserIdParent(
+		long user_id_post_parent) {
+		return getService().getForumPostByUserIdParent(user_id_post_parent);
+	}
+
 	public static void clearService() {
 		_service = null;
 	}

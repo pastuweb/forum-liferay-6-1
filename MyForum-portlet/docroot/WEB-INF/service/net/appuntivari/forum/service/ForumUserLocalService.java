@@ -268,4 +268,24 @@ public interface ForumUserLocalService extends BaseLocalService,
 	public java.util.List<net.appuntivari.forum.model.ForumUser> getForumUsersByStatus(
 		boolean status)
 		throws com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<net.appuntivari.forum.model.ForumUser> getForumUsersByIdForumStatus(
+		long id_forum, boolean status)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public boolean isActive(long user_id, long id_forum)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public void changeStatusForumUser(long id_forum_user)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	public void joinUsersToForumByRole(java.lang.String role_name, long id_forum)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	public void joinUserToForumByUserId(long user_id, long id_forum)
+		throws com.liferay.portal.kernel.exception.SystemException;
 }

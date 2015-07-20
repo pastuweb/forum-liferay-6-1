@@ -159,6 +159,49 @@ public class ForumPostPersistenceImpl extends BasePersistenceImpl<ForumPost>
 			ForumPostModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByIdCategory",
 			new String[] { Long.class.getName() });
+	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_IDCATEGORYUSERID =
+		new FinderPath(ForumPostModelImpl.ENTITY_CACHE_ENABLED,
+			ForumPostModelImpl.FINDER_CACHE_ENABLED, ForumPostImpl.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByIdCategoryUserId",
+			new String[] {
+				Long.class.getName(), Long.class.getName(),
+				
+			"java.lang.Integer", "java.lang.Integer",
+				"com.liferay.portal.kernel.util.OrderByComparator"
+			});
+	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_IDCATEGORYUSERID =
+		new FinderPath(ForumPostModelImpl.ENTITY_CACHE_ENABLED,
+			ForumPostModelImpl.FINDER_CACHE_ENABLED, ForumPostImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+			"findByIdCategoryUserId",
+			new String[] { Long.class.getName(), Long.class.getName() },
+			ForumPostModelImpl.ID_CATEGORY_COLUMN_BITMASK |
+			ForumPostModelImpl.USER_ID_COLUMN_BITMASK);
+	public static final FinderPath FINDER_PATH_COUNT_BY_IDCATEGORYUSERID = new FinderPath(ForumPostModelImpl.ENTITY_CACHE_ENABLED,
+			ForumPostModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+			"countByIdCategoryUserId",
+			new String[] { Long.class.getName(), Long.class.getName() });
+	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_IDPOSTPARENT =
+		new FinderPath(ForumPostModelImpl.ENTITY_CACHE_ENABLED,
+			ForumPostModelImpl.FINDER_CACHE_ENABLED, ForumPostImpl.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByIdPostParent",
+			new String[] {
+				Long.class.getName(),
+				
+			"java.lang.Integer", "java.lang.Integer",
+				"com.liferay.portal.kernel.util.OrderByComparator"
+			});
+	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_IDPOSTPARENT =
+		new FinderPath(ForumPostModelImpl.ENTITY_CACHE_ENABLED,
+			ForumPostModelImpl.FINDER_CACHE_ENABLED, ForumPostImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByIdPostParent",
+			new String[] { Long.class.getName() },
+			ForumPostModelImpl.ID_POST_PARENT_COLUMN_BITMASK);
+	public static final FinderPath FINDER_PATH_COUNT_BY_IDPOSTPARENT = new FinderPath(ForumPostModelImpl.ENTITY_CACHE_ENABLED,
+			ForumPostModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByIdPostParent",
+			new String[] { Long.class.getName() });
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_ALL = new FinderPath(ForumPostModelImpl.ENTITY_CACHE_ENABLED,
 			ForumPostModelImpl.FINDER_CACHE_ENABLED, ForumPostImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findAll", new String[0]);
@@ -449,6 +492,50 @@ public class ForumPostPersistenceImpl extends BasePersistenceImpl<ForumPost>
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_IDCATEGORY,
 					args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_IDCATEGORY,
+					args);
+			}
+
+			if ((forumPostModelImpl.getColumnBitmask() &
+					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_IDCATEGORYUSERID.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] {
+						Long.valueOf(forumPostModelImpl.getOriginalId_category()),
+						Long.valueOf(forumPostModelImpl.getOriginalUser_id())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_IDCATEGORYUSERID,
+					args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_IDCATEGORYUSERID,
+					args);
+
+				args = new Object[] {
+						Long.valueOf(forumPostModelImpl.getId_category()),
+						Long.valueOf(forumPostModelImpl.getUser_id())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_IDCATEGORYUSERID,
+					args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_IDCATEGORYUSERID,
+					args);
+			}
+
+			if ((forumPostModelImpl.getColumnBitmask() &
+					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_IDPOSTPARENT.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] {
+						Long.valueOf(forumPostModelImpl.getOriginalId_post_parent())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_IDPOSTPARENT,
+					args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_IDPOSTPARENT,
+					args);
+
+				args = new Object[] {
+						Long.valueOf(forumPostModelImpl.getId_post_parent())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_IDPOSTPARENT,
+					args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_IDPOSTPARENT,
 					args);
 			}
 		}
@@ -2124,6 +2211,806 @@ public class ForumPostPersistenceImpl extends BasePersistenceImpl<ForumPost>
 	}
 
 	/**
+	 * Returns all the forum posts where id_category = &#63; and user_id = &#63;.
+	 *
+	 * @param id_category the id_category
+	 * @param user_id the user_id
+	 * @return the matching forum posts
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<ForumPost> findByIdCategoryUserId(long id_category, long user_id)
+		throws SystemException {
+		return findByIdCategoryUserId(id_category, user_id, QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS, null);
+	}
+
+	/**
+	 * Returns a range of all the forum posts where id_category = &#63; and user_id = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param id_category the id_category
+	 * @param user_id the user_id
+	 * @param start the lower bound of the range of forum posts
+	 * @param end the upper bound of the range of forum posts (not inclusive)
+	 * @return the range of matching forum posts
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<ForumPost> findByIdCategoryUserId(long id_category,
+		long user_id, int start, int end) throws SystemException {
+		return findByIdCategoryUserId(id_category, user_id, start, end, null);
+	}
+
+	/**
+	 * Returns an ordered range of all the forum posts where id_category = &#63; and user_id = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param id_category the id_category
+	 * @param user_id the user_id
+	 * @param start the lower bound of the range of forum posts
+	 * @param end the upper bound of the range of forum posts (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching forum posts
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<ForumPost> findByIdCategoryUserId(long id_category,
+		long user_id, int start, int end, OrderByComparator orderByComparator)
+		throws SystemException {
+		FinderPath finderPath = null;
+		Object[] finderArgs = null;
+
+		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
+				(orderByComparator == null)) {
+			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_IDCATEGORYUSERID;
+			finderArgs = new Object[] { id_category, user_id };
+		}
+		else {
+			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_IDCATEGORYUSERID;
+			finderArgs = new Object[] {
+					id_category, user_id,
+					
+					start, end, orderByComparator
+				};
+		}
+
+		List<ForumPost> list = (List<ForumPost>)FinderCacheUtil.getResult(finderPath,
+				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (ForumPost forumPost : list) {
+				if ((id_category != forumPost.getId_category()) ||
+						(user_id != forumPost.getUser_id())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
+		if (list == null) {
+			StringBundler query = null;
+
+			if (orderByComparator != null) {
+				query = new StringBundler(4 +
+						(orderByComparator.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(4);
+			}
+
+			query.append(_SQL_SELECT_FORUMPOST_WHERE);
+
+			query.append(_FINDER_COLUMN_IDCATEGORYUSERID_ID_CATEGORY_2);
+
+			query.append(_FINDER_COLUMN_IDCATEGORYUSERID_USER_ID_2);
+
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+
+			else {
+				query.append(ForumPostModelImpl.ORDER_BY_JPQL);
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(id_category);
+
+				qPos.add(user_id);
+
+				list = (List<ForumPost>)QueryUtil.list(q, getDialect(), start,
+						end);
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (list == null) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
+				else {
+					cacheResult(list);
+
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
+
+				closeSession(session);
+			}
+		}
+
+		return list;
+	}
+
+	/**
+	 * Returns the first forum post in the ordered set where id_category = &#63; and user_id = &#63;.
+	 *
+	 * @param id_category the id_category
+	 * @param user_id the user_id
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching forum post
+	 * @throws net.appuntivari.forum.NoSuchForumPostException if a matching forum post could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public ForumPost findByIdCategoryUserId_First(long id_category,
+		long user_id, OrderByComparator orderByComparator)
+		throws NoSuchForumPostException, SystemException {
+		ForumPost forumPost = fetchByIdCategoryUserId_First(id_category,
+				user_id, orderByComparator);
+
+		if (forumPost != null) {
+			return forumPost;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("id_category=");
+		msg.append(id_category);
+
+		msg.append(", user_id=");
+		msg.append(user_id);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchForumPostException(msg.toString());
+	}
+
+	/**
+	 * Returns the first forum post in the ordered set where id_category = &#63; and user_id = &#63;.
+	 *
+	 * @param id_category the id_category
+	 * @param user_id the user_id
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching forum post, or <code>null</code> if a matching forum post could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public ForumPost fetchByIdCategoryUserId_First(long id_category,
+		long user_id, OrderByComparator orderByComparator)
+		throws SystemException {
+		List<ForumPost> list = findByIdCategoryUserId(id_category, user_id, 0,
+				1, orderByComparator);
+
+		if (!list.isEmpty()) {
+			return list.get(0);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Returns the last forum post in the ordered set where id_category = &#63; and user_id = &#63;.
+	 *
+	 * @param id_category the id_category
+	 * @param user_id the user_id
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching forum post
+	 * @throws net.appuntivari.forum.NoSuchForumPostException if a matching forum post could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public ForumPost findByIdCategoryUserId_Last(long id_category,
+		long user_id, OrderByComparator orderByComparator)
+		throws NoSuchForumPostException, SystemException {
+		ForumPost forumPost = fetchByIdCategoryUserId_Last(id_category,
+				user_id, orderByComparator);
+
+		if (forumPost != null) {
+			return forumPost;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("id_category=");
+		msg.append(id_category);
+
+		msg.append(", user_id=");
+		msg.append(user_id);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchForumPostException(msg.toString());
+	}
+
+	/**
+	 * Returns the last forum post in the ordered set where id_category = &#63; and user_id = &#63;.
+	 *
+	 * @param id_category the id_category
+	 * @param user_id the user_id
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching forum post, or <code>null</code> if a matching forum post could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public ForumPost fetchByIdCategoryUserId_Last(long id_category,
+		long user_id, OrderByComparator orderByComparator)
+		throws SystemException {
+		int count = countByIdCategoryUserId(id_category, user_id);
+
+		List<ForumPost> list = findByIdCategoryUserId(id_category, user_id,
+				count - 1, count, orderByComparator);
+
+		if (!list.isEmpty()) {
+			return list.get(0);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Returns the forum posts before and after the current forum post in the ordered set where id_category = &#63; and user_id = &#63;.
+	 *
+	 * @param id_post the primary key of the current forum post
+	 * @param id_category the id_category
+	 * @param user_id the user_id
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next forum post
+	 * @throws net.appuntivari.forum.NoSuchForumPostException if a forum post with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public ForumPost[] findByIdCategoryUserId_PrevAndNext(long id_post,
+		long id_category, long user_id, OrderByComparator orderByComparator)
+		throws NoSuchForumPostException, SystemException {
+		ForumPost forumPost = findByPrimaryKey(id_post);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			ForumPost[] array = new ForumPostImpl[3];
+
+			array[0] = getByIdCategoryUserId_PrevAndNext(session, forumPost,
+					id_category, user_id, orderByComparator, true);
+
+			array[1] = forumPost;
+
+			array[2] = getByIdCategoryUserId_PrevAndNext(session, forumPost,
+					id_category, user_id, orderByComparator, false);
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	protected ForumPost getByIdCategoryUserId_PrevAndNext(Session session,
+		ForumPost forumPost, long id_category, long user_id,
+		OrderByComparator orderByComparator, boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		query.append(_SQL_SELECT_FORUMPOST_WHERE);
+
+		query.append(_FINDER_COLUMN_IDCATEGORYUSERID_ID_CATEGORY_2);
+
+		query.append(_FINDER_COLUMN_IDCATEGORYUSERID_USER_ID_2);
+
+		if (orderByComparator != null) {
+			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+
+			if (orderByConditionFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByConditionFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByConditionFields[i]);
+
+				if ((i + 1) < orderByConditionFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+		}
+
+		else {
+			query.append(ForumPostModelImpl.ORDER_BY_JPQL);
+		}
+
+		String sql = query.toString();
+
+		Query q = session.createQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(id_category);
+
+		qPos.add(user_id);
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByConditionValues(forumPost);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<ForumPost> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
+		}
+	}
+
+	/**
+	 * Returns all the forum posts where id_post_parent = &#63;.
+	 *
+	 * @param id_post_parent the id_post_parent
+	 * @return the matching forum posts
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<ForumPost> findByIdPostParent(long id_post_parent)
+		throws SystemException {
+		return findByIdPostParent(id_post_parent, QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS, null);
+	}
+
+	/**
+	 * Returns a range of all the forum posts where id_post_parent = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param id_post_parent the id_post_parent
+	 * @param start the lower bound of the range of forum posts
+	 * @param end the upper bound of the range of forum posts (not inclusive)
+	 * @return the range of matching forum posts
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<ForumPost> findByIdPostParent(long id_post_parent, int start,
+		int end) throws SystemException {
+		return findByIdPostParent(id_post_parent, start, end, null);
+	}
+
+	/**
+	 * Returns an ordered range of all the forum posts where id_post_parent = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param id_post_parent the id_post_parent
+	 * @param start the lower bound of the range of forum posts
+	 * @param end the upper bound of the range of forum posts (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching forum posts
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<ForumPost> findByIdPostParent(long id_post_parent, int start,
+		int end, OrderByComparator orderByComparator) throws SystemException {
+		FinderPath finderPath = null;
+		Object[] finderArgs = null;
+
+		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
+				(orderByComparator == null)) {
+			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_IDPOSTPARENT;
+			finderArgs = new Object[] { id_post_parent };
+		}
+		else {
+			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_IDPOSTPARENT;
+			finderArgs = new Object[] {
+					id_post_parent,
+					
+					start, end, orderByComparator
+				};
+		}
+
+		List<ForumPost> list = (List<ForumPost>)FinderCacheUtil.getResult(finderPath,
+				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (ForumPost forumPost : list) {
+				if ((id_post_parent != forumPost.getId_post_parent())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
+		if (list == null) {
+			StringBundler query = null;
+
+			if (orderByComparator != null) {
+				query = new StringBundler(3 +
+						(orderByComparator.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(3);
+			}
+
+			query.append(_SQL_SELECT_FORUMPOST_WHERE);
+
+			query.append(_FINDER_COLUMN_IDPOSTPARENT_ID_POST_PARENT_2);
+
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+
+			else {
+				query.append(ForumPostModelImpl.ORDER_BY_JPQL);
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(id_post_parent);
+
+				list = (List<ForumPost>)QueryUtil.list(q, getDialect(), start,
+						end);
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (list == null) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
+				else {
+					cacheResult(list);
+
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
+
+				closeSession(session);
+			}
+		}
+
+		return list;
+	}
+
+	/**
+	 * Returns the first forum post in the ordered set where id_post_parent = &#63;.
+	 *
+	 * @param id_post_parent the id_post_parent
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching forum post
+	 * @throws net.appuntivari.forum.NoSuchForumPostException if a matching forum post could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public ForumPost findByIdPostParent_First(long id_post_parent,
+		OrderByComparator orderByComparator)
+		throws NoSuchForumPostException, SystemException {
+		ForumPost forumPost = fetchByIdPostParent_First(id_post_parent,
+				orderByComparator);
+
+		if (forumPost != null) {
+			return forumPost;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("id_post_parent=");
+		msg.append(id_post_parent);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchForumPostException(msg.toString());
+	}
+
+	/**
+	 * Returns the first forum post in the ordered set where id_post_parent = &#63;.
+	 *
+	 * @param id_post_parent the id_post_parent
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching forum post, or <code>null</code> if a matching forum post could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public ForumPost fetchByIdPostParent_First(long id_post_parent,
+		OrderByComparator orderByComparator) throws SystemException {
+		List<ForumPost> list = findByIdPostParent(id_post_parent, 0, 1,
+				orderByComparator);
+
+		if (!list.isEmpty()) {
+			return list.get(0);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Returns the last forum post in the ordered set where id_post_parent = &#63;.
+	 *
+	 * @param id_post_parent the id_post_parent
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching forum post
+	 * @throws net.appuntivari.forum.NoSuchForumPostException if a matching forum post could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public ForumPost findByIdPostParent_Last(long id_post_parent,
+		OrderByComparator orderByComparator)
+		throws NoSuchForumPostException, SystemException {
+		ForumPost forumPost = fetchByIdPostParent_Last(id_post_parent,
+				orderByComparator);
+
+		if (forumPost != null) {
+			return forumPost;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("id_post_parent=");
+		msg.append(id_post_parent);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchForumPostException(msg.toString());
+	}
+
+	/**
+	 * Returns the last forum post in the ordered set where id_post_parent = &#63;.
+	 *
+	 * @param id_post_parent the id_post_parent
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching forum post, or <code>null</code> if a matching forum post could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public ForumPost fetchByIdPostParent_Last(long id_post_parent,
+		OrderByComparator orderByComparator) throws SystemException {
+		int count = countByIdPostParent(id_post_parent);
+
+		List<ForumPost> list = findByIdPostParent(id_post_parent, count - 1,
+				count, orderByComparator);
+
+		if (!list.isEmpty()) {
+			return list.get(0);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Returns the forum posts before and after the current forum post in the ordered set where id_post_parent = &#63;.
+	 *
+	 * @param id_post the primary key of the current forum post
+	 * @param id_post_parent the id_post_parent
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next forum post
+	 * @throws net.appuntivari.forum.NoSuchForumPostException if a forum post with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public ForumPost[] findByIdPostParent_PrevAndNext(long id_post,
+		long id_post_parent, OrderByComparator orderByComparator)
+		throws NoSuchForumPostException, SystemException {
+		ForumPost forumPost = findByPrimaryKey(id_post);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			ForumPost[] array = new ForumPostImpl[3];
+
+			array[0] = getByIdPostParent_PrevAndNext(session, forumPost,
+					id_post_parent, orderByComparator, true);
+
+			array[1] = forumPost;
+
+			array[2] = getByIdPostParent_PrevAndNext(session, forumPost,
+					id_post_parent, orderByComparator, false);
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	protected ForumPost getByIdPostParent_PrevAndNext(Session session,
+		ForumPost forumPost, long id_post_parent,
+		OrderByComparator orderByComparator, boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		query.append(_SQL_SELECT_FORUMPOST_WHERE);
+
+		query.append(_FINDER_COLUMN_IDPOSTPARENT_ID_POST_PARENT_2);
+
+		if (orderByComparator != null) {
+			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+
+			if (orderByConditionFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByConditionFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByConditionFields[i]);
+
+				if ((i + 1) < orderByConditionFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+		}
+
+		else {
+			query.append(ForumPostModelImpl.ORDER_BY_JPQL);
+		}
+
+		String sql = query.toString();
+
+		Query q = session.createQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(id_post_parent);
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByConditionValues(forumPost);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<ForumPost> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
+		}
+	}
+
+	/**
 	 * Returns all the forum posts.
 	 *
 	 * @return the forum posts
@@ -2283,6 +3170,33 @@ public class ForumPostPersistenceImpl extends BasePersistenceImpl<ForumPost>
 	 */
 	public void removeByIdCategory(long id_category) throws SystemException {
 		for (ForumPost forumPost : findByIdCategory(id_category)) {
+			remove(forumPost);
+		}
+	}
+
+	/**
+	 * Removes all the forum posts where id_category = &#63; and user_id = &#63; from the database.
+	 *
+	 * @param id_category the id_category
+	 * @param user_id the user_id
+	 * @throws SystemException if a system exception occurred
+	 */
+	public void removeByIdCategoryUserId(long id_category, long user_id)
+		throws SystemException {
+		for (ForumPost forumPost : findByIdCategoryUserId(id_category, user_id)) {
+			remove(forumPost);
+		}
+	}
+
+	/**
+	 * Removes all the forum posts where id_post_parent = &#63; from the database.
+	 *
+	 * @param id_post_parent the id_post_parent
+	 * @throws SystemException if a system exception occurred
+	 */
+	public void removeByIdPostParent(long id_post_parent)
+		throws SystemException {
+		for (ForumPost forumPost : findByIdPostParent(id_post_parent)) {
 			remove(forumPost);
 		}
 	}
@@ -2519,6 +3433,119 @@ public class ForumPostPersistenceImpl extends BasePersistenceImpl<ForumPost>
 	}
 
 	/**
+	 * Returns the number of forum posts where id_category = &#63; and user_id = &#63;.
+	 *
+	 * @param id_category the id_category
+	 * @param user_id the user_id
+	 * @return the number of matching forum posts
+	 * @throws SystemException if a system exception occurred
+	 */
+	public int countByIdCategoryUserId(long id_category, long user_id)
+		throws SystemException {
+		Object[] finderArgs = new Object[] { id_category, user_id };
+
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_IDCATEGORYUSERID,
+				finderArgs, this);
+
+		if (count == null) {
+			StringBundler query = new StringBundler(3);
+
+			query.append(_SQL_COUNT_FORUMPOST_WHERE);
+
+			query.append(_FINDER_COLUMN_IDCATEGORYUSERID_ID_CATEGORY_2);
+
+			query.append(_FINDER_COLUMN_IDCATEGORYUSERID_USER_ID_2);
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(id_category);
+
+				qPos.add(user_id);
+
+				count = (Long)q.uniqueResult();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_IDCATEGORYUSERID,
+					finderArgs, count);
+
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	/**
+	 * Returns the number of forum posts where id_post_parent = &#63;.
+	 *
+	 * @param id_post_parent the id_post_parent
+	 * @return the number of matching forum posts
+	 * @throws SystemException if a system exception occurred
+	 */
+	public int countByIdPostParent(long id_post_parent)
+		throws SystemException {
+		Object[] finderArgs = new Object[] { id_post_parent };
+
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_IDPOSTPARENT,
+				finderArgs, this);
+
+		if (count == null) {
+			StringBundler query = new StringBundler(2);
+
+			query.append(_SQL_COUNT_FORUMPOST_WHERE);
+
+			query.append(_FINDER_COLUMN_IDPOSTPARENT_ID_POST_PARENT_2);
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(id_post_parent);
+
+				count = (Long)q.uniqueResult();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_IDPOSTPARENT,
+					finderArgs, count);
+
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	/**
 	 * Returns the number of forum posts.
 	 *
 	 * @return the number of forum posts
@@ -2611,6 +3638,9 @@ public class ForumPostPersistenceImpl extends BasePersistenceImpl<ForumPost>
 	private static final String _FINDER_COLUMN_USERIDPOSTPARENT_USER_ID_POST_PARENT_2 =
 		"forumPost.user_id_post_parent = ?";
 	private static final String _FINDER_COLUMN_IDCATEGORY_ID_CATEGORY_2 = "forumPost.id_category = ?";
+	private static final String _FINDER_COLUMN_IDCATEGORYUSERID_ID_CATEGORY_2 = "forumPost.id_category = ? AND ";
+	private static final String _FINDER_COLUMN_IDCATEGORYUSERID_USER_ID_2 = "forumPost.user_id = ?";
+	private static final String _FINDER_COLUMN_IDPOSTPARENT_ID_POST_PARENT_2 = "forumPost.id_post_parent = ?";
 	private static final String _ORDER_BY_ENTITY_ALIAS = "forumPost.";
 	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No ForumPost exists with the primary key ";
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No ForumPost exists with the key {";

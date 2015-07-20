@@ -14,13 +14,23 @@
 
 package net.appuntivari.forum.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.model.Role;
+import com.liferay.portal.model.User;
+import com.liferay.portal.service.RoleLocalServiceUtil;
+import com.liferay.portal.service.UserLocalServiceUtil;
+
+import net.appuntivari.forum.model.Forum;
 import net.appuntivari.forum.model.ForumPost;
 import net.appuntivari.forum.model.ForumUser;
 import net.appuntivari.forum.model.impl.ForumPostImpl;
 import net.appuntivari.forum.model.impl.ForumUserImpl;
+import net.appuntivari.forum.service.ForumLocalServiceUtil;
+import net.appuntivari.forum.service.ForumUserLocalServiceUtil;
 import net.appuntivari.forum.service.base.ForumUserLocalServiceBaseImpl;
 
 /**
@@ -41,7 +51,7 @@ public class ForumUserLocalServiceImpl extends ForumUserLocalServiceBaseImpl {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never reference this interface directly. Always use {@link net.appuntivari.forum.service.ForumUserLocalServiceUtil} to access the forum user local service.
+	 * Never reference this interface directly. Always use {@link com.telecomlab.nhapi.service.ForumUserLocalServiceUtil} to access the forum user local service.
 	 */
 	public ForumUser getNewForumUser(){
 		return new ForumUserImpl();
@@ -54,13 +64,12 @@ public class ForumUserLocalServiceImpl extends ForumUserLocalServiceBaseImpl {
 						ForumUser.class.getName()));
 		
 		newForumUser.setId_forum(forumUser.getId_forum());
-		newForumUser.setUser_id(newForumUser.getUser_id());
-		newForumUser.setStatus(newForumUser.getStatus());
-		
-		forumUserPersistence.update(newForumUser, false);
-		
-		return newForumUser;
+		newForumUser.setUser_id(forumUser.getUser_id());
+		newForumUser.setStatus(forumUser.getStatus());
+
+		return forumUserPersistence.update(newForumUser, false);
 	}
+	
 	
 	
 	public List<ForumUser> getForumUsersByIdForum(long id_forum) throws SystemException{
@@ -74,6 +83,97 @@ public class ForumUserLocalServiceImpl extends ForumUserLocalServiceBaseImpl {
 		if(status)
 			strStatus = "ACTIVE";
 		return forumUserPersistence.findByStatus(strStatus);
+	}
+	public List<ForumUser> getForumUsersByIdForumStatus(long id_forum, boolean status) throws SystemException{
+		String strStatus = "DEACTIVE";
+		if(status)
+			strStatus = "ACTIVE";
+		return forumUserPersistence.findByIdForumStatus(id_forum,strStatus);
+	}
+	
+	public boolean isActive(long user_id, long id_forum) throws SystemException{
+		
+		List<ForumUser> result =  forumUserPersistence.findByIdForumUserIdStatus(id_forum,user_id,"ACTIVE");
+		
+		return (result != null && result.size() > 0) ? true : false;
+	}
+	
+	public void changeStatusForumUser(long id_forum_user) throws SystemException, PortalException{
+		ForumUser forumUser = ForumUserLocalServiceUtil.getForumUser(id_forum_user);
+		if(forumUser.getStatus().equals("ACTIVE")){
+			forumUser.setStatus("DEACTIVE");
+			ForumUserLocalServiceUtil.updateForumUser(forumUser, true);
+		}else{
+			forumUser.setStatus("ACTIVE");
+			ForumUserLocalServiceUtil.updateForumUser(forumUser, true);
+		}
+	}
+	
+	
+	public void joinUsersToForumByRole(String role_name, long id_forum) throws PortalException, SystemException{
+		
+		List<User> userList = new ArrayList<User>();
+		
+		List<ForumUser> forumUserList = ForumUserLocalServiceUtil.getForumUsersByIdForum(id_forum);
+		List<Long> forumUserIdList = new ArrayList<Long>();
+		for (ForumUser item : forumUserList) {
+			forumUserIdList.add(Long.valueOf(item.getUser_id()));
+		}
+		
+		//check if the Forum exist
+		Forum forum = ForumLocalServiceUtil.getForum(id_forum);
+		if(forum != null){
+			//check if the Role Name exist
+			Role role = RoleLocalServiceUtil.getRole(forum.getCompany_id(), role_name);
+			if(role != null){
+				userList = UserLocalServiceUtil.getUsers(0, UserLocalServiceUtil.getUsersCount());
+				for (User user : userList) {
+					//get all user with that role
+					if(user.getRoles().contains(role)){
+						
+						if(!forumUserIdList.contains(Long.valueOf(user.getUserId()))  ){
+							
+							//add new Forum User (with that role) for that Forum Id
+							ForumUser newForumUser = ForumUserLocalServiceUtil.getNewForumUser();
+							newForumUser.setId_forum(id_forum);
+							newForumUser.setUser_id(user.getUserId());
+							newForumUser.setStatus("ACTIVE");
+							
+							ForumUserLocalServiceUtil.createForumUserAdHoc(newForumUser);
+							
+						}
+						
+						
+					}
+				}
+	
+			}
+		}
+
+	}
+	
+	public void joinUserToForumByUserId(long user_id, long id_forum) throws SystemException{
+		
+		List<ForumUser> forumUserList = ForumUserLocalServiceUtil.getForumUsersByIdForum(id_forum);
+		List<Long> forumUserIdList = new ArrayList<Long>();
+		for (ForumUser item : forumUserList) {
+			forumUserIdList.add(Long.valueOf(item.getUser_id()));
+		}
+		
+		if(!forumUserIdList.contains(Long.valueOf(user_id))  ){
+			
+			//add new Forum User (with that role) for that Forum Id
+			ForumUser newForumUser = ForumUserLocalServiceUtil.getNewForumUser();
+			newForumUser.setId_forum(id_forum);
+			newForumUser.setUser_id(user_id);
+			newForumUser.setStatus("ACTIVE");
+			
+			ForumUserLocalServiceUtil.createForumUserAdHoc(newForumUser);
+			
+		}
+		
+		
+		
 	}
 	
 }

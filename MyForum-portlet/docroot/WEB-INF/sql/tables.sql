@@ -1,26 +1,26 @@
 create table PW_Forum (
 	id_forum LONG not null primary key,
-	description VARCHAR(75) null,
+	description VARCHAR(250) null,
 	timestamp DATE null,
 	company_id LONG,
 	user_id_creator LONG,
-	status VARCHAR(75) null
+	status VARCHAR(10) null
 );
 
 create table PW_ForumCategory (
 	id_category LONG not null primary key,
-	title VARCHAR(75) null,
-	description VARCHAR(75) null,
+	title VARCHAR(100) null,
+	description VARCHAR(250) null,
 	id_forum LONG,
 	id_category_parent LONG,
 	timestamp DATE null,
 	user_id_creator LONG,
-	status VARCHAR(75) null
+	status VARCHAR(10) null
 );
 
 create table PW_ForumPost (
 	id_post LONG not null primary key,
-	post VARCHAR(75) null,
+	post VARCHAR(250) null,
 	timestamp DATE null,
 	user_id LONG,
 	id_category LONG,

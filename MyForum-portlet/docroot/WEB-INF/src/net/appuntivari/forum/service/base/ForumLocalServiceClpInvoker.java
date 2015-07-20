@@ -126,17 +126,25 @@ public class ForumLocalServiceClpInvoker {
 
 		_methodParameterTypes64 = new String[] { "long" };
 
-		_methodName65 = "getForumsByCreateUserId";
+		_methodName65 = "getForumsByUserIdCreator";
 
 		_methodParameterTypes65 = new String[] { "long" };
 
-		_methodName66 = "getForumsByStatus";
+		_methodName66 = "getForumsByUserIdCreatorStatus";
 
 		_methodParameterTypes66 = new String[] { "long", "boolean" };
 
 		_methodName67 = "getForumsByTimestamp";
 
 		_methodParameterTypes67 = new String[] { "java.util.Date" };
+
+		_methodName68 = "isActive";
+
+		_methodParameterTypes68 = new String[] { "long" };
+
+		_methodName69 = "changeStatusForum";
+
+		_methodParameterTypes69 = new String[] { "long" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -257,18 +265,30 @@ public class ForumLocalServiceClpInvoker {
 
 		if (_methodName65.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes65, parameterTypes)) {
-			return ForumLocalServiceUtil.getForumsByCreateUserId(((Long)arguments[0]).longValue());
+			return ForumLocalServiceUtil.getForumsByUserIdCreator(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName66.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes66, parameterTypes)) {
-			return ForumLocalServiceUtil.getForumsByStatus(((Long)arguments[0]).longValue(),
+			return ForumLocalServiceUtil.getForumsByUserIdCreatorStatus(((Long)arguments[0]).longValue(),
 				((Boolean)arguments[1]).booleanValue());
 		}
 
 		if (_methodName67.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes67, parameterTypes)) {
 			return ForumLocalServiceUtil.getForumsByTimestamp((java.util.Date)arguments[0]);
+		}
+
+		if (_methodName68.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes68, parameterTypes)) {
+			return ForumLocalServiceUtil.isActive(((Long)arguments[0]).longValue());
+		}
+
+		if (_methodName69.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes69, parameterTypes)) {
+			ForumLocalServiceUtil.changeStatusForum(((Long)arguments[0]).longValue());
+
+			return null;
 		}
 
 		throw new UnsupportedOperationException();
@@ -322,4 +342,8 @@ public class ForumLocalServiceClpInvoker {
 	private String[] _methodParameterTypes66;
 	private String _methodName67;
 	private String[] _methodParameterTypes67;
+	private String _methodName68;
+	private String[] _methodParameterTypes68;
+	private String _methodName69;
+	private String[] _methodParameterTypes69;
 }

@@ -337,8 +337,6 @@ public class ForumClp extends BaseModelImpl<Forum> implements Forum {
 			value = 0;
 		}
 
-		value = value * -1;
-
 		if (value != 0) {
 			return value;
 		}

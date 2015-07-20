@@ -9,6 +9,9 @@
 <%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
 
 <%@ page import="java.util.List" %>
+<%@ page import="java.util.Arrays" %>
+<%@ page import="java.util.Set" %>
+<%@ page import="java.util.HashSet" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.Calendar" %>
 <%@ page import="java.util.Date" %>
@@ -34,6 +37,10 @@
 <%@ page import="com.liferay.portal.security.auth.PrincipalThreadLocal"%>
 
 <%@ page import="com.liferay.portal.service.UserLocalServiceUtil"%>
+<%@ page import="com.liferay.portal.model.User"%>
+<%@ page import="com.liferay.portal.model.Role"%>
+<%@ page import="com.liferay.portal.service.RoleLocalServiceUtil"%>
+<%@ page import="net.appuntivari.forum.utils.*" %>
 
 <%@ page import="javax.portlet.PortletURL" %>
 

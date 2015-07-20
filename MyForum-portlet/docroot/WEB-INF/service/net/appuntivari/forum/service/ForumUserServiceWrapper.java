@@ -55,6 +55,35 @@ public class ForumUserServiceWrapper implements ForumUserService,
 		return _forumUserService.invokeMethod(name, parameterTypes, arguments);
 	}
 
+	public net.appuntivari.forum.model.ForumUser getForumUserById(
+		long id_forum_user) {
+		return _forumUserService.getForumUserById(id_forum_user);
+	}
+
+	public java.util.List<net.appuntivari.forum.model.ForumUser> getForumUser() {
+		return _forumUserService.getForumUser();
+	}
+
+	public java.util.List<net.appuntivari.forum.model.ForumUser> getForumUserByIdForum(
+		long id_forum) {
+		return _forumUserService.getForumUserByIdForum(id_forum);
+	}
+
+	public java.util.List<net.appuntivari.forum.model.ForumUser> getForumUserByIdForumStatus(
+		long id_forum, boolean status) {
+		return _forumUserService.getForumUserByIdForumStatus(id_forum, status);
+	}
+
+	public java.util.List<net.appuntivari.forum.model.ForumUser> getForumUserByStatus(
+		boolean status) {
+		return _forumUserService.getForumUserByStatus(status);
+	}
+
+	public java.util.List<net.appuntivari.forum.model.ForumUser> getForumUserByUserId(
+		long userid) {
+		return _forumUserService.getForumUserByUserId(userid);
+	}
+
 	/**
 	 * @deprecated Renamed to {@link #getWrappedService}
 	 */

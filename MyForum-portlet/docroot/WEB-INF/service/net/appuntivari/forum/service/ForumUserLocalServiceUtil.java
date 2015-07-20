@@ -301,6 +301,35 @@ public class ForumUserLocalServiceUtil {
 		return getService().getForumUsersByStatus(status);
 	}
 
+	public static java.util.List<net.appuntivari.forum.model.ForumUser> getForumUsersByIdForumStatus(
+		long id_forum, boolean status)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getForumUsersByIdForumStatus(id_forum, status);
+	}
+
+	public static boolean isActive(long user_id, long id_forum)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().isActive(user_id, id_forum);
+	}
+
+	public static void changeStatusForumUser(long id_forum_user)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		getService().changeStatusForumUser(id_forum_user);
+	}
+
+	public static void joinUsersToForumByRole(java.lang.String role_name,
+		long id_forum)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		getService().joinUsersToForumByRole(role_name, id_forum);
+	}
+
+	public static void joinUserToForumByUserId(long user_id, long id_forum)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getService().joinUserToForumByUserId(user_id, id_forum);
+	}
+
 	public static void clearService() {
 		_service = null;
 	}

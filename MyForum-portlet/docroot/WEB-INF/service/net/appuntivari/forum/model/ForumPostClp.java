@@ -367,8 +367,6 @@ public class ForumPostClp extends BaseModelImpl<ForumPost> implements ForumPost 
 			value = 0;
 		}
 
-		value = value * -1;
-
 		if (value != 0) {
 			return value;
 		}
