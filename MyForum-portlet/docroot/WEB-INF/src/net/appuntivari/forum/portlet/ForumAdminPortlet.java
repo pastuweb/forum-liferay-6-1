@@ -42,8 +42,6 @@ public class ForumAdminPortlet extends MVCPortlet {
 	
 	protected String adminForumJSP = "/forum-admin/adminForum.jsp";
 	protected String adminForumCategoryJSP = "/forum-admin/adminForumCategory.jsp";
-	protected String previewInfoJSP = "/forum-admin/previewInfo.jsp";
-	protected String forumStatisticsJSP = "/forum-admin/forumStatistics.jsp";
 	protected String forumCommunityJSP = "/forum-admin/forumCommunity.jsp";
 	
 	public void createForum(ActionRequest request, ActionResponse response)
@@ -240,32 +238,6 @@ public class ForumAdminPortlet extends MVCPortlet {
 		    
 	}
 	
-	public void infoForum(ActionRequest request, ActionResponse response)
-	        throws Exception {			
-			
-			long resourcePrimKey = ParamUtil.getLong(request, "resourcePrimKey");
-		    
-		    if (Validator.isNotNull(resourcePrimKey)) {
-	        	Forum forumInfo =ForumLocalServiceUtil.getForum(resourcePrimKey);
-	            request.setAttribute("forumInfo", forumInfo);
-	            response.setRenderParameter("jspPage", previewInfoJSP);
-	        }
-		    
-	}
-	
-	public void infoForumCategory(ActionRequest request, ActionResponse response)
-	        throws Exception {			
-			
-			long resourcePrimKey = ParamUtil.getLong(request, "resourcePrimKey");
-		    
-		    if (Validator.isNotNull(resourcePrimKey)) {
-		    	ForumCategory forumCategoryInfo = ForumCategoryLocalServiceUtil.getForumCategory(resourcePrimKey);
-	            request.setAttribute("forumCategoryInfo", forumCategoryInfo);
-	            response.setRenderParameter("jspPage", previewInfoJSP);
-	        }
-		    
-	}
-	
 	public void backToForum(ActionRequest request, ActionResponse response)
 	        throws Exception {			
 	            response.setRenderParameter("jspPage", adminForumJSP);    
@@ -458,18 +430,6 @@ public class ForumAdminPortlet extends MVCPortlet {
 	        request.setAttribute("forumCategory", null);
 	        response.setRenderParameter("jspPage", adminForumCategoryJSP);
 		}
-		
-	}
-	
-	public void forumStatistics(ActionRequest request, ActionResponse response)
-	        throws Exception {	
-		
-		long resourcePrimKey = ParamUtil.getLong(request, "resourcePrimKey");
-		
-		Forum forumSelected = ForumLocalServiceUtil.getForum(resourcePrimKey);
-		request.setAttribute("forumSelected", forumSelected);
-		
-		response.setRenderParameter("jspPage", forumStatisticsJSP);
 		
 	}
 	

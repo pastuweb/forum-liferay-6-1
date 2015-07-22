@@ -10,6 +10,7 @@
 
 %>
 
+
 <liferay-ui:icon-menu>
 	
 	<%if( (ForumLocalServiceUtil.isActive(myForum.getId_forum()) &&  ForumUserLocalServiceUtil.isActive(remote_userid,myForum.getId_forum()) )  ||  myForum.getUser_id_creator() == remote_userid   ){%>

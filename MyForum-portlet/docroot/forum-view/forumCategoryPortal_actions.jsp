@@ -10,7 +10,6 @@
 	String primKey = String.valueOf(myForumCategory.getPrimaryKey());
 %>
 
-
 <liferay-ui:icon-menu>
     
     <%if( (!ForumCategoryLocalServiceUtil.isActive(myForumCategory.getId_category(),myForumCategory.getId_forum()) || 

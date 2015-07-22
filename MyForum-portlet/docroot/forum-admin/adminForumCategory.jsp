@@ -23,7 +23,6 @@
 	<portlet:actionURL name="createForumCategory" var="createForumCategoryURL"/>
 	<portlet:actionURL name="updateForumCategory" var="updateForumCategoryURL"/>
 	
-	
 	<div style="text-align:center;">
 		<h2 style="color:#000000;">
 			Categories 
@@ -45,13 +44,13 @@
 		<%if(forumCategoryEdit == null){ 
 			ForumCategory editForumCategoryInsert = (ForumCategory) request.getAttribute("forumCategoryInInsert");
 		%>
-		<p><strong style="color:#283eff;">INSERT</strong></p>
+		<div class="portlet-msg-info"><span style="color:#283eff;"><liferay-ui:message key="insert-category-forum" /></span></div>
 		<aui:form action="<%= createForumCategoryURL.toString() %>" method="post">
 	
 			<aui:fieldset>
 				<%if(editForumCategoryInsert == null){ %>
-					<aui:input name="title" type="text" value=""/>
-					<aui:input name="description" type="text" size="150" value=""/>					
+					<aui:input name="title" label="title_obbl" type="text" value=""/>
+					<aui:input name="description" label="description_obbl" type="text" size="150" value=""/>					
 					
 					<aui:input name="id_forum" type="hidden" value="<%=forumSelected.getId_forum() %>"/>
 					<aui:input name="user_id_creator" type="hidden" value="<%=remote_userid %>"/>
@@ -62,8 +61,8 @@
 					
 				<%}else{ %>
 				
-					<aui:input name="title" type="text" value="<%=editForumCategoryInsert.getTitle() %>"/>
-					<aui:input name="description" type="text" size="200" value="<%=editForumCategoryInsert.getDescription() %>"/>					
+					<aui:input name="title" label="title_obbl" type="text" value="<%=editForumCategoryInsert.getTitle() %>"/>
+					<aui:input name="description" label="description_obbl" type="text" size="200" value="<%=editForumCategoryInsert.getDescription() %>"/>					
 					
 					<aui:input name="id_forum" type="hidden" value="<%=editForumCategoryInsert.getId_forum() %>"/>
 					<aui:input name="user_id_creator" type="hidden" value="<%=remote_userid %>"/>
@@ -74,24 +73,24 @@
 				
 				<%}%>
 				<div>
-					<liferay-ui:message key="campi-obbligatori" />
+					<liferay-ui:message key="mandatory-fields" />
 				</div>
 				
 				<aui:button-row>
-					<aui:button type="submit" />
-					<aui:button type="reset" value="Cancel" />
+					<aui:button type="submit" value="Save"/>
+					<aui:button type="reset" value="Reset" />
 				</aui:button-row>
 			</aui:fieldset>
 		</aui:form>
 		<%}else{ %>
-		<p><strong style="color:#283eff;">EDIT</strong></p>
+		<div class="portlet-msg-info"><span style="color:#283eff;"><liferay-ui:message key="edit-category-forum" /></span></div>
 		<aui:form action="<%= updateForumCategoryURL.toString() %>" method="post">
 	
 	
 			<aui:fieldset>
 		
-					<aui:input name="title" type="text" value="<%=forumCategoryEdit.getTitle() %>"/>
-					<aui:input name="description" type="text" size="150" value="<%=forumCategoryEdit.getDescription() %>"/>					
+					<aui:input name="title" label="title_obbl" type="text" value="<%=forumCategoryEdit.getTitle() %>"/>
+					<aui:input name="description" label="description_obbl" type="text" size="150" value="<%=forumCategoryEdit.getDescription() %>"/>					
 					
 					<aui:input name="id_forum" type="hidden" value="<%=forumCategoryEdit.getId_forum() %>"/>
 					<aui:input name="user_id_creator" type="hidden" value="<%=remote_userid %>"/>
@@ -99,12 +98,12 @@
 					<aui:input name="id_category_parent" type="hidden" value="<%=forumCategoryEdit.getId_category()%>"/>
 					<aui:input name="id_category" type="hidden" value="<%=forumCategoryEdit.getId_category() %>"/>
 				<div>
-					<liferay-ui:message key="campi-obbligatori" />
+					<liferay-ui:message key="mandatory-fields" />
 				</div>
 				
 				<aui:button-row>
-					<aui:button type="submit" />
-					<aui:button type="reset" value="Cancel" />
+					<aui:button type="submit" value="Save"/>
+					<aui:button type="reset" value="Reset" />
 				</aui:button-row>
 			</aui:fieldset>
 		</aui:form>

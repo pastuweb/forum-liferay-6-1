@@ -13,7 +13,6 @@
 		forumSelected = ForumLocalServiceUtil.getForum(new Long(forumIdSelected));
 	}
 	%>
-	
 
 	<liferay-ui:error key="mandatory-user" message="mandatory-user" />
 	<liferay-ui:error key="user-forum-not-associated" message="user-forum-not-associated" />
@@ -47,12 +46,12 @@
 	
 	<div style="position:relative;">
 	<div style="float:left;padding:10px;">
-		<p>Assegna <strong>singolo Utente</strong>:</p>
+		<div class="portlet-msg-info"><span style="color:#283eff;"><liferay-ui:message key="assign-single-user" /></span></div>
 		<aui:form action="<%= joinUserToFoumURL.toString() %>" method="post">
 		
 				<aui:fieldset>
 					
-						<aui:select name="user_id">
+						<aui:select name="user_id" label="username_obbl">
 							<aui:option value="-1">choose...</aui:option>
 						<%
 						for(User userItem : userList){
@@ -70,18 +69,18 @@
 						
 						<aui:button-row>
 							<aui:button type="submit" value="Save"/>
-							<aui:button type="reset" value="Cancel" />
+							<aui:button type="reset" value="Reset" />
 						</aui:button-row>
 					</aui:fieldset>
 		</aui:form>
 	</div>
 	<div style="margin-left:40px;float:left;padding:10px;">
-		<p>Assegna <strong>Utenti con lo stesso Ruolo</strong>:</p>
+		<div class="portlet-msg-info"><span style="color:#283eff;"><liferay-ui:message key="assign-single-role" /></span></div>
 		<aui:form action="<%= joinUsersRoleToFoumURL.toString() %>" method="post">
 		
 				<aui:fieldset>
 					
-						<aui:select name="role_name">
+						<aui:select name="role_name" label="role_obbl">
 							<aui:option value="-1">choose...</aui:option>
 						
 						<%
@@ -103,21 +102,20 @@
 						
 						<aui:button-row>
 							<aui:button type="submit" value="Save"/>
-							<aui:button type="reset" value="Cancel" />
+							<aui:button type="reset" value="Reset" />
 						</aui:button-row>
 					</aui:fieldset>
 		
 		</aui:form>
 	</div>
 	
-	
 	<div style="margin-left:40px;float:left;background:#FFEE99;padding:10px;">
-		<p style="color:#FF0000;">DELETE <strong>Utenti con lo stesso Ruolo</strong>:</p>
+		<div class="portlet-msg-alert"><span style="color:#283eff;"><liferay-ui:message key="delete-single-role" /></span></div>
 		<aui:form action="<%= deleteForumUserRoleURL.toString() %>" method="post">
 		
 				<aui:fieldset>
 					
-						<aui:select name="role_name">
+						<aui:select name="role_name" label="role_obbl">
 							<aui:option value="-1">choose...</aui:option>
 						<%
 						for(Role roleItem : roleList){
@@ -137,8 +135,8 @@
 					</div>
 						
 						<aui:button-row>
-							<aui:button type="submit" value="Delete"/>
-							<aui:button type="reset" value="Cancel" />
+							<aui:button type="submit" value="Submit"/>
+							<aui:button type="reset" value="Reset" />
 						</aui:button-row>
 					</aui:fieldset>
 		
@@ -148,7 +146,6 @@
 	</div>
 	
 	<div style="position:relative;">
-		
 		
 	<%
 	PortletURL iteratorURL = renderResponse.createRenderURL();
@@ -174,7 +171,6 @@
 	        className="net.appuntivari.forum.model.ForumUser"
 	        keyProperty="id_forum_user"
 	        modelVar="forumUser">
-	        
 	        
 	      <liferay-ui:search-container-column-text
 	          name="forum"
@@ -202,7 +198,6 @@
 	
 	<portlet:actionURL name="backToForum" var="backToForumURL"/>
 	<aui:button type="button" value="Back to Forums" onClick="<%= backToForumURL.toString() %>" />
-
 
 
  <%@include file="/forum-common/footer.jsp" %> 

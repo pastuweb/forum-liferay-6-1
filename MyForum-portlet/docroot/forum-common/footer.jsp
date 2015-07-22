@@ -1,8 +1,9 @@
 </div>
 
-<div style="text-align:left;">
+<div style="text-align:right;">
+	Liferay Plugin created by <strong>Ing. Pasturenzi Francesco</strong> 
 	<a href="http://www.pastuweb.com" target="_blank">
-	<img src="http://www.pastuweb.com/loghi_pw/icone/pastuweb.png" width="30" alt="Creato da pastuweb.com" title="Creato da pastuweb.com" />
+	<img src="http://www.pastuweb.com/loghi_pw/icone/pastuweb.png" width="30" alt="Created by pastuweb.com" title="Created by pastuweb.com" />
 	</a>
 </div>
 <script type="text/javascript" >

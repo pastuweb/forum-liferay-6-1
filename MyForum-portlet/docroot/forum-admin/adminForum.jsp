@@ -25,13 +25,13 @@
 		<%if(forumEdit == null){ 
 			Forum editForumInsert = (Forum) request.getAttribute("forumInInsert");
 		%>
-		<p><strong style="color:#283eff;">INSERT</strong></p>
+		<div class="portlet-msg-info"><span style="color:#283eff;"><liferay-ui:message key="insert-forum" /></span></div>
 		<aui:form action="<%= createForumURL.toString() %>" method="post">
 				<aui:fieldset>
 					<%if(editForumInsert == null){ %>
 						<aui:input name="description" label="description_obbl" size="45" value=""/>
 						<!-- select a portal (or Company Id) -->
-						<aui:select name="company_id">
+						<aui:select name="company_id" label="company_id_obbl">
 						<%
 						for(Company itemCompany : companyList){
 						%>
@@ -63,12 +63,12 @@
 						
 						<aui:button-row>
 							<aui:button type="submit" value="Save"/>
-							<aui:button type="reset" value="Cancel" />
+							<aui:button type="reset" value="Reset" />
 						</aui:button-row>
 					</aui:fieldset>
 		</aui:form>
 		<%}else{ %>
-		<p><strong style="color:#283eff;">EDIT</strong></p>
+		<div class="portlet-msg-info"><span style="color:#283eff;"><liferay-ui:message key="edit-forum" /></span></div>
 		<aui:form action="<%= updateForumURL.toString() %>" method="post">
 					<aui:fieldset>
 						<aui:input name="description" label="description_obbl" size="45" value="<%=forumEdit.getDescription() %>"/>
@@ -94,19 +94,12 @@
 						
 						<aui:button-row>
 							<aui:button type="submit" value="Save"/>
-							<aui:button type="reset" value="Cancel" />
+							<aui:button type="reset" value="Reset" />
 						</aui:button-row>
 					</aui:fieldset>
 			</aui:form>
 		<%} %>
 	
-	</div>
-	
-	<br>
-	<div class="portlet-msg-alert">
-		<p>
-		Only <strong style="color:#FF0000;">Liferay "Administrator"</strong> can manage all Forums and Categories.
-		</p>
 	</div>
 	
 	<br>

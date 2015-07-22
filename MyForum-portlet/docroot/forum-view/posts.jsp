@@ -285,7 +285,5 @@
 	  		
 		});
 	</script>
-	
-
 
  <%@include file="/forum-common/footer.jsp" %> 

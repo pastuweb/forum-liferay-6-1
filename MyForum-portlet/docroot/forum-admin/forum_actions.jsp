@@ -10,31 +10,21 @@
 %>
 
 <liferay-ui:icon-menu>
-	
-	<portlet:actionURL name="infoForum" var="infoForumURL">
-      <portlet:param name="resourcePrimKey" value="<%= primKey %>" />
-    </portlet:actionURL>
-    <liferay-ui:icon image="preview"  message="Info" url="<%= infoForumURL.toString() %>" />
     
-    <%if(remote_userid == myForum.getUser_id_creator() || RoleLocalServiceUtil.hasUserRole(remote_userid, RoleLocalServiceUtil.getRole(themeDisplay.getCompanyId(), "Administrator").getRoleId())){ %>
+    <%if(remote_userid == myForum.getUser_id_creator() ){ %>
     <portlet:actionURL name="editForum" var="editForumURL">
       <portlet:param name="resourcePrimKey" value="<%= primKey %>" />
     </portlet:actionURL>
     <liferay-ui:icon image="edit"  message="Edit" url="<%= editForumURL.toString() %>" />
     <%} %>
-    
-    <portlet:actionURL name="forumStatistics" var="forumStatisticsURL">
-      <portlet:param name="resourcePrimKey" value="<%= primKey %>" />
-    </portlet:actionURL>
-    <liferay-ui:icon image="desktop" message="Statistics" url="<%= forumStatisticsURL.toString() %>" />
-    
+      
     <portlet:actionURL name="viewForumCategory" var="viewForumCategoryURL">
       <portlet:param name="resourcePrimKey" value="<%= primKey %>" />
     </portlet:actionURL>
     <liferay-ui:icon image="category" message="Categories" url="<%= viewForumCategoryURL.toString() %>" />
     
     
-    <%if(remote_userid == myForum.getUser_id_creator() || RoleLocalServiceUtil.hasUserRole(remote_userid, RoleLocalServiceUtil.getRole(themeDisplay.getCompanyId(), "Administrator").getRoleId())){ %>
+    <%if(remote_userid == myForum.getUser_id_creator()){ %>
     <portlet:actionURL name="deleteForum" var="deleteForumURL">
       <portlet:param name="resourcePrimKey" value="<%= primKey %>" />
     </portlet:actionURL>
@@ -47,7 +37,7 @@
     </portlet:actionURL>
     <liferay-ui:icon image="user_icon" message="Community" url="<%= forumCommunityURL.toString() %>" />
     
-    <%if(remote_userid == myForum.getUser_id_creator() || RoleLocalServiceUtil.hasUserRole(remote_userid, RoleLocalServiceUtil.getRole(themeDisplay.getCompanyId(), "Administrator").getRoleId())){ %>
+    <%if(remote_userid == myForum.getUser_id_creator()){ %>
     <portlet:actionURL name="active_deactiveForum" var="active_deactiveForumURL">
       <portlet:param name="resourcePrimKey" value="<%= primKey %>" />
     </portlet:actionURL>

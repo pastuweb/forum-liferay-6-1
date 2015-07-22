@@ -1,5 +1,5 @@
 <%@include file="/init.jsp" %>
 
 <h2>
-	<liferay-ui:message key="operazione-eseguita-con-successo" />
+	<liferay-ui:message key="operation-success" />
 </h2>

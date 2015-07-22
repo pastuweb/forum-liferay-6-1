@@ -3,7 +3,6 @@
 	
 	<%
 	long remote_userid =  PrincipalThreadLocal.getUserId();
-	
 	Forum forumSelected = (Forum)request.getAttribute("forumSelected");	
 	%>
 
@@ -57,7 +56,7 @@
 	</div>
 	
 	<%
-	if(forumSelected != null){ 
+	if(forumSelected != null && (ForumUserLocalServiceUtil.isActive(remote_userid, forumSelected.getId_forum()) || remote_userid==forumSelected.getUser_id_creator())){ 
 		ForumCategory forumCategorySelected = (ForumCategory)request.getAttribute("forumCategorySelected");
 	%>
 	<div>
@@ -69,7 +68,7 @@
 		PortletURL currentIteratorCategoriesForumSelectedURL = renderResponse.createRenderURL();
 		currentIteratorCategoriesForumSelectedURL.setParameter("jspPage", "/forum-view/forum.jsp");
 		%>
-		<liferay-ui:search-container emptyResultsMessage="categories-forum-empty" delta="10" iteratorURL="<%=currentIteratorCategoriesForumSelectedURL %>" >
+		<liferay-ui:search-container emptyResultsMessage="forum-categories-empty" delta="10" iteratorURL="<%=currentIteratorCategoriesForumSelectedURL %>" >
 	
 	
 			<liferay-ui:search-container-results>
@@ -122,7 +121,7 @@
 		 		PortletURL currentIteratorSubCategoriesForumSelectedURL = renderResponse.createRenderURL();
 			currentIteratorSubCategoriesForumSelectedURL.setParameter("jspPage", "/forum-view/forum.jsp");
 			%>
-			<liferay-ui:search-container emptyResultsMessage="sub-categories-forum-empty" delta="10" iteratorURL="<%=currentIteratorSubCategoriesForumSelectedURL %>" >
+			<liferay-ui:search-container emptyResultsMessage="forum-sub-categories-empty" delta="10" iteratorURL="<%=currentIteratorSubCategoriesForumSelectedURL %>" >
 		
 			<liferay-ui:search-container-results>
 		    <%	    
@@ -163,9 +162,5 @@
 		<%} %>
 	
 	<%} %>
-	
-	
-	
-
 
  <%@include file="/forum-common/footer.jsp" %> 

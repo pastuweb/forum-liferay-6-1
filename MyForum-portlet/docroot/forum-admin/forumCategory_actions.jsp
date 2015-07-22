@@ -13,12 +13,7 @@
 
 <liferay-ui:icon-menu>
     
-    <portlet:actionURL name="infoForumCategory" var="infoForumCategoryURL">
-      <portlet:param name="resourcePrimKey" value="<%= primKey %>" />
-    </portlet:actionURL>
-    <liferay-ui:icon image="preview"  message="Info" url="<%= infoForumCategoryURL.toString() %>" />
-    
-    <%if(remote_userid == myForumCategory.getUser_id_creator() || RoleLocalServiceUtil.hasUserRole(remote_userid, RoleLocalServiceUtil.getRole(themeDisplay.getCompanyId(), "Administrator").getRoleId()) ){ %>
+    <%if(remote_userid == myForumCategory.getUser_id_creator() ){ %>
     <portlet:actionURL name="editForumCategory" var="editForumCategoryURL">
       <portlet:param name="resourcePrimKey" value="<%= primKey %>" />
     </portlet:actionURL>
@@ -32,14 +27,14 @@
     <liferay-ui:icon image="category" message="Sub Categories" url="<%= viewSubForumCategoryURL.toString() %>" />
     <%} %>
     
-    <%if(remote_userid == myForumCategory.getUser_id_creator() || RoleLocalServiceUtil.hasUserRole(remote_userid, RoleLocalServiceUtil.getRole(themeDisplay.getCompanyId(), "Administrator").getRoleId())){ %>
+    <%if(remote_userid == myForumCategory.getUser_id_creator() ){ %>
     <portlet:actionURL name="deleteForumCategory" var="deleteForumCategoryURL">
       <portlet:param name="resourcePrimKey" value="<%= primKey %>" />
     </portlet:actionURL>
     <liferay-ui:icon-delete url="<%= deleteForumCategoryURL.toString() %>" />	
     <%} %>
     
-    <%if(remote_userid == myForumCategory.getUser_id_creator() || RoleLocalServiceUtil.hasUserRole(remote_userid, RoleLocalServiceUtil.getRole(themeDisplay.getCompanyId(), "Administrator").getRoleId())){ %>
+    <%if(remote_userid == myForumCategory.getUser_id_creator() ){ %>
     <portlet:actionURL name="active_deactiveForumCategory" var="active_deactiveForumCategoryURL">
       <portlet:param name="resourcePrimKey" value="<%= primKey %>" />
     </portlet:actionURL>

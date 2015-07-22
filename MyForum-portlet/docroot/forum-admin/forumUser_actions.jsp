@@ -10,7 +10,6 @@
 %>
 
 <liferay-ui:icon-menu>
-    
  
     <portlet:actionURL name="deleteForumUser" var="deleteForumUserURL">
       <portlet:param name="resourcePrimKey" value="<%= primKey %>" />
