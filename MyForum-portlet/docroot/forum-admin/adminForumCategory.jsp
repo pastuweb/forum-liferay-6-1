@@ -10,6 +10,7 @@
 	ForumCategory forumCategoryEdit = (ForumCategory) request.getAttribute("forumCategoryEdit");
 	%>
 	
+	
 	<liferay-ui:error key="mandatory-title" message="mandatory-title" />
 	<liferay-ui:error key="mandatory-description" message="mandatory-description" />
 	<liferay-ui:error key="mandatory-fields" message="mandatory-fields" />
@@ -23,19 +24,14 @@
 	<portlet:actionURL name="createForumCategory" var="createForumCategoryURL"/>
 	<portlet:actionURL name="updateForumCategory" var="updateForumCategoryURL"/>
 	
-	<div style="text-align:center;">
-		<h2 style="color:#000000;">
-			Categories 
+	<div class="portlet-msg-info" style="font-size:16px !important;">
+			<img src="<%=request.getContextPath()%>/images/category.png" alt="Categories" style="width:20px;"/> <span style="color:#FF0000;">Categories</span> 
 			<%if(forumCategory != null && forumCategory.getId_category() == forumCategory.getId_category_parent()){ %>
-			for Category <br> <span style="color:#FF0000;"><%=forumCategory.getTitle()%></span><br>
+			of <img src="<%=request.getContextPath()%>/images/category.png" alt="Sub Categories" style="width:20px;"/> <%=forumCategory.getTitle()%> 
 			<%} %>
-			of Forum
-			<br>
-			<span style="color:#FF0000;">
-			<%=forumSelected.getDescription() %>
-			</span>
-		</h2>
+			of <img src="<%=request.getContextPath()%>/images/forum.png" alt="Forums" style="width:20px;"/> <%=forumSelected.getDescription() %>
 	</div>
+	
 	
 	<%if(remote_userid == forumSelected.getUser_id_creator() || RoleLocalServiceUtil.hasUserRole(remote_userid, RoleLocalServiceUtil.getRole(themeDisplay.getCompanyId(), "Administrator").getRoleId())){ %>
 	<div style="position:relative;">
@@ -44,7 +40,7 @@
 		<%if(forumCategoryEdit == null){ 
 			ForumCategory editForumCategoryInsert = (ForumCategory) request.getAttribute("forumCategoryInInsert");
 		%>
-		<div class="portlet-msg-info"><span style="color:#283eff;"><liferay-ui:message key="insert-category-forum" /></span></div>
+		<div class="portlet-msg-alert"><span style="color:#283eff;"><liferay-ui:message key="insert-category-forum" /></span></div>
 		<aui:form action="<%= createForumCategoryURL.toString() %>" method="post">
 	
 			<aui:fieldset>

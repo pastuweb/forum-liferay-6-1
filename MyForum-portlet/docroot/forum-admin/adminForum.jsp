@@ -21,11 +21,15 @@
 	<portlet:actionURL name="createForum" var="createForumURL"/>
 	<portlet:actionURL name="updateForum" var="updateForumURL"/>
 
+	<div class="portlet-msg-info" style="font-size:16px !important;">
+			<img src="<%=request.getContextPath()%>/images/forum.png" alt="Forums" style="width:20px;"/> <span style="color:#FF0000;">Forum Manager</span>
+	</div>
+	
 	<div style="position:relative;">
 		<%if(forumEdit == null){ 
 			Forum editForumInsert = (Forum) request.getAttribute("forumInInsert");
 		%>
-		<div class="portlet-msg-info"><span style="color:#283eff;"><liferay-ui:message key="insert-forum" /></span></div>
+		<div class="portlet-msg-alert"><span style="color:#283eff;"><liferay-ui:message key="insert-forum" /></span></div>
 		<aui:form action="<%= createForumURL.toString() %>" method="post">
 				<aui:fieldset>
 					<%if(editForumInsert == null){ %>

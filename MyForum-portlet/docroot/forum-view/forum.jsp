@@ -7,10 +7,9 @@
 	%>
 
 	<div>
-		<strong style="font-size:20px;color:#3871CF;">Forums</strong><br>
-		<div style="padding-left:10px;">
-			Here you can find <strong>all Portal's Forum</strong>.
-		</div>
+		<div class="portlet-msg-info">
+			<img src="<%=request.getContextPath()%>/images/forum.png" alt="Forums" style="width:20px;"/> Forums
+		</div>	
 		<%
 	 		PortletURL currentIteratorForumActiveURL = renderResponse.createRenderURL();
 			currentIteratorForumActiveURL.setParameter("jspPage", "/forum-view/forum.jsp");
@@ -60,9 +59,8 @@
 		ForumCategory forumCategorySelected = (ForumCategory)request.getAttribute("forumCategorySelected");
 	%>
 	<div>
-		<strong style="font-size:20px;color:#FF0000;">Categories of <span style="color:#3871CF"><%=forumSelected.getDescription() %></span></strong><br>
-		<div style="padding-left:10px;">
-			Here you can find <strong>all Categories</strong> about <strong>Forum Selected</strong>
+		<div class="portlet-msg-info">
+			<img src="<%=request.getContextPath()%>/images/category.png" alt="Categories" style="width:20px;"/> Categories of <span style="color:#3871CF"><%=forumSelected.getDescription() %></span>
 		</div>
 		<%	
 		PortletURL currentIteratorCategoriesForumSelectedURL = renderResponse.createRenderURL();
@@ -109,13 +107,15 @@
 	  	</liferay-ui:search-container>
 		<br>
 	</div>
+	
 		<%
 		if(forumCategorySelected != null){ 
 		%>
 		<div>
-			<strong style="font-size:20px;color:#FF0000;">Sub Categories of <span style="color:#3871CF"><%=forumCategorySelected.getTitle() %></span></strong><br>
-			<div style="padding-left:10px;">
-				Here you can find <strong>all Sub Categories</strong> about <strong>Forum and Category Selected</strong>
+		
+			<div class="portlet-msg-alert">
+				<img src="<%=request.getContextPath()%>/images/sub_category.png" alt="Sub-categories" style="width:20px;"/> Sub-Categories of <span style="color:#3871CF"><%=forumCategorySelected.getTitle() %></span>
+				<span style="color:#FF0000">(last level)</span>
 			</div>
 			<%
 		 		PortletURL currentIteratorSubCategoriesForumSelectedURL = renderResponse.createRenderURL();

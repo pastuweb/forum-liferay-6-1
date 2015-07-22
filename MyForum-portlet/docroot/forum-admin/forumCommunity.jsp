@@ -33,20 +33,14 @@
 	Set<Role> roleList = new HashSet<Role>(RoleLocalServiceUtil.getRoles(0, RoleLocalServiceUtil.getRolesCount()));
 	%>
 	
-	<div style="text-align:center;">
-		<h2 style="color:#000000;">
-			Community in Forum
-			<br>
-			<span style="color:#FF0000;">
-			<%=forumSelected.getDescription() %>
-			</span>
-		</h2>
+	<div class="portlet-msg-info" style="font-size:16px !important;">
+			<img src="<%=request.getContextPath()%>/images/community.png" alt="Community" style="width:20px;"/> 
+			<span style="color:#FF0000;">Community</span> <img src="<%=request.getContextPath()%>/images/forum.png" alt="Forums" style="width:20px;"/> <%=forumSelected.getDescription() %>
 	</div>
-	
 	
 	<div style="position:relative;">
 	<div style="float:left;padding:10px;">
-		<div class="portlet-msg-info"><span style="color:#283eff;"><liferay-ui:message key="assign-single-user" /></span></div>
+		<div class="portlet-msg-alert"><span style="color:#283eff;"><liferay-ui:message key="assign-single-user" /></span></div>
 		<aui:form action="<%= joinUserToFoumURL.toString() %>" method="post">
 		
 				<aui:fieldset>
@@ -144,9 +138,9 @@
 	</div>
 	<div style="clear:left;"></div>
 	</div>
+	<br>
 	
 	<div style="position:relative;">
-		
 	<%
 	PortletURL iteratorURL = renderResponse.createRenderURL();
 	iteratorURL.setParameter("jspPage", "/forum-admin/forumCommunity.jsp");

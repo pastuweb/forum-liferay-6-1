@@ -35,12 +35,15 @@
 
 	<div style="position:relative;">
 		<br>
-		<strong style="font-size:20px;color:#3871CF;">Posts</strong><br>
-		<div style="padding-left:10px;">
-			Here you can find <strong>all Posts</strong> about Forum <strong style="color:#3871CF;"><%=forumSelected.getDescription() %></strong> - 
+		<div class="portlet-msg-info">
+			<img src="<%=request.getContextPath()%>/images/post.png" alt="Post" style="width:20px;"/> Posts
+		</div>
+		<div style="padding-left:10px;font-size:15px;">
+			Here you can find <strong>all Posts</strong> about <img src="<%=request.getContextPath()%>/images/forum.png" alt="Forums" style="width:15px;"/>
+			 <strong style="color:#3871CF;"><%=forumSelected.getDescription() %></strong> <img src="<%=request.getContextPath()%>/images/category.png" alt="Categories" style="width:15px;"/> 
 			<strong style="color:#3871CF;"><%=forumCategorySelected.getTitle() %></strong>
 			<%if(forumSubCategorySelected != null){ %>
-			and <strong style="color:#3871CF;"><%=forumSubCategorySelected.getTitle() %></strong>
+			and <img src="<%=request.getContextPath()%>/images/sub_category.png" alt="Sub-categories" style="width:15px;"/> <strong style="color:#3871CF;"><%=forumSubCategorySelected.getTitle() %></strong>
 			<%} %>
 		</div>
 		<div style="width:320px;margin:auto;">
@@ -50,18 +53,17 @@
 			<div style="clear:left;"></div>
 		</div>
 
-		<div style="position:absolute;right:10px;top:-10px;">
-			<img id="addPost" src="<%=request.getContextPath()%>/images/add_post.png" width="40" title="Add Post" alt="Add Post" />
-			<img id="refreshPosts" src="<%=request.getContextPath()%>/images/refresh_posts.png" width="40" title="Refresh Post" alt="Refresh Post" />
+
+		<div style="position:absolute;right:10px;top:30px;">
+			<img id="addPost" src="<%=request.getContextPath()%>/images/add_post.png" width="40" title="Add Post" alt="Add Post" style="background:#FFFFFF;"/>
+			<img id="refreshPosts" src="<%=request.getContextPath()%>/images/refresh_posts.png" width="40" title="Refresh Post" alt="Refresh Post" style="background:#FFFFFF;"/>
 		</div>
 		
 		<!-- Posts -->
 		<%=PostUtil.getPosts(remote_userid, posts) %>	
 		
 	</div>
-	
-	
-	
+
 	<div id="dialog-formAddPost" title="Crea un Nuovo Post">
 	
 		<form id="addPostForm" action="<%=addPostURL.toString()%>" method="post">
